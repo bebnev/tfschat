@@ -9,6 +9,8 @@
 import Foundation
 
 func log(_ message: String, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
-    let fileURL = NSURL(string: file)?.lastPathComponent ?? ""
-    print("\(fileURL) > \(function)[\(line)]: \(message)\n")
+    #if LOGS_ARE_ENABLED
+        let fileURL = NSURL(string: file)?.lastPathComponent ?? ""
+        print("\(fileURL) > \(function)[\(line)]: \(message)\n")
+    #endif
 }
