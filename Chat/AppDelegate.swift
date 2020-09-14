@@ -12,10 +12,39 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var firstLaunch = true
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
+    }
+    
+    // MARK: App Life-Cycle Events
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        if firstLaunch {
+            log("Application moved from not running to inactive and then to active state")
+            firstLaunch = false
+        } else {
+            log("Application moved from inactive to active state")
+        }
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        log("Application is moving from active to inactive state")
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        log("Application moved from inactive to background state")
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        log("Application is moving from background to inactive state")
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        log("Application is going to be terminated and moved to not running state")
     }
 
 }
