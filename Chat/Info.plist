@@ -39,5 +39,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Roboto-Regular.ttf</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) запрашивает доступ к Камере. Вы сможете добавлять фотографии в переписку и выбирать любимую аватарку.</string>
 </dict>
 </plist>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E875BC8C2518E4D700ECAC5C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875BC8B2518E4D700ECAC5C /* ProfileViewController.swift */; };
+		E875BC8F2518F27200ECAC5C /* UILabel+Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875BC8E2518F27200ECAC5C /* UILabel+Typography.swift */; };
+		E875BC922519035500ECAC5C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E875BC912519035500ECAC5C /* Roboto-Regular.ttf */; };
 		E8A8523D251017270093FB52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A8523C251017270093FB52 /* AppDelegate.swift */; };
 		E8A85241251017270093FB52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A85240251017270093FB52 /* ViewController.swift */; };
 		E8A85244251017270093FB52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8A85242251017270093FB52 /* Main.storyboard */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E875BC8B2518E4D700ECAC5C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E875BC8E2518F27200ECAC5C /* UILabel+Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Typography.swift"; sourceTree = "<group>"; };
+		E875BC912519035500ECAC5C /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		E8A85239251017270093FB52 /* TFSChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFSChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8A8523C251017270093FB52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8A85240251017270093FB52 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +47,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E875BC8D2518F24200ECAC5C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E875BC8E2518F27200ECAC5C /* UILabel+Typography.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E875BC902519034400ECAC5C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E875BC912519035500ECAC5C /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		E8A85230251017270093FB52 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +84,8 @@
 		E8A8523B251017270093FB52 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				E875BC902519034400ECAC5C /* Fonts */,
+				E875BC8D2518F24200ECAC5C /* Extensions */,
 				E8A8523C251017270093FB52 /* AppDelegate.swift */,
 				E8A85240251017270093FB52 /* ViewController.swift */,
 				E8A85242251017270093FB52 /* Main.storyboard */,
@@ -69,6 +93,7 @@
 				E8A85247251017270093FB52 /* LaunchScreen.storyboard */,
 				E8A8524A251017270093FB52 /* Info.plist */,
 				E8A8525025101CCB0093FB52 /* AppUtility.swift */,
+				E875BC8B2518E4D700ECAC5C /* ProfileViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -131,6 +156,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E875BC922519035500ECAC5C /* Roboto-Regular.ttf in Resources */,
 				E8A85255251034970093FB52 /* .gitignore in Resources */,
 				E8A85249251017270093FB52 /* LaunchScreen.storyboard in Resources */,
 				E8A85246251017270093FB52 /* Assets.xcassets in Resources */,
@@ -147,7 +173,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8A85241251017270093FB52 /* ViewController.swift in Sources */,
+				E875BC8F2518F27200ECAC5C /* UILabel+Typography.swift in Sources */,
 				E8A8523D251017270093FB52 /* AppDelegate.swift in Sources */,
+				E875BC8C2518E4D700ECAC5C /* ProfileViewController.swift in Sources */,
 				E8A8525125101CCB0093FB52 /* AppUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
