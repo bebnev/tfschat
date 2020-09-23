@@ -57,8 +57,8 @@ class ProfileViewController: ViewController {
         super.viewDidAppear(animated)
         
         // Разница в значениях может получиться из-за того, что метод viewDidAppear вызывается уже после того, как механизм autolayout отработал
-        // и все вложенные вьюхи отрисовались и сама вьюха была добавлена в иерархию вьюх. viewDidLoad же вызывается до autolayout, когда вьюха
-        // загружена в память
+        // и все вложенные вьюхи отрисовались и сама вьюха была добавлена в иерархию вьюх, соответственно все получили свои реальные размеры
+        // и расположение. viewDidLoad же вызывается до autolayout, когда вьюха просто загружена в память
         Log.debug("Save Button frame at viewDidAppear: \(saveProfileButton.frame)")
     }
     
