@@ -28,6 +28,7 @@ class ProfileViewController: ViewController {
     
     var hasCameraPermissions = false
     var avatarPlaceholderView: UIView?
+    var avatarImageView: UIImageView?
     
     // MARK:- Data
     
@@ -118,13 +119,18 @@ class ProfileViewController: ViewController {
             avatarPlaceholderView.removeFromSuperview()
         }
         
-        let imageView = UIImageView(image: image)
-        imageView.frame = CGRect(x: 0, y: 0, width: self.avatarView.frame.width, height: self.avatarView.frame.height)
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = imageView.frame.width / 2
-        imageView.clipsToBounds = true
-        
-        self.avatarView.addSubview(imageView)
+        if let avatarImageView = avatarImageView {
+            avatarImageView.image = image
+        } else {
+            let imageView = UIImageView(image: image)
+            imageView.frame = CGRect(x: 0, y: 0, width: avatarView.frame.width, height: avatarView.frame.height)
+            imageView.contentMode = .scaleAspectFill
+            imageView.layer.cornerRadius = imageView.frame.width / 2
+            imageView.clipsToBounds = true
+            avatarView.addSubview(imageView)
+            
+            avatarImageView = imageView
+        }
     }
     
     //MARK:- IBActions
