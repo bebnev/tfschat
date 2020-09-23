@@ -10,10 +10,10 @@ import Foundation
 
 
 class Log {
-    static func debug(_ message: String, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
+    static func debug(_ object: Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
         #if IS_LOGS_ENABLED
             let fileURL = NSURL(string: file)?.lastPathComponent ?? ""
-            print("\(fileURL) > \(function)[\(line)]: \(message)\n")
+            print("\(fileURL) > \(function)[\(line)]: \(object)\n")
         #endif
     }
 }
