@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E8069E97251AA6D2002B5F69 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8069E96251AA6D2002B5F69 /* Log.swift */; };
 		E82666B6251AAAB90013708D /* String+Acronyms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82666B5251AAAB90013708D /* String+Acronyms.swift */; };
+		E86D64D32522802200BFD07B /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D64D22522802200BFD07B /* ConversationsListViewController.swift */; };
+		E86D64D52522809000BFD07B /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D64D42522809000BFD07B /* ConversationViewController.swift */; };
 		E875BC8C2518E4D700ECAC5C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875BC8B2518E4D700ECAC5C /* ProfileViewController.swift */; };
 		E875BC8F2518F27200ECAC5C /* UILabel+Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875BC8E2518F27200ECAC5C /* UILabel+Typography.swift */; };
 		E875BC922519035500ECAC5C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E875BC912519035500ECAC5C /* Roboto-Regular.ttf */; };
@@ -24,6 +26,8 @@
 /* Begin PBXFileReference section */
 		E8069E96251AA6D2002B5F69 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		E82666B5251AAAB90013708D /* String+Acronyms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Acronyms.swift"; sourceTree = "<group>"; };
+		E86D64D22522802200BFD07B /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
+		E86D64D42522809000BFD07B /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		E875BC8B2518E4D700ECAC5C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E875BC8E2518F27200ECAC5C /* UILabel+Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Typography.swift"; sourceTree = "<group>"; };
 		E875BC912519035500ECAC5C /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 				E8A8524A251017270093FB52 /* Info.plist */,
 				E875BC8B2518E4D700ECAC5C /* ProfileViewController.swift */,
 				E8069E96251AA6D2002B5F69 /* Log.swift */,
+				E86D64D22522802200BFD07B /* ConversationsListViewController.swift */,
+				E86D64D42522809000BFD07B /* ConversationViewController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -177,9 +183,11 @@
 			files = (
 				E8A85241251017270093FB52 /* ViewController.swift in Sources */,
 				E875BC8F2518F27200ECAC5C /* UILabel+Typography.swift in Sources */,
+				E86D64D52522809000BFD07B /* ConversationViewController.swift in Sources */,
 				E8A8523D251017270093FB52 /* AppDelegate.swift in Sources */,
 				E875BC8C2518E4D700ECAC5C /* ProfileViewController.swift in Sources */,
 				E82666B6251AAAB90013708D /* String+Acronyms.swift in Sources */,
+				E86D64D32522802200BFD07B /* ConversationsListViewController.swift in Sources */,
 				E8069E97251AA6D2002B5F69 /* Log.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
