@@ -88,25 +88,13 @@ class ProfileViewController: ViewController {
      * Отрисовка placeholder вместо аватара
      */
     private func drawAvatarPlaceholder(for name: String) {
-        let avatarPlaceholderView = UIView(frame: CGRect(x: 0, y: 0, width: avatarView.frame.width, height: avatarView.frame.height))
-        avatarPlaceholderView.backgroundColor = UIColor(red: 0.894, green: 0.908, blue: 0.17, alpha: 1)
-        avatarPlaceholderView.layer.cornerRadius = avatarPlaceholderView.bounds.width / 2
+        let avatarPlaceholderView = AvataViewPlaceholder(frame: CGRect(x: 0, y: 0, width: avatarView.frame.width, height: avatarView.frame.height))
         avatarPlaceholderView.isUserInteractionEnabled = false
+        avatarPlaceholderView.userName = name
+        avatarPlaceholderView.labelFontSize = 120
         avatarView.addSubview(avatarPlaceholderView)
         
         self.avatarPlaceholderView = avatarPlaceholderView
-        
-        let placeholderNameLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        placeholderNameLabel.text = String(name.getAcronyms().prefix(2))
-        placeholderNameLabel.textColor = UIColor(red: 0.212, green: 0.216, blue: 0.22, alpha: 1)
-        placeholderNameLabel.font = UIFont(name: "Roboto-Regular", size: 120)
-        placeholderNameLabel.textAlignment = .center
-        placeholderNameLabel.backgroundColor = .clear
-        placeholderNameLabel.numberOfLines = 1
-        placeholderNameLabel.sizeToFit()
-        placeholderNameLabel.center = avatarPlaceholderView.center
-
-        avatarPlaceholderView.addSubview(placeholderNameLabel)
     }
     
     /**
