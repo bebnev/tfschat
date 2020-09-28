@@ -11,6 +11,8 @@
 		E82666B6251AAAB90013708D /* String+Acronyms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82666B5251AAAB90013708D /* String+Acronyms.swift */; };
 		E86D64D32522802200BFD07B /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D64D22522802200BFD07B /* ConversationsListViewController.swift */; };
 		E86D64D52522809000BFD07B /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D64D42522809000BFD07B /* ConversationViewController.swift */; };
+		E875149925228BB9003321B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875149825228BB9003321B7 /* User.swift */; };
+		E875149C25228C85003321B7 /* AvatarViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875149B25228C85003321B7 /* AvatarViewPlaceholder.swift */; };
 		E875BC8C2518E4D700ECAC5C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875BC8B2518E4D700ECAC5C /* ProfileViewController.swift */; };
 		E875BC8F2518F27200ECAC5C /* UILabel+Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875BC8E2518F27200ECAC5C /* UILabel+Typography.swift */; };
 		E875BC922519035500ECAC5C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E875BC912519035500ECAC5C /* Roboto-Regular.ttf */; };
@@ -28,6 +30,8 @@
 		E82666B5251AAAB90013708D /* String+Acronyms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Acronyms.swift"; sourceTree = "<group>"; };
 		E86D64D22522802200BFD07B /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		E86D64D42522809000BFD07B /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		E875149825228BB9003321B7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E875149B25228C85003321B7 /* AvatarViewPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewPlaceholder.swift; sourceTree = "<group>"; };
 		E875BC8B2518E4D700ECAC5C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E875BC8E2518F27200ECAC5C /* UILabel+Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Typography.swift"; sourceTree = "<group>"; };
 		E875BC912519035500ECAC5C /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -53,6 +57,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E875149725228B83003321B7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E875149825228BB9003321B7 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E875149A25228C65003321B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E875149B25228C85003321B7 /* AvatarViewPlaceholder.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E875BC8D2518F24200ECAC5C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +111,8 @@
 		E8A8523B251017270093FB52 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				E875149A25228C65003321B7 /* View */,
+				E875149725228B83003321B7 /* Models */,
 				E875BC902519034400ECAC5C /* Fonts */,
 				E875BC8D2518F24200ECAC5C /* Extensions */,
 				E8A8523C251017270093FB52 /* AppDelegate.swift */,
@@ -186,7 +208,9 @@
 				E86D64D52522809000BFD07B /* ConversationViewController.swift in Sources */,
 				E8A8523D251017270093FB52 /* AppDelegate.swift in Sources */,
 				E875BC8C2518E4D700ECAC5C /* ProfileViewController.swift in Sources */,
+				E875149925228BB9003321B7 /* User.swift in Sources */,
 				E82666B6251AAAB90013708D /* String+Acronyms.swift in Sources */,
+				E875149C25228C85003321B7 /* AvatarViewPlaceholder.swift in Sources */,
 				E86D64D32522802200BFD07B /* ConversationsListViewController.swift in Sources */,
 				E8069E97251AA6D2002B5F69 /* Log.swift in Sources */,
 			);

@@ -9,12 +9,6 @@
 import UIKit
 import AVFoundation
 
-struct UserProfile {
-    let name: String
-    let about: String
-    var avatar: UIImage?
-}
-
 class ProfileViewController: ViewController {
     
     // MARK:- Outlets
@@ -32,7 +26,7 @@ class ProfileViewController: ViewController {
     
     // MARK:- Data
     
-    var user = UserProfile(name: "Marina Dudarenko", about: "UX/UI designer, web-designer Moscow, Russia", avatar: nil)
+    var user: User?
     
     // MARK:- Lifecycle
     
@@ -74,6 +68,10 @@ class ProfileViewController: ViewController {
      * Установка данных пользователя 
      */
     private func fillUserData() {
+        guard let user = user else {
+            return
+        }
+        
         nameLabel.text = user.name
         aboutLabel.text = user.about
         aboutLabel.setLetterSpacing(-0.33)
@@ -167,6 +165,10 @@ class ProfileViewController: ViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func handleSaveButtonPress(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 //MARK:- camera+photos utils
@@ -210,7 +212,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
         
-        user.avatar = image
+        user?.avatar = image
         
         DispatchQueue.main.async {
             self.drawAvatar(with: image)
