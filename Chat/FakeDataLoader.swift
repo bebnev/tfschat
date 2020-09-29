@@ -34,7 +34,7 @@ class FakeDataLoader {
                         return conversation.isOnline
                     }
                     let historyConversations = originalConverstions.filter { (conversation) -> Bool in
-                        return !conversation.isOnline
+                        return !conversation.isOnline && conversation.message != ""
                     }
                     
                     self.conversations = [

@@ -30,13 +30,16 @@ extension ConversationCellModel {
         else {
             return nil
         }
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        
-        guard let date = dateFormatter.date(from: dateString) else {
-            return nil;
+        let random = Bool.random()
+        var date = Date()
+        if !random {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            if let d = dateFormatter.date(from: dateString) {
+                date = d
+            }
         }
+        
         
         guard let avatar = UIImage(named: imageString) else {
             return nil

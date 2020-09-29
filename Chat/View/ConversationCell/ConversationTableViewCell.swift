@@ -8,7 +8,10 @@
 
 import UIKit
 
-class ConversationTableViewCell: UITableViewCell {
+class ConversationTableViewCell: UITableViewCell, ConfigurableView {
+    
+    typealias ConfigurationModel = ConversationCellModel
+    
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -26,5 +29,39 @@ class ConversationTableViewCell: UITableViewCell {
         avatarImageView.contentMode = .scaleAspectFill
         avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
         avatarImageView.clipsToBounds = true
+    }
+    
+    func configure(with model: ConversationCellModel) {
+        nameLabel.text = model.name
+        if model.message == "" {
+            dateLabel.text = ""
+            messageLabel.text = "No messages yet"
+            messageLabel.font = UIFont.italicSystemFont(ofSize: messageLabel.font.pointSize)
+        } else {
+            let dateFormatterCell = DateFormatter()
+            if Calendar.current.isDateInToday(model.date) {
+                dateFormatterCell.dateFormat = "HH:mm"
+            } else {
+                dateFormatterCell.dateFormat = "dd MMM"
+            }
+            dateLabel.text = dateFormatterCell.string(from: model.date)
+            
+            messageLabel.text = model.message
+            
+            if model.hasUnreadMessages {
+                messageLabel.font = UIFont.boldSystemFont(ofSize: messageLabel.font.pointSize)
+            } else {
+                messageLabel.font = UIFont.systemFont(ofSize: messageLabel.font.pointSize)
+            }
+        }
+        
+        avatarImageView.image = model.avatar
+        
+        if model.isOnline {
+            backgroundColor = UIColor(red: 1.00, green: 0.86, blue: 0.55, alpha: 1.00)
+        } else {
+            backgroundColor = UIColor.white
+        }
+        
     }
 }

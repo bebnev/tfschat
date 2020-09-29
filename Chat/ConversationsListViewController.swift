@@ -65,6 +65,7 @@ class ConversationsListViewController: ViewController {
         chatsTableView.register(UINib(nibName: "ConversationTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentificator)
         chatsTableView.delegate = self
         chatsTableView.dataSource = self
+        chatsTableView.sectionIndexBackgroundColor = UIColor.white
     }
     
     @objc
@@ -134,31 +135,15 @@ extension ConversationsListViewController: UITableViewDataSource {
         }
         
         let conversation = fakeData.conversations[indexPath.section].conversations[indexPath.row]
-        cell.nameLabel.text = conversation.name
-        cell.messageLabel.text = conversation.message
-        cell.dateLabel.text = "Now"
-        cell.avatarImageView.image = conversation.avatar
+        cell.configure(with: conversation)
         
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         
         return cell
-//        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentificator, for: indexPath) as! NoteTableViewCell
-//
-//        let note = notebook.notes[indexPath.row]
-//
-//        cell.titleLabel.text = note.title
-//        cell.contentLabel.text = note.content
-//        if note.color == .white {
-//            cell.colorView.isHidden = true
-//        } else {
-//            cell.colorView.isHidden = false
-//            cell.colorView.backgroundColor = note.color // TODO: white color
-//        }
-//
-//        cell.accessoryType = .disclosureIndicator
-//        cell.selectionStyle = .none
-//
-//        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return fakeData.conversations[section].title
     }
 }
