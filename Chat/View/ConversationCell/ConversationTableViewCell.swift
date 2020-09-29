@@ -58,7 +58,7 @@ class ConversationTableViewCell: UITableViewCell, ConfigurableView {
         avatarImageView.image = model.avatar
         
         if model.isOnline {
-            backgroundColor = UIColor(red: 1.00, green: 0.86, blue: 0.55, alpha: 1.00)
+            backgroundColor = UIColor(red: 0.99, green: 1.00, blue: 0.82, alpha: 1.00)
             accessoryType = .disclosureIndicator
         } else {
             backgroundColor = UIColor.white

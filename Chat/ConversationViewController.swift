@@ -68,6 +68,8 @@ class ConversationViewController: UITableViewController {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
             label.text = conversation.name
+            label.font = UIFont.boldSystemFont(ofSize: 16)
+            label.setLetterSpacing(-0.3)
             
             containerView.addSubview(label)
             containerView.addSubview(conversationImageView)
