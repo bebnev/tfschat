@@ -9,11 +9,18 @@
 import UIKit
 
 class ConversationViewController: ViewController {
+    
+    var conversation: ConversationCellModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.blue
+        
+        if let conversation = conversation {
+            title = conversation.name
+        }
+        navigationItem.largeTitleDisplayMode = .never
 
         // Do any additional setup after loading the view.
     }

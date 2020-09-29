@@ -90,10 +90,15 @@ extension ConversationsListViewController {
        navigationItem.hidesSearchBarWhenScrolling = true
        navigationItem.leftBarButtonItem = settingsButtonItem
        navigationItem.rightBarButtonItem = avatarButtonItem
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
    }
     
     func navigateToProfileView() {
         performSegue(withIdentifier: "profileView", sender: nil)
+    }
+    
+    func navigateToChatDetails() {
+        performSegue(withIdentifier: "chatDetails", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -101,6 +106,12 @@ extension ConversationsListViewController {
             let controller = segue.destination as? ProfileViewController  {
             
             controller.user = user
+        } else if segue.identifier == "chatDetails",
+            let controller = segue.destination as? ConversationViewController,
+            let selectedRowIndexPath = chatsTableView.indexPathForSelectedRow {
+                let conversation = fakeData.conversations[selectedRowIndexPath.section].conversations[selectedRowIndexPath.row]
+                controller.conversation = conversation
+                chatsTableView.deselectRow(at: selectedRowIndexPath, animated: false)
         }
     }
 }
@@ -145,5 +156,9 @@ extension ConversationsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return fakeData.conversations[section].title
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigateToChatDetails()
     }
 }
