@@ -24,28 +24,12 @@
             </objects>
             <point key="canvasLocation" x="-1483" y="116"/>
         </scene>
-        <!--Conversation View Controller-->
-        <scene sceneID="ZwH-WE-xrm">
-            <objects>
-                <viewController id="h0r-n4-rts" customClass="ConversationViewController" customModule="TFSChat" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Qt3-3e-CtL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="fHj-iR-fwN"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ejO-Z6-soz"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A7w-EI-OD4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="412" y="116"/>
-        </scene>
         <!--Profile View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="TFSChat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="BYZ-38-t0r" customClass="ProfileViewController" customModule="TFSChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVu-Xq-CcD">
@@ -84,7 +68,7 @@ Moscow, Russia</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wg4-A0-jKd">
-                                <rect key="frame" x="56" y="577" width="263" height="40"/>
+                                <rect key="frame" x="56" y="597" width="263" height="40"/>
                                 <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="6SD-KX-yOa"/>
@@ -149,8 +133,6 @@ Moscow, Russia</string>
                     <navigationItem key="navigationItem" id="NMW-en-3Lk"/>
                     <connections>
                         <outlet property="chatsTableView" destination="gPT-aR-2bm" id="WEC-eY-H9S"/>
-                        <segue destination="h0r-n4-rts" kind="show" identifier="chatDetails" id="3SE-XX-6jj"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="profileView" id="GR9-DQ-D7b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rV1-Fk-1jJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

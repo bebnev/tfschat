@@ -20,6 +20,8 @@
 		E87514AA2522AEFD003321B7 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87514A82522AEFD003321B7 /* ConversationTableViewCell.swift */; };
 		E87514AB2522AEFD003321B7 /* ConversationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E87514A92522AEFD003321B7 /* ConversationTableViewCell.xib */; };
 		E87514AE2522AF80003321B7 /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87514AD2522AF80003321B7 /* ConfigurableView.swift */; };
+		E87514B025232A99003321B7 /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87514AF25232A99003321B7 /* MessageCellModel.swift */; };
+		E87514B225234973003321B7 /* ChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87514B125234973003321B7 /* ChatMessageTableViewCell.swift */; };
 		E875BC8C2518E4D700ECAC5C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875BC8B2518E4D700ECAC5C /* ProfileViewController.swift */; };
 		E875BC8F2518F27200ECAC5C /* UILabel+Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875BC8E2518F27200ECAC5C /* UILabel+Typography.swift */; };
 		E875BC922519035500ECAC5C /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E875BC912519035500ECAC5C /* Roboto-Regular.ttf */; };
@@ -46,6 +48,8 @@
 		E87514A82522AEFD003321B7 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		E87514A92522AEFD003321B7 /* ConversationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationTableViewCell.xib; sourceTree = "<group>"; };
 		E87514AD2522AF80003321B7 /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
+		E87514AF25232A99003321B7 /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
+		E87514B125234973003321B7 /* ChatMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageTableViewCell.swift; sourceTree = "<group>"; };
 		E875BC8B2518E4D700ECAC5C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E875BC8E2518F27200ECAC5C /* UILabel+Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Typography.swift"; sourceTree = "<group>"; };
 		E875BC912519035500ECAC5C /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 				E875149825228BB9003321B7 /* User.swift */,
 				E875149D25229B08003321B7 /* ConversationCellModel.swift */,
 				E87514A52522AB20003321B7 /* ConversationsModel.swift */,
+				E87514AF25232A99003321B7 /* MessageCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -86,6 +91,7 @@
 			children = (
 				E87514A72522ADCD003321B7 /* ConversationCell */,
 				E875149B25228C85003321B7 /* AvatarViewPlaceholder.swift */,
+				E87514B125234973003321B7 /* ChatMessageTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -249,7 +255,9 @@
 				E86D64D52522809000BFD07B /* ConversationViewController.swift in Sources */,
 				E8A8523D251017270093FB52 /* AppDelegate.swift in Sources */,
 				E875BC8C2518E4D700ECAC5C /* ProfileViewController.swift in Sources */,
+				E87514B025232A99003321B7 /* MessageCellModel.swift in Sources */,
 				E875149925228BB9003321B7 /* User.swift in Sources */,
+				E87514B225234973003321B7 /* ChatMessageTableViewCell.swift in Sources */,
 				E82666B6251AAAB90013708D /* String+Acronyms.swift in Sources */,
 				E875149C25228C85003321B7 /* AvatarViewPlaceholder.swift in Sources */,
 				E86D64D32522802200BFD07B /* ConversationsListViewController.swift in Sources */,

@@ -94,25 +94,19 @@ extension ConversationsListViewController {
    }
     
     func navigateToProfileView() {
-        performSegue(withIdentifier: "profileView", sender: nil)
+        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+        myVC.user = user
+        
+        let navController = UINavigationController(rootViewController: myVC)
+
+        navigationController?.present(navController, animated: true, completion: nil)
     }
     
-    func navigateToChatDetails() {
-        performSegue(withIdentifier: "chatDetails", sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "profileView",
-            let controller = segue.destination as? ProfileViewController  {
-            
-            controller.user = user
-        } else if segue.identifier == "chatDetails",
-            let controller = segue.destination as? ConversationViewController,
-            let selectedRowIndexPath = chatsTableView.indexPathForSelectedRow {
-                let conversation = fakeData.conversations[selectedRowIndexPath.section].conversations[selectedRowIndexPath.row]
-                controller.conversation = conversation
-                chatsTableView.deselectRow(at: selectedRowIndexPath, animated: false)
-        }
+    func navigateToChatDetails(_ conversation: ConversationCellModel) {
+        let conversationViewController = ConversationViewController()
+        conversationViewController.conversation = conversation
+        
+        show(conversationViewController, sender: self)
     }
 }
 
@@ -147,8 +141,6 @@ extension ConversationsListViewController: UITableViewDataSource {
         
         let conversation = fakeData.conversations[indexPath.section].conversations[indexPath.row]
         cell.configure(with: conversation)
-        
-        cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         
         return cell
@@ -159,6 +151,9 @@ extension ConversationsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigateToChatDetails()
+        let cell = fakeData.conversations[indexPath.section].conversations[indexPath.row]
+        if cell.isOnline {
+            navigateToChatDetails(cell)
+        }
     }
 }

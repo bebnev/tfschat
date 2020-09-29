@@ -59,8 +59,10 @@ class ConversationTableViewCell: UITableViewCell, ConfigurableView {
         
         if model.isOnline {
             backgroundColor = UIColor(red: 1.00, green: 0.86, blue: 0.55, alpha: 1.00)
+            accessoryType = .disclosureIndicator
         } else {
             backgroundColor = UIColor.white
+            accessoryType = .none
         }
         
     }

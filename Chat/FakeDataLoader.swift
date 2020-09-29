@@ -9,6 +9,7 @@
 import Foundation
 
 class FakeDataLoader {
+    static var current = FakeDataLoader()
     var conversations = [ConversationsModel]()
     
     func load() {

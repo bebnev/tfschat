@@ -46,6 +46,14 @@ class ProfileViewController: ViewController {
         setupView()
         requestCameraPermissions()
         fillUserData()
+        title = "My Profile"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Закрыть", style: .plain, target: self, action: #selector(handleNavigationCloseButtonTap))
+    }
+    
+    @objc
+    func handleNavigationCloseButtonTap() {
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
