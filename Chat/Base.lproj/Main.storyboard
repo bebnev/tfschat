@@ -131,11 +131,24 @@ Moscow, Russia</string>
                     <view key="view" contentMode="scaleToFill" id="Ree-f8-AWQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPT-aR-2bm">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="gPT-aR-2bm" firstAttribute="top" secondItem="fHB-BQ-BfG" secondAttribute="top" id="Wf5-ah-Avm"/>
+                            <constraint firstItem="gPT-aR-2bm" firstAttribute="leading" secondItem="fHB-BQ-BfG" secondAttribute="leading" id="XLP-nd-KtV"/>
+                            <constraint firstItem="fHB-BQ-BfG" firstAttribute="trailing" secondItem="gPT-aR-2bm" secondAttribute="trailing" id="nA5-02-hil"/>
+                            <constraint firstItem="fHB-BQ-BfG" firstAttribute="bottom" secondItem="gPT-aR-2bm" secondAttribute="bottom" id="vxh-67-6po"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fHB-BQ-BfG"/>
                     </view>
                     <navigationItem key="navigationItem" id="NMW-en-3Lk"/>
                     <connections>
+                        <outlet property="chatsTableView" destination="gPT-aR-2bm" id="WEC-eY-H9S"/>
                         <segue destination="h0r-n4-rts" kind="show" identifier="chatDetails" id="3SE-XX-6jj"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="profileView" id="GR9-DQ-D7b"/>
                     </connections>

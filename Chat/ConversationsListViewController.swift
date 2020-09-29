@@ -10,7 +10,18 @@ import UIKit
 
 class ConversationsListViewController: ViewController {
     
+    // MARK:- Outlets
+    @IBOutlet weak var chatsTableView: UITableView!
+    
+    // MARK:- fake data
+    
     let user = User(name: "Marina Dudarenko", about: "UX/UI designer, web-designer Moscow, Russia", avatar: nil)
+    
+    let fakeData = FakeDataLoader();
+    
+    // MARK:- UI vars
+    
+    let reuseIdentificator = String(describing: ConversationTableViewCell.self)
     
     lazy var searchController: UISearchController = {
         let search = UISearchController(searchResultsController: nil)
@@ -41,20 +52,19 @@ class ConversationsListViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadFakeData()
         setupNavigation()
-        
-        //view.backgroundColor = UIColor.yellow
-
-        // Do any additional setup after loading the view.
+        setupView()
     }
     
-    private func setupNavigation() {
-        title = "Tinkoff Chat"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
-        navigationItem.leftBarButtonItem = settingsButtonItem
-        navigationItem.rightBarButtonItem = avatarButtonItem
+    private func loadFakeData() {
+        fakeData.load()
+    }
+    
+    private func setupView() {
+        chatsTableView.register(UINib(nibName: "ConversationTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentificator)
+        chatsTableView.delegate = self
+        chatsTableView.dataSource = self
     }
     
     @objc
@@ -67,19 +77,20 @@ class ConversationsListViewController: ViewController {
         navigateToProfileView()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
+// MARK:- Navigation
+
 extension ConversationsListViewController {
+    private func setupNavigation() {
+       title = "Tinkoff Chat"
+       navigationController?.navigationBar.prefersLargeTitles = true
+       navigationItem.searchController = searchController
+       navigationItem.hidesSearchBarWhenScrolling = true
+       navigationItem.leftBarButtonItem = settingsButtonItem
+       navigationItem.rightBarButtonItem = avatarButtonItem
+   }
+    
     func navigateToProfileView() {
         performSegue(withIdentifier: "profileView", sender: nil)
     }
@@ -93,9 +104,61 @@ extension ConversationsListViewController {
     }
 }
 
+// MARK:- UISearchResultsUpdating
+
 extension ConversationsListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         Log.debug(text)
+    }
+}
+
+// MARK:- UITableViewDelegate
+
+extension ConversationsListViewController: UITableViewDelegate {}
+
+// MARK:- UITableViewDataSource
+
+extension ConversationsListViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return fakeData.conversations.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return fakeData.conversations[section].conversations.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentificator, for: indexPath) as? ConversationTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let conversation = fakeData.conversations[indexPath.section].conversations[indexPath.row]
+        cell.nameLabel.text = conversation.name
+        cell.messageLabel.text = conversation.message
+        cell.dateLabel.text = "Now"
+        cell.avatarImageView.image = conversation.avatar
+        
+        cell.accessoryType = .disclosureIndicator
+        cell.selectionStyle = .none
+        
+        return cell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentificator, for: indexPath) as! NoteTableViewCell
+//
+//        let note = notebook.notes[indexPath.row]
+//
+//        cell.titleLabel.text = note.title
+//        cell.contentLabel.text = note.content
+//        if note.color == .white {
+//            cell.colorView.isHidden = true
+//        } else {
+//            cell.colorView.isHidden = false
+//            cell.colorView.backgroundColor = note.color // TODO: white color
+//        }
+//
+//        cell.accessoryType = .disclosureIndicator
+//        cell.selectionStyle = .none
+//
+//        return cell
     }
 }
