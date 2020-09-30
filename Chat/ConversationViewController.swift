@@ -94,8 +94,8 @@ class ConversationViewController: UITableViewController {
 
     private func goToBottom() {
         guard messages.count > 0 else { return }
-        let indexPath = NSIndexPath(row: messages.count - 1, section: 0)
-        tableView.scrollToRow(at: indexPath as IndexPath, at: .bottom, animated: false)
+        let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         tableView.layoutIfNeeded()
     }
 
