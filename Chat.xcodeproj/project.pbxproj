@@ -14,7 +14,6 @@
 		E875149925228BB9003321B7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875149825228BB9003321B7 /* User.swift */; };
 		E875149C25228C85003321B7 /* AvatarViewPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875149B25228C85003321B7 /* AvatarViewPlaceholder.swift */; };
 		E875149E25229B08003321B7 /* ConversationCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875149D25229B08003321B7 /* ConversationCellModel.swift */; };
-		E87514A22522A4F2003321B7 /* conversations.json in Resources */ = {isa = PBXBuildFile; fileRef = E87514A12522A4F2003321B7 /* conversations.json */; };
 		E87514A42522A60F003321B7 /* FakeDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87514A32522A60F003321B7 /* FakeDataLoader.swift */; };
 		E87514A62522AB20003321B7 /* ConversationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87514A52522AB20003321B7 /* ConversationsModel.swift */; };
 		E87514AA2522AEFD003321B7 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87514A82522AEFD003321B7 /* ConversationTableViewCell.swift */; };
@@ -42,7 +41,6 @@
 		E875149825228BB9003321B7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E875149B25228C85003321B7 /* AvatarViewPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewPlaceholder.swift; sourceTree = "<group>"; };
 		E875149D25229B08003321B7 /* ConversationCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCellModel.swift; sourceTree = "<group>"; };
-		E87514A12522A4F2003321B7 /* conversations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = conversations.json; path = ../../../../work/lkfl/mobile/conversations.json; sourceTree = "<group>"; };
 		E87514A32522A60F003321B7 /* FakeDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataLoader.swift; sourceTree = "<group>"; };
 		E87514A52522AB20003321B7 /* ConversationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsModel.swift; sourceTree = "<group>"; };
 		E87514A82522AEFD003321B7 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				E87514AC2522AF6E003321B7 /* Protocols */,
-				E87514A12522A4F2003321B7 /* conversations.json */,
 				E875149A25228C65003321B7 /* View */,
 				E875149725228B83003321B7 /* Models */,
 				E875BC902519034400ECAC5C /* Fonts */,
@@ -230,7 +227,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E87514A22522A4F2003321B7 /* conversations.json in Resources */,
 				E875BC922519035500ECAC5C /* Roboto-Regular.ttf in Resources */,
 				E8A85255251034970093FB52 /* .gitignore in Resources */,
 				E8A85249251017270093FB52 /* LaunchScreen.storyboard in Resources */,
