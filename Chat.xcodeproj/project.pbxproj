@@ -31,6 +31,7 @@
 		E8A85249251017270093FB52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8A85247251017270093FB52 /* LaunchScreen.storyboard */; };
 		E8A85253251032F50093FB52 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = E8A85252251032F50093FB52 /* README.md */; };
 		E8A85255251034970093FB52 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E8A85254251034970093FB52 /* .gitignore */; };
+		E8D7772325245CA80060282B /* conversations.json in Resources */ = {isa = PBXBuildFile; fileRef = E8D7772225245CA80060282B /* conversations.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		E8A8524A251017270093FB52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8A85252251032F50093FB52 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E8A85254251034970093FB52 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E8D7772225245CA80060282B /* conversations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conversations.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 		E8A8523B251017270093FB52 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				E8D7772225245CA80060282B /* conversations.json */,
 				E87514AC2522AF6E003321B7 /* Protocols */,
 				E875149A25228C65003321B7 /* View */,
 				E875149725228B83003321B7 /* Models */,
@@ -227,6 +230,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8D7772325245CA80060282B /* conversations.json in Resources */,
 				E875BC922519035500ECAC5C /* Roboto-Regular.ttf in Resources */,
 				E8A85255251034970093FB52 /* .gitignore in Resources */,
 				E8A85249251017270093FB52 /* LaunchScreen.storyboard in Resources */,
