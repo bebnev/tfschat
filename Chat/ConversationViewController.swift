@@ -10,7 +10,7 @@ import UIKit
 
 class ConversationViewController: UITableViewController {
     
-    let cellReusableId = "Messagecell"
+    let cellReusableId = "ConversationMessageCell"
     
     var conversation: ConversationCellModel? = ConversationCellModel(name: "Anton Bebnev", message: "Hello man", date: Date(), isOnline: true, hasUnreadMessages: true, avatar: UIImage(named: "man_6")!)
     
@@ -31,7 +31,7 @@ class ConversationViewController: UITableViewController {
         super.viewDidLoad()
         
         setupNavigation()
-        tableView.register(ChatMessageTableViewCell.self, forCellReuseIdentifier: cellReusableId)
+        tableView.register(ConversationMessageTableViewCell.self, forCellReuseIdentifier: cellReusableId)
         tableView.separatorStyle = .none
     }
 
@@ -104,7 +104,7 @@ class ConversationViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReusableId, for: indexPath) as? ChatMessageTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReusableId, for: indexPath) as? ConversationMessageTableViewCell else {
             return UITableViewCell()
         }
         cell.selectionStyle = .none

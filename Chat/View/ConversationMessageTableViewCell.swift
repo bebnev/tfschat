@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatMessageTableViewCell: UITableViewCell, ConfigurableView {
+class ConversationMessageTableViewCell: UITableViewCell, ConfigurableView {
     
     typealias ConfigurationModel = MessageCellModel
     
