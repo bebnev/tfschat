@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var firstLaunch = true
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        log("Application is almost ready to run")
+        Log.debug("Application is almost ready to run")
         return true
     }
     
@@ -24,27 +24,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         if firstLaunch {
-            log("Application moved from not running to inactive and then to active state")
+            Log.debug("Application moved from not running to inactive and then to active state")
             firstLaunch = false
         } else {
-            log("Application moved from inactive to active state")
+            Log.debug("Application moved from inactive to active state")
         }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        log("Application is moving from active to inactive state")
+        Log.debug("Application is moving from active to inactive state")
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        log("Application moved from inactive to background state")
+        Log.debug("Application moved from inactive to background state")
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        log("Application is moving from background to inactive state")
+        Log.debug("Application is moving from background to inactive state")
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        log("Application is going to be terminated and moved to not running state")
+        Log.debug("Application is going to be terminated and moved to not running state")
     }
 
 }

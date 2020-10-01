@@ -1,24 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="TFSChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVu-Xq-CcD">
+                                <rect key="frame" x="67.5" y="45" width="240" height="240"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9T-CA-frN">
+                                        <rect key="frame" x="210" y="208" width="30" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <state key="normal" title="Edit"/>
+                                        <connections>
+                                            <action selector="handleEditAvatarButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dQq-wL-o9T"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="A9T-CA-frN" secondAttribute="trailing" id="7jq-nz-VYj"/>
+                                    <constraint firstAttribute="width" constant="240" id="QcA-Th-8DO"/>
+                                    <constraint firstAttribute="bottom" secondItem="A9T-CA-frN" secondAttribute="bottom" id="RIZ-Ng-D1X"/>
+                                    <constraint firstAttribute="height" constant="240" id="dGf-7w-tur"/>
+                                    <constraint firstItem="A9T-CA-frN" firstAttribute="leading" relation="lessThanOrEqual" secondItem="LVu-Xq-CcD" secondAttribute="leading" constant="210" id="osD-Oj-z75"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marina Dudarenko" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Eh-tc-EXc">
+                                <rect key="frame" x="68" y="317" width="239" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="775-wD-XTe">
+                                <rect key="frame" x="79" y="378" width="217" height="57.5"/>
+                                <string key="text">UX/UI designer, web-designer
+Moscow, Russia</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wg4-A0-jKd">
+                                <rect key="frame" x="56" y="597" width="263" height="40"/>
+                                <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6SD-KX-yOa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                <state key="normal" title="Save"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Wg4-A0-jKd" secondAttribute="trailing" constant="56" id="Bm0-Hb-AC7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="775-wD-XTe" secondAttribute="trailing" constant="79" id="C5X-UJ-XzV"/>
+                            <constraint firstItem="Wg4-A0-jKd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="56" id="I6T-d6-4Ch"/>
+                            <constraint firstItem="LVu-Xq-CcD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Pz1-w5-ZHa"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9Eh-tc-EXc" secondAttribute="trailing" constant="68" id="TW7-JC-jaJ"/>
+                            <constraint firstItem="9Eh-tc-EXc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="68" id="XC5-iO-gqt"/>
+                            <constraint firstItem="9Eh-tc-EXc" firstAttribute="top" secondItem="LVu-Xq-CcD" secondAttribute="bottom" constant="32" id="XLM-QE-SxV"/>
+                            <constraint firstItem="775-wD-XTe" firstAttribute="top" secondItem="9Eh-tc-EXc" secondAttribute="bottom" constant="32" id="a9V-jw-9mm"/>
+                            <constraint firstItem="775-wD-XTe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="79" id="dXS-qm-ssP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Wg4-A0-jKd" secondAttribute="bottom" constant="30" id="jLY-cA-EhG"/>
+                            <constraint firstItem="LVu-Xq-CcD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="mS2-fS-exU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="aboutLabel" destination="775-wD-XTe" id="Fle-EJ-xdT"/>
+                        <outlet property="avatarView" destination="LVu-Xq-CcD" id="QDX-Gr-vIj"/>
+                        <outlet property="editAvatarButton" destination="A9T-CA-frN" id="w9a-KQ-EcP"/>
+                        <outlet property="nameLabel" destination="9Eh-tc-EXc" id="UA8-dX-cMy"/>
+                        <outlet property="saveProfileButton" destination="Wg4-A0-jKd" id="Et7-pL-UeP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="139" y="115"/>
         </scene>
     </scenes>
 </document>
