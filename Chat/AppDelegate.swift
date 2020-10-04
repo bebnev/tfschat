@@ -17,6 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Log.debug("Application is almost ready to run")
+        
+//        window = UIWindow()
+//        
+//        window?.makeKeyAndVisible()
+//        
+//        window?.rootViewController = UINavigationController(rootViewController: ConversationViewController())
+        
         return true
     }
     
