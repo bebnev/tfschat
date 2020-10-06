@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ProfileViewController: ViewController {
+class ProfileViewController: BaseViewController {
     
     // MARK:- Outlets
     @IBOutlet weak var avatarView: UIView!

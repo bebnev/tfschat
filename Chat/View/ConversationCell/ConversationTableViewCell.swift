@@ -33,6 +33,8 @@ class ConversationTableViewCell: UITableViewCell, ConfigurableView {
     
     func configure(with model: ConversationCellModel) {
         nameLabel.text = model.name
+        nameLabel.textColor = ThemeManager.shared.theme?.mainTextColor
+        messageLabel.textColor = ThemeManager.shared.theme?.conversationsLastMessageLabelColor
         if model.message == "" {
             dateLabel.text = ""
             messageLabel.text = "No messages yet"

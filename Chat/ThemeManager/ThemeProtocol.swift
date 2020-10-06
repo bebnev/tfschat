@@ -10,7 +10,11 @@ import UIKit
 
 protocol ThemeProtocol {
     var mainBackgroundColor: UIColor { get }
-    var headerBackgroundColor: UIColor { get }
+    var mainTextColor: UIColor { get }
+    var navigatioBackgroundColor: UIColor { get }
+    var navigationTextColor: UIColor { get }
     var incomingCellBackgroundColor: UIColor { get }
     var outgoingCellBackgroundColor: UIColor { get }
+    
+    var conversationsLastMessageLabelColor: UIColor { get }
 }

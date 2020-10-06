@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationsListViewController: ViewController {
+class ConversationsListViewController: BaseViewController {
     
     // MARK:- Outlets
     @IBOutlet weak var chatsTableView: UITableView!
@@ -70,7 +70,11 @@ class ConversationsListViewController: ViewController {
     
     @objc
     private func handleSettingsButtonTap() {
-        Log.debug("Settings click")
+        //Log.debug("Settings click")
+        let themesVC = ThemesViewController()
+        themesVC.delegate = self
+        
+        show(themesVC, sender: self)
     }
     
     @objc
@@ -156,4 +160,13 @@ extension ConversationsListViewController: UITableViewDataSource {
             navigateToChatDetails(cell)
         }
     }
+}
+
+
+extension ConversationsListViewController: ThemesPickerDelegate {
+    func selectTheme(theme: ThemeProtocol) {
+        print("selectTheme", theme)
+    }
+    
+    
 }
