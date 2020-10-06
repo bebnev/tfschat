@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.makeKeyAndVisible()
 //        
 //        window?.rootViewController = UINavigationController(rootViewController: ConversationViewController())
-        
+        ThemeManager.shared.setTheme(theme: ClassicTheme())
         return true
     }
     
