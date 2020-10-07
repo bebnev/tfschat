@@ -15,6 +15,7 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         Log.debug("View is loaded into memory")
+        //setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,36 +54,8 @@ class BaseViewController: UIViewController {
     func applyTheme(theme: ThemeProtocol) {
         view.backgroundColor = theme.mainBackgroundColor
     }
+    
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return ThemeManager.shared.theme?.statusBarStyle ?? .default
+//    }
 }
-//
-//extension BaseViewController {
-//    func viewDidChangeTheme(_ theme: ThemeProtocol) {
-//        applyThemeToNavigationController(theme)
-//        applyThemeToVCView(theme)
-//    }
-//
-//    private func applyTheme() {
-//        guard let theme = ThemeManager.shared.theme else {
-//            return
-//        }
-//
-//        viewDidChangeTheme(theme)
-//    }
-//
-//    private func applyThemeToNavigationController(_ theme: ThemeProtocol) {
-//        if #available(iOS 13.0, *) {
-//            let appearance = UINavigationBarAppearance()
-//            appearance.configureWithTransparentBackground()
-//            appearance.backgroundColor = theme.navigatioBackgroundColor
-//            appearance.titleTextAttributes = [.foregroundColor: theme.navigationTextColor]
-//            appearance.largeTitleTextAttributes = [.foregroundColor: theme.navigationTextColor]
-//            navigationController?.navigationBar.standardAppearance = appearance
-//            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//            navigationController?.navigationBar.compactAppearance = appearance
-//        }
-//    }
-//
-//    private func applyThemeToVCView(_ theme: ThemeProtocol) {
-//        view.backgroundColor = theme.mainBackgroundColor
-//    }
-//}

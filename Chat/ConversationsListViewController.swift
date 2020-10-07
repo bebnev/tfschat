@@ -29,6 +29,7 @@ class ConversationsListViewController: BaseViewController {
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "Search text"
         search.searchBar.textField?.backgroundColor = ThemeManager.shared.theme?.searchBarBackgroundColor
+        search.searchBar.backgroundColor = .clear
         return search
     }()
     
@@ -56,6 +57,7 @@ class ConversationsListViewController: BaseViewController {
         loadFakeData()
         setupNavigation()
         setupView()
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     private func loadFakeData() {
@@ -71,9 +73,13 @@ class ConversationsListViewController: BaseViewController {
     
     @objc
     private func handleSettingsButtonTap() {
-        //Log.debug("Settings click")
         let themesVC = ThemesViewController()
+        
         themesVC.delegate = self
+        
+//        themesVC.selectTheme = {[weak self] (theme) in
+//            self?.selectTheme(theme: theme)
+//        }
         
         show(themesVC, sender: self)
     }
@@ -82,6 +88,16 @@ class ConversationsListViewController: BaseViewController {
     private func handleAvatarButtonItemTap() {
         navigateToProfileView()
     }
+    
+    override func applyTheme(theme: ThemeProtocol) {
+        super.applyTheme(theme: theme)
+        
+        chatsTableView.backgroundColor = theme.mainBackgroundColor
+    }
+    
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
 }
 
 // MARK:- Navigation
@@ -102,6 +118,7 @@ extension ConversationsListViewController {
         myVC.user = user
         
         let navController = UINavigationController(rootViewController: myVC)
+        navController.applyTheme()
 
         navigationController?.present(navController, animated: true, completion: nil)
     }
@@ -125,7 +142,19 @@ extension ConversationsListViewController: UISearchResultsUpdating {
 
 // MARK:- UITableViewDelegate
 
-extension ConversationsListViewController: UITableViewDelegate {}
+extension ConversationsListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let theme = ThemeManager.shared.theme else {
+            return
+        }
+        view.tintColor = theme.tableViewSectionBackgroundColor
+
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.textColor = theme.mainTextColor
+        }
+    }
+}
 
 // MARK:- UITableViewDataSource
 
@@ -165,27 +194,8 @@ extension ConversationsListViewController: UITableViewDataSource {
 
 extension ConversationsListViewController: ThemesPickerDelegate {
     func selectTheme(theme: ThemeProtocol) {
-        updateNavigationController(with: theme)
+        navigationController?.applyTheme()
+        searchController.searchBar.textField?.backgroundColor = theme.searchBarBackgroundColor
         chatsTableView.reloadData()
-    }
-    
-    private func updateNavigationController(with theme: ThemeProtocol) {
-        if #available(iOS 13.0, *) {
-            let navBarAppearance = UINavigationBarAppearance()
-            navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: theme.navigationTextColor]
-            navBarAppearance.titleTextAttributes = [.foregroundColor: theme.navigationTextColor]
-            navBarAppearance.backgroundColor = theme.navigatioBackgroundColor
-
-            
-            navigationController?.navigationBar.standardAppearance = navBarAppearance
-            navigationController?.navigationBar.compactAppearance = navBarAppearance
-            navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-            searchController.searchBar.textField?.backgroundColor = theme.searchBarBackgroundColor
-        } else {
-            navigationController?.navigationBar.barTintColor = theme.navigatioBackgroundColor
-            // tint color
-            navigationController?.navigationBar.isTranslucent = false
-        }
     }
 }

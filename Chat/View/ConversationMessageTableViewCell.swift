@@ -69,16 +69,17 @@ class ConversationMessageTableViewCell: UITableViewCell, ConfigurableView {
         
         if model.type == .incoming {
             chatBackgroundView.backgroundColor = ThemeManager.shared.theme?.incomingCellBackgroundColor
+            messageLabel.textColor = ThemeManager.shared.theme?.mainTextColor
             leadingConstraint.isActive = true
             trailingConstraint.isActive = false
         } else {
             chatBackgroundView.backgroundColor = ThemeManager.shared.theme?.outgoingCellBackgroundColor
+            messageLabel.textColor = ThemeManager.shared.theme?.outgoingMessagesTextColor
             leadingConstraint.isActive = false
             trailingConstraint.isActive = true
         }
         
         backgroundColor = ThemeManager.shared.theme?.mainBackgroundColor
-        messageLabel.textColor = ThemeManager.shared.theme?.mainTextColor
     }
     
 }

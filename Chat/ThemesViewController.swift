@@ -8,13 +8,18 @@
 
 import UIKit
 
-protocol ThemesPickerDelegate {
+protocol ThemesPickerDelegate: class {
     func selectTheme(theme: ThemeProtocol)
 }
 
 class ThemesViewController: BaseViewController {
     
-    var delegate: ThemesPickerDelegate?
+    // Потенциальная проблема при использовании делегата - если сам делегат объявлен как сильная ссылка, то получается ThemesViewController будет держать сильную ссылку
+    // на ConversationsListViewController и соответсвенно ConversationsListViewController держит сильную ссылку на ThemesViewController - это может привести к зацикливанию.
+    // Решение - преобразовать ссылку на слабую
+    
+    weak var delegate: ThemesPickerDelegate?
+    var selectTheme: ((_ theme: ThemeProtocol) -> Void)?
     
     lazy var classicThemeView: ThemeButtonView = {
         let classic = ThemeButtonView()
@@ -105,6 +110,8 @@ class ThemesViewController: BaseViewController {
         
         if let delegate = delegate {
             delegate.selectTheme(theme: theme)
+        } else if let selectTheme = selectTheme {
+            selectTheme(theme)
         }
     }
     
@@ -125,88 +132,3 @@ class ThemesViewController: BaseViewController {
     }
 }
 
-
-//extension UINavigationController {
-//
-//    func applyTheme(theme: ThemeProtocol) {
-//        if #available(iOS 13.0, *) {
-//            print("SET COLORS")
-//            let appearance = UINavigationBarAppearance()
-//            appearance.configureWithTransparentBackground()
-//            appearance.backgroundColor = UIColor.systemRed
-//            appearance.titleTextAttributes = [.foregroundColor: UIColor.lightText] // With a red background, make the title more readable.
-//            navigationBar.standardAppearance = appearance
-//            navigationBar.scrollEdgeAppearance = appearance
-//            navigationBar.compactAppearance = appearance // F
-//
-//        }
-//       // UIApplication.shared.setStatusBarColor(UIColor.yellow)
-//    }
-//}
-
-//extension UIApplication {
-//
-//    @available(iOS, introduced: 9.0, deprecated: 13.0)
-//    private var statusBarView: UIView? {
-//        if responds(to: Selector(("statusBar"))) {
-//            return value(forKey: "statusBar") as? UIView
-//        }
-//        return nil
-//    }
-//
-//    func setStatusBarColor(_ color: UIColor?) {
-//        if #available(iOS 13.0, *) {
-//            addStatusBarView(withBG: color)
-//        } else {
-//            statusBarView?.backgroundColor = color
-//        }
-//    }
-//
-//    @available(iOS 13.0, *)
-//    private func addStatusBarView(withBG color: UIColor?) {
-//        guard let statusBar = keyWindow?.subviews.compactMap({ $0 as? DPStatusBarView }).first else {
-//            let statusBar = DPStatusBarView(backgroundColor: color)
-//            keyWindow?.addSubview(statusBar)
-//            return
-//        }
-//
-//        statusBar.backgroundColor = color
-//    }
-//
-//    // Call this method from baseController's viewWillTransistion
-//    // to avoid UI glitches in the status bar area when user changes orientation
-//    @available(iOS 13.0, *)
-//    func removeStatusBarView() {
-//        if let statusBar = keyWindow?.subviews.compactMap({ $0 as? DPStatusBarView }).first {
-//            statusBar.removeFromSuperview()
-//        }
-//    }
-//}
-
-
-
-//func configureNavigationBar(largeTitleColor: UIColor, backgoundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool) {
-//    if #available(iOS 13.0, *) {
-//        let navBarAppearance = UINavigationBarAppearance()
-//        navBarAppearance.configureWithOpaqueBackground()
-//        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: largeTitleColor]
-//        navBarAppearance.titleTextAttributes = [.foregroundColor: largeTitleColor]
-//        navBarAppearance.backgroundColor = backgoundColor
-//
-//        navigationController?.navigationBar.standardAppearance = navBarAppearance
-//        navigationController?.navigationBar.compactAppearance = navBarAppearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-//
-//        navigationController?.navigationBar.prefersLargeTitles = preferredLargeTitle
-//        navigationController?.navigationBar.isTranslucent = false
-//        navigationController?.navigationBar.tintColor = tintColor
-//        navigationItem.title = title
-//
-//    } else {
-//        // Fallback on earlier versions
-//        navigationController?.navigationBar.barTintColor = backgoundColor
-//        navigationController?.navigationBar.tintColor = tintColor
-//        navigationController?.navigationBar.isTranslucent = false
-//        navigationItem.title = title
-//    }
-//}}

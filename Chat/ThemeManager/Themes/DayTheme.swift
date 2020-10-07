@@ -21,4 +21,6 @@ struct DayTheme: ThemeProtocol {
     var buttonBackgroundColor = UIColor(red: 0.965, green: 0.965, blue: 0.965, alpha: 1)
     var onlineCellBackgroundColor = UIColor(red: 0.99, green: 1.00, blue: 0.82, alpha: 1)
     var searchBarBackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05)
+    var tableViewSectionBackgroundColor = UIColor(red: 0.968, green: 0.968, blue: 0.968, alpha: 1)
+    var outgoingMessagesTextColor: UIColor = UIColor.white
 }

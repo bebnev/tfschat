@@ -138,6 +138,7 @@ class ProfileViewController: BaseViewController {
     //MARK:- IBActions
     
     @IBAction func handleEditAvatarButtonPress(_ sender: UIButton) {
+        // TODO: apply theme
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         if isCameraAvailable() && hasCameraPermissions {

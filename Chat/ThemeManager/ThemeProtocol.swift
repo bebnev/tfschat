@@ -21,4 +21,6 @@ protocol ThemeProtocol {
     var statusBarStyle: UIStatusBarStyle { get }
     var buttonBackgroundColor: UIColor { get }
     var searchBarBackgroundColor: UIColor { get }
+    var tableViewSectionBackgroundColor: UIColor { get }
+    var outgoingMessagesTextColor: UIColor { get }
 }
