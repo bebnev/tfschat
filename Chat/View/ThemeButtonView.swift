@@ -172,11 +172,10 @@ class ThemeButtonView: UIView {
     
     @objc
     func handleButtonTouch(_ sender: Any) {
-        print("HERE")
         guard let onHandleTouch = onHandleTouch else {
             return
         }
-        print("AND HERE")
+        
         onHandleTouch(tag)
     }
 }

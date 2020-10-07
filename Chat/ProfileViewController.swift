@@ -65,6 +65,14 @@ class ProfileViewController: BaseViewController {
         Log.debug("Save Button frame at viewDidAppear: \(saveProfileButton.frame)")
     }
     
+    override func applyTheme(theme: ThemeProtocol) {
+        super.applyTheme(theme: theme)
+        
+        nameLabel.textColor = theme.mainTextColor
+        aboutLabel.textColor = theme.mainTextColor
+        saveProfileButton.backgroundColor = theme.buttonBackgroundColor
+    }
+    
     // MARK:- Inner functions
     
     private func setupView() {
@@ -140,7 +148,6 @@ class ProfileViewController: BaseViewController {
                 picker.delegate = self
                 self.present(picker, animated: true)
             }
-
             alert.addAction(openCameraAction)
         }
         

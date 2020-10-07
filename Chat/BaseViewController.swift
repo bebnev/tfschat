@@ -20,7 +20,9 @@ class BaseViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Log.debug("View is moving from disappeared to appearing state")
-        //applyTheme()
+        if let theme = ThemeManager.shared.theme {
+            applyTheme(theme: theme)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,6 +48,10 @@ class BaseViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         Log.debug("View moved from disappearing to disappeared state")
+    }
+    
+    func applyTheme(theme: ThemeProtocol) {
+        view.backgroundColor = theme.mainBackgroundColor
     }
 }
 //

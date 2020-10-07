@@ -28,6 +28,7 @@ class ConversationsListViewController: BaseViewController {
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "Search text"
+        search.searchBar.textField?.backgroundColor = ThemeManager.shared.theme?.searchBarBackgroundColor
         return search
     }()
     
@@ -81,7 +82,6 @@ class ConversationsListViewController: BaseViewController {
     private func handleAvatarButtonItemTap() {
         navigateToProfileView()
     }
-
 }
 
 // MARK:- Navigation
@@ -165,8 +165,27 @@ extension ConversationsListViewController: UITableViewDataSource {
 
 extension ConversationsListViewController: ThemesPickerDelegate {
     func selectTheme(theme: ThemeProtocol) {
-        print("selectTheme", theme)
+        updateNavigationController(with: theme)
+        chatsTableView.reloadData()
     }
     
-    
+    private func updateNavigationController(with theme: ThemeProtocol) {
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: theme.navigationTextColor]
+            navBarAppearance.titleTextAttributes = [.foregroundColor: theme.navigationTextColor]
+            navBarAppearance.backgroundColor = theme.navigatioBackgroundColor
+
+            
+            navigationController?.navigationBar.standardAppearance = navBarAppearance
+            navigationController?.navigationBar.compactAppearance = navBarAppearance
+            navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+            searchController.searchBar.textField?.backgroundColor = theme.searchBarBackgroundColor
+        } else {
+            navigationController?.navigationBar.barTintColor = theme.navigatioBackgroundColor
+            // tint color
+            navigationController?.navigationBar.isTranslucent = false
+        }
+    }
 }

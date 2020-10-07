@@ -32,6 +32,7 @@
 		E884E6B1252B7BB1002412E2 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E884E6B0252B7BB1002412E2 /* ThemeManager.swift */; };
 		E884E6B4252B7C11002412E2 /* ClassicTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E884E6B3252B7C11002412E2 /* ClassicTheme.swift */; };
 		E884E6B6252B7C42002412E2 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E884E6B5252B7C42002412E2 /* ThemeProtocol.swift */; };
+		E886E6B0252D592F0007AD0F /* UISearchBar+textField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886E6AF252D592F0007AD0F /* UISearchBar+textField.swift */; };
 		E8A8523D251017270093FB52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A8523C251017270093FB52 /* AppDelegate.swift */; };
 		E8A85241251017270093FB52 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A85240251017270093FB52 /* BaseViewController.swift */; };
 		E8A85244251017270093FB52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8A85242251017270093FB52 /* Main.storyboard */; };
@@ -68,6 +69,7 @@
 		E884E6B0252B7BB1002412E2 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		E884E6B3252B7C11002412E2 /* ClassicTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassicTheme.swift; sourceTree = "<group>"; };
 		E884E6B5252B7C42002412E2 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
+		E886E6AF252D592F0007AD0F /* UISearchBar+textField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+textField.swift"; sourceTree = "<group>"; };
 		E8A85239251017270093FB52 /* TFSChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFSChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8A8523C251017270093FB52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8A85240251017270093FB52 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				E875BC8E2518F27200ECAC5C /* UILabel+Typography.swift */,
 				E82666B5251AAAB90013708D /* String+Acronyms.swift */,
+				E886E6AF252D592F0007AD0F /* UISearchBar+textField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				E875BC8F2518F27200ECAC5C /* UILabel+Typography.swift in Sources */,
 				E86D64D52522809000BFD07B /* ConversationViewController.swift in Sources */,
 				E8A8523D251017270093FB52 /* AppDelegate.swift in Sources */,
+				E886E6B0252D592F0007AD0F /* UISearchBar+textField.swift in Sources */,
 				E875BC8C2518E4D700ECAC5C /* ProfileViewController.swift in Sources */,
 				E84200DB252D2E4000067D09 /* Themes.swift in Sources */,
 				E87514B025232A99003321B7 /* MessageCellModel.swift in Sources */,

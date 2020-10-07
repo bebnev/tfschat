@@ -9,6 +9,8 @@
 import UIKit
 
 class ThemeManager {
+    let userThemeKey = "user_theme_key"
+    
     var theme: ThemeProtocol?
     
     static var shared: ThemeManager = {
@@ -17,6 +19,27 @@ class ThemeManager {
     
     func setTheme(theme: ThemeProtocol) {
         self.theme = theme
+        
+        saveNewTheme(theme)
+    }
+    
+    func saveNewTheme(_ theme: ThemeProtocol) {
+        guard let themeTag = Themes(theme: theme) else {
+            return
+        }
+        
+        UserDefaults.standard.set(themeTag.rawValue, forKey: userThemeKey)
+        UserDefaults.standard.synchronize()
+    }
+    
+    func loadTheme() {
+        guard let themeTag = UserDefaults.standard.value(forKey: userThemeKey) as? Int, let theme = Themes(rawValue: themeTag) else {
+            setTheme(theme: ClassicTheme())
+            return
+        }
+        
+        setTheme(theme: theme.getTheme())
+        updateDisplay(theme.getTheme())
     }
     
 //    func updateNavigationController(_ navigationController: UINavigationController?) {
@@ -93,4 +116,32 @@ class ThemeManager {
 ////            apperance.barTintColor = theme.navigatioBackgroundColor
 ////        }
 //    }
+}
+
+// MARK:- update UIAppearance
+
+extension ThemeManager {
+    func updateDisplay(_ theme: ThemeProtocol) {
+        updateNavigationBar(theme)
+    }
+    
+    private func updateNavigationBar(_ theme: ThemeProtocol) {
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: theme.navigationTextColor]
+            navBarAppearance.titleTextAttributes = [.foregroundColor: theme.navigationTextColor]
+            navBarAppearance.backgroundColor = theme.navigatioBackgroundColor
+
+            
+            UINavigationBar.appearance().standardAppearance = navBarAppearance
+            UINavigationBar.appearance().compactAppearance = navBarAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+            UISearchBar.appearance().searchTextField.backgroundColor = theme.searchBarBackgroundColor
+        } else {
+            UINavigationBar.appearance().barTintColor = theme.navigatioBackgroundColor
+            // tint color
+            UINavigationBar.appearance().isTranslucent = false
+        }
+    }
 }

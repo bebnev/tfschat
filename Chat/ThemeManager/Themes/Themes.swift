@@ -13,6 +13,19 @@ enum Themes: Int {
     case day = 2
     case night = 3
     
+    init?(theme: ThemeProtocol) {
+        switch theme {
+        case is ClassicTheme:
+            self = .classic
+        case is NightTheme:
+            self = .night
+        case is DayTheme:
+            self = .day
+        default:
+            return nil
+        }
+    }
+    
     func getTheme() -> ThemeProtocol {
         switch self {
         case .classic:

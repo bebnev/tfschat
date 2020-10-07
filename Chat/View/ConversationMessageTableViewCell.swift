@@ -76,6 +76,9 @@ class ConversationMessageTableViewCell: UITableViewCell, ConfigurableView {
             leadingConstraint.isActive = false
             trailingConstraint.isActive = true
         }
+        
+        backgroundColor = ThemeManager.shared.theme?.mainBackgroundColor
+        messageLabel.textColor = ThemeManager.shared.theme?.mainTextColor
     }
     
 }

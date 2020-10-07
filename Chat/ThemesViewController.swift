@@ -52,8 +52,12 @@ class ThemesViewController: BaseViewController {
         return night
     }()
     
+    lazy var availableThemes: Array = {
+        return [self.classicThemeView, self.dayThemeView, self.nightThemeView]
+    }()
+    
     lazy var contentView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [self.classicThemeView, self.dayThemeView, self.nightThemeView])
+        let view = UIStackView(arrangedSubviews: self.availableThemes)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         view.distribution = .fillEqually
@@ -72,12 +76,11 @@ class ThemesViewController: BaseViewController {
     }
     
     func setupNavigation() {
-        title = "Themes"
+        title = "Settings"
         navigationItem.largeTitleDisplayMode = .never
     }
     
     func setupView() {
-        view.backgroundColor = .white
         view.addSubview(contentView)
     }
     
@@ -94,66 +97,31 @@ class ThemesViewController: BaseViewController {
     
     @objc
     func handleThemeButtonTouch(_ tag: Int) {
-        print(tag)
+        guard let theme = Themes(rawValue: tag)?.getTheme() else {
+            return
+        }
+        ThemeManager.shared.setTheme(theme: theme)
+        applyTheme(theme: theme)
+        
+        if let delegate = delegate {
+            delegate.selectTheme(theme: theme)
+        }
     }
     
-//    private func setupView() {
-//        view.addSubview(buttonDarkTheme)
-//        view.addSubview(buttonClassicTheme)
-//        view.backgroundColor = .white
-//    }
-//
-//    private func setupLayout() {
-//        let constraints = [
-//            buttonDarkTheme.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-//            buttonDarkTheme.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-//            buttonDarkTheme.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-//            buttonDarkTheme.heightAnchor.constraint(equalToConstant: 40),
-//            buttonClassicTheme.topAnchor.constraint(equalTo: buttonDarkTheme.bottomAnchor, constant: 40),
-//            buttonClassicTheme.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 32),
-//            buttonClassicTheme.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -32),
-//            buttonClassicTheme.heightAnchor.constraint(equalToConstant: 40)
-//        ]
-//        NSLayoutConstraint.activate(constraints)
-//
-//
-//    }
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        print("123")
-//    }
-//
-    @objc
-    func buttonAction(sender: UIButton) {
-       // print(sender.isHighlighted)
-        
-        sender.layer.borderWidth = 10
-        sender.layer.borderColor = UIColor.red.cgColor
-//        print(sender.tag)
-//        guard let theme = Themes(rawValue: sender.tag) else {
-//            return
-//        }
-//
-//        ThemeManager.shared.setTheme(theme: theme.getTheme())
-//        navigationController?.popViewController(animated: true)
-    }
-
-}
-
-class MyButton: UIButton {
-    override var isHighlighted: Bool {
-        didSet {
-            switch isHighlighted {
-            case true:
-                layer.borderColor = UIColor.blue.cgColor
-                layer.borderWidth = 2
-            case false:
-                layer.borderColor = UIColor.lightGray.cgColor
-                layer.borderWidth = 1
-            }
+    override func applyTheme(theme: ThemeProtocol) {
+        guard let themeTag = Themes(theme: theme) else {
+            return
         }
+        
+        for themeView in availableThemes {
+            themeView.isSelected = themeView.tag == themeTag.rawValue
+        }
+        
+        view.backgroundColor = theme.themeVCBackgroundColor
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
 

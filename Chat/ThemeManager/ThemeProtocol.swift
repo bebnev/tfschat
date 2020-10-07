@@ -15,6 +15,10 @@ protocol ThemeProtocol {
     var navigationTextColor: UIColor { get }
     var incomingCellBackgroundColor: UIColor { get }
     var outgoingCellBackgroundColor: UIColor { get }
-    
-    var conversationsLastMessageLabelColor: UIColor { get }
+    var onlineCellBackgroundColor: UIColor { get }
+    var conversationsCellSubtitleColor: UIColor { get }
+    var themeVCBackgroundColor: UIColor { get }
+    var statusBarStyle: UIStatusBarStyle { get }
+    var buttonBackgroundColor: UIColor { get }
+    var searchBarBackgroundColor: UIColor { get }
 }
