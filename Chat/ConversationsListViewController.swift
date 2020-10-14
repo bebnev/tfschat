@@ -241,7 +241,6 @@ extension ConversationsListViewController: ProfileProviderDelegate {
     func setNewProfile(user: User) {
         if avatarView.userName != user.name {
             avatarView.userName = user.name
-            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarView)
         }
     }
 }
