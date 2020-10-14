@@ -22,7 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        window?.makeKeyAndVisible()
 //        
-//        window?.rootViewController = UINavigationController(rootViewController: ThemesViewController())
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//        let initialViewController = storyboard.instantiateViewController(withIdentifier: "NewProfileViewController")
+//
+//        
+//        window?.rootViewController = UINavigationController(rootViewController: initialViewController)
         ThemeManager.shared.loadTheme()
         return true
     }

@@ -28,8 +28,14 @@ class ThemeManager {
             return
         }
         
-        UserDefaults.standard.set(themeTag.rawValue, forKey: userThemeKey)
-        UserDefaults.standard.synchronize()
+        DispatchQueue.global().async {[weak self] in
+            guard let key = self?.userThemeKey else {
+                return
+            }
+            
+            UserDefaults.standard.set(themeTag.rawValue, forKey: key)
+            UserDefaults.standard.synchronize()
+        }
     }
     
     func loadTheme() {
