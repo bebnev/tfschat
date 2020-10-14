@@ -8,9 +8,28 @@
 
 import UIKit
 
-class ConversationViewController: UITableViewController {
+class ConversationViewController: BaseViewController {
     
     let cellReusableId = "ConversationMessageCell"
+    
+    lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ConversationMessageTableViewCell.self, forCellReuseIdentifier: cellReusableId)
+        tableView.separatorStyle = .none
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.setLetterSpacing(-0.3)
+        
+        return label
+    }()
     
     var conversation: ConversationCellModel? = ConversationCellModel(name: "Anton Bebnev", message: "Hello man", date: Date(), isOnline: true, hasUnreadMessages: true, avatar: UIImage(named: "man_6")!)
     
@@ -31,8 +50,15 @@ class ConversationViewController: UITableViewController {
         super.viewDidLoad()
         
         setupNavigation()
-        tableView.register(ConversationMessageTableViewCell.self, forCellReuseIdentifier: cellReusableId)
-        tableView.separatorStyle = .none
+        view.addSubview(tableView)
+        let constraints = [
+            tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
     }
 
     override func viewDidLayoutSubviews() {
@@ -47,11 +73,15 @@ class ConversationViewController: UITableViewController {
         viewHasAppeared = true
     }
     
+    override func applyTheme(theme: ThemeProtocol) {
+        super.applyTheme(theme: theme)
+        tableView.backgroundColor = theme.mainBackgroundColor
+        titleLabel.textColor = theme.mainTextColor
+    }
+    
     func setupNavigation() {
         if let conversation = conversation {
             let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-                
-            titleView.backgroundColor = .red
             
             let containerView = UIView()
             containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,13 +95,9 @@ class ConversationViewController: UITableViewController {
             conversationImageView.layer.cornerRadius = 20
             conversationImageView.clipsToBounds = true
             
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = conversation.name
-            label.font = UIFont.boldSystemFont(ofSize: 16)
-            label.setLetterSpacing(-0.3)
+            titleLabel.text = conversation.name
             
-            containerView.addSubview(label)
+            containerView.addSubview(titleLabel)
             containerView.addSubview(conversationImageView)
             let constraints = [
                 containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor),
@@ -80,9 +106,9 @@ class ConversationViewController: UITableViewController {
                 conversationImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
                 conversationImageView.widthAnchor.constraint(equalToConstant: 40),
                 conversationImageView.heightAnchor.constraint(equalToConstant: 40),
-                label.leftAnchor.constraint(equalTo: conversationImageView.rightAnchor, constant: 8),
-                label.centerYAnchor.constraint(equalTo: conversationImageView.centerYAnchor),
-                label.rightAnchor.constraint(equalTo: containerView.rightAnchor)
+                titleLabel.leftAnchor.constraint(equalTo: conversationImageView.rightAnchor, constant: 8),
+                titleLabel.centerYAnchor.constraint(equalTo: conversationImageView.centerYAnchor),
+                titleLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor)
             ]
             
             NSLayoutConstraint.activate(constraints)
@@ -98,17 +124,21 @@ class ConversationViewController: UITableViewController {
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         tableView.layoutIfNeeded()
     }
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+extension ConversationViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReusableId, for: indexPath) as? ConversationMessageTableViewCell else {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
         cell.configure(with: messages[indexPath.row])
         return cell
+    }
+}
+
+extension ConversationViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
     }
 }

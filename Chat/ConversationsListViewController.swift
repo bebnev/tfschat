@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationsListViewController: ViewController {
+class ConversationsListViewController: BaseViewController {
     
     // MARK:- Outlets
     @IBOutlet weak var chatsTableView: UITableView!
@@ -28,6 +28,8 @@ class ConversationsListViewController: ViewController {
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "Search text"
+        search.searchBar.textField?.backgroundColor = ThemeManager.shared.theme?.searchBarBackgroundColor
+        search.searchBar.backgroundColor = .clear
         return search
     }()
     
@@ -55,6 +57,7 @@ class ConversationsListViewController: ViewController {
         loadFakeData()
         setupNavigation()
         setupView()
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     private func loadFakeData() {
@@ -70,14 +73,31 @@ class ConversationsListViewController: ViewController {
     
     @objc
     private func handleSettingsButtonTap() {
-        Log.debug("Settings click")
+        let themesVC = ThemesViewController()
+        
+        themesVC.delegate = self
+        
+//        themesVC.selectTheme = {[weak self] (theme) in
+//            self?.selectTheme(theme: theme)
+//        }
+        
+        show(themesVC, sender: self)
     }
     
     @objc
     private func handleAvatarButtonItemTap() {
         navigateToProfileView()
     }
-
+    
+    override func applyTheme(theme: ThemeProtocol) {
+        super.applyTheme(theme: theme)
+        
+        chatsTableView.backgroundColor = theme.mainBackgroundColor
+    }
+    
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .lightContent
+//    }
 }
 
 // MARK:- Navigation
@@ -98,6 +118,7 @@ extension ConversationsListViewController {
         myVC.user = user
         
         let navController = UINavigationController(rootViewController: myVC)
+        navController.applyTheme()
 
         navigationController?.present(navController, animated: true, completion: nil)
     }
@@ -121,7 +142,19 @@ extension ConversationsListViewController: UISearchResultsUpdating {
 
 // MARK:- UITableViewDelegate
 
-extension ConversationsListViewController: UITableViewDelegate {}
+extension ConversationsListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let theme = ThemeManager.shared.theme else {
+            return
+        }
+        view.tintColor = theme.tableViewSectionBackgroundColor
+
+        if let header = view as? UITableViewHeaderFooterView {
+            header.textLabel?.textColor = theme.mainTextColor
+        }
+    }
+}
 
 // MARK:- UITableViewDataSource
 
@@ -155,5 +188,14 @@ extension ConversationsListViewController: UITableViewDataSource {
         if cell.isOnline {
             navigateToChatDetails(cell)
         }
+    }
+}
+
+
+extension ConversationsListViewController: ThemesPickerDelegate {
+    func selectTheme(theme: ThemeProtocol) {
+        navigationController?.applyTheme()
+        searchController.searchBar.textField?.backgroundColor = theme.searchBarBackgroundColor
+        chatsTableView.reloadData()
     }
 }

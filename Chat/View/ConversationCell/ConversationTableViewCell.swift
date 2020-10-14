@@ -33,6 +33,9 @@ class ConversationTableViewCell: UITableViewCell, ConfigurableView {
     
     func configure(with model: ConversationCellModel) {
         nameLabel.text = model.name
+        nameLabel.textColor = ThemeManager.shared.theme?.mainTextColor
+        messageLabel.textColor = ThemeManager.shared.theme?.conversationsCellSubtitleColor
+        dateLabel.textColor = ThemeManager.shared.theme?.conversationsCellSubtitleColor
         if model.message == "" {
             dateLabel.text = ""
             messageLabel.text = "No messages yet"
@@ -58,10 +61,10 @@ class ConversationTableViewCell: UITableViewCell, ConfigurableView {
         avatarImageView.image = model.avatar
         
         if model.isOnline {
-            backgroundColor = UIColor(red: 0.99, green: 1.00, blue: 0.82, alpha: 1.00)
+            backgroundColor = ThemeManager.shared.theme?.onlineCellBackgroundColor
             accessoryType = .disclosureIndicator
         } else {
-            backgroundColor = UIColor.white
+            backgroundColor = ThemeManager.shared.theme?.mainBackgroundColor
             accessoryType = .none
         }
         

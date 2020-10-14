@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        window?.makeKeyAndVisible()
 //        
-//        window?.rootViewController = UINavigationController(rootViewController: ConversationViewController())
-        
+//        window?.rootViewController = UINavigationController(rootViewController: ThemesViewController())
+        ThemeManager.shared.loadTheme()
         return true
     }
     

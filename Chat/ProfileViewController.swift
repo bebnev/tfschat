@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ProfileViewController: ViewController {
+class ProfileViewController: BaseViewController {
     
     // MARK:- Outlets
     @IBOutlet weak var avatarView: UIView!
@@ -63,6 +63,14 @@ class ProfileViewController: ViewController {
         // и все вложенные вьюхи отрисовались и сама вьюха была добавлена в иерархию вьюх, соответственно все получили свои реальные размеры
         // и расположение. viewDidLoad же вызывается до autolayout, когда вьюха просто загружена в память
         Log.debug("Save Button frame at viewDidAppear: \(saveProfileButton.frame)")
+    }
+    
+    override func applyTheme(theme: ThemeProtocol) {
+        super.applyTheme(theme: theme)
+        
+        nameLabel.textColor = theme.mainTextColor
+        aboutLabel.textColor = theme.mainTextColor
+        saveProfileButton.backgroundColor = theme.buttonBackgroundColor
     }
     
     // MARK:- Inner functions
@@ -130,6 +138,7 @@ class ProfileViewController: ViewController {
     //MARK:- IBActions
     
     @IBAction func handleEditAvatarButtonPress(_ sender: UIButton) {
+        // TODO: apply theme
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         if isCameraAvailable() && hasCameraPermissions {
@@ -140,7 +149,6 @@ class ProfileViewController: ViewController {
                 picker.delegate = self
                 self.present(picker, animated: true)
             }
-
             alert.addAction(openCameraAction)
         }
         

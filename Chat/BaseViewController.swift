@@ -8,16 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BaseViewController: UIViewController {
+    
+    var previousTheme: ThemeProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         Log.debug("View is loaded into memory")
+        //setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Log.debug("View is moving from disappeared to appearing state")
+        if let theme = ThemeManager.shared.theme {
+            applyTheme(theme: theme)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,7 +50,12 @@ class ViewController: UIViewController {
         super.viewDidDisappear(animated)
         Log.debug("View moved from disappearing to disappeared state")
     }
-
-
+    
+    func applyTheme(theme: ThemeProtocol) {
+        view.backgroundColor = theme.mainBackgroundColor
+    }
+    
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return ThemeManager.shared.theme?.statusBarStyle ?? .default
+//    }
 }
-
