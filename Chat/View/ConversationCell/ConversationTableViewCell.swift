@@ -10,62 +10,47 @@ import UIKit
 
 class ConversationTableViewCell: UITableViewCell, ConfigurableView {
     
-    typealias ConfigurationModel = ConversationCellModel
+    typealias ConfigurationModel = Channel
     
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
-    @IBOutlet weak var avatarImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         setupCell()
     }
     
-    private func setupCell() {
-        avatarImageView.contentMode = .scaleAspectFill
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
-        avatarImageView.clipsToBounds = true
+    func setupCell() {
+        accessoryType = .disclosureIndicator
     }
     
-    func configure(with model: ConversationCellModel) {
+    func configure(with model: Channel) {
         nameLabel.text = model.name
         nameLabel.textColor = ThemeManager.shared.theme?.mainTextColor
         messageLabel.textColor = ThemeManager.shared.theme?.conversationsCellSubtitleColor
         dateLabel.textColor = ThemeManager.shared.theme?.conversationsCellSubtitleColor
-        if model.message == "" {
-            dateLabel.text = ""
-            messageLabel.text = "No messages yet"
-            messageLabel.font = UIFont.italicSystemFont(ofSize: messageLabel.font.pointSize)
-        } else {
+        backgroundColor = ThemeManager.shared.theme?.mainBackgroundColor
+        
+        if let date = model.lastActivity {
             let dateFormatterCell = DateFormatter()
-            if Calendar.current.isDateInToday(model.date) {
+            if Calendar.current.isDateInToday(date) {
                 dateFormatterCell.dateFormat = "HH:mm"
             } else {
                 dateFormatterCell.dateFormat = "dd MMM"
             }
-            dateLabel.text = dateFormatterCell.string(from: model.date)
-            
-            messageLabel.text = model.message
-            
-            if model.hasUnreadMessages {
-                messageLabel.font = UIFont.boldSystemFont(ofSize: messageLabel.font.pointSize)
-            } else {
-                messageLabel.font = UIFont.systemFont(ofSize: messageLabel.font.pointSize)
-            }
+            dateLabel.text = dateFormatterCell.string(from: date)
+        } else {
+            dateLabel.text = ""
         }
         
-        avatarImageView.image = model.avatar
-        
-        if model.isOnline {
-            backgroundColor = ThemeManager.shared.theme?.onlineCellBackgroundColor
-            accessoryType = .disclosureIndicator
+        if let lastMessage = model.lastMessage, lastMessage != "" {
+            messageLabel.text = lastMessage
         } else {
-            backgroundColor = ThemeManager.shared.theme?.mainBackgroundColor
-            accessoryType = .none
+            messageLabel.text = "No messages yet"
+            messageLabel.font = UIFont.italicSystemFont(ofSize: messageLabel.font.pointSize)
         }
         
     }

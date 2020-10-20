@@ -23,4 +23,5 @@ struct NightTheme: ThemeProtocol {
     var onlineCellBackgroundColor = UIColor(red: 0.361, green: 0.361, blue: 0.361, alpha: 1)
     var searchBarBackgroundColor = UIColor(red: 0.961, green: 0.961, blue: 0.961, alpha: 1)
     var tableViewSectionBackgroundColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1)
+    var navigationTintColor = UIColor.white
 }

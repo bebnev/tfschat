@@ -31,7 +31,8 @@ class ConversationViewController: BaseViewController {
         return label
     }()
     
-    var conversation: ConversationCellModel? = ConversationCellModel(name: "Anton Bebnev", message: "Hello man", date: Date(), isOnline: true, hasUnreadMessages: true, avatar: UIImage(named: "man_6")!)
+//    var conversation: ConversationCellModel? = ConversationCellModel(name: "Anton Bebnev", message: "Hello man", date: Date(), isOnline: true, hasUnreadMessages: true, avatar: UIImage(named: "man_6")!)
+    var channel: Channel?
     
     var messages = [
         MessageCellModel(text: "Hello man, Hello man, Hello man, Hello man", type: .incoming),
@@ -80,40 +81,40 @@ class ConversationViewController: BaseViewController {
     }
     
     func setupNavigation() {
-        if let conversation = conversation {
-            let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-            
-            let containerView = UIView()
-            containerView.translatesAutoresizingMaskIntoConstraints = false
-            
-            titleView.addSubview(containerView)
-            
-            let conversationImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-            conversationImageView.image = conversation.avatar
-            conversationImageView.contentMode = .scaleAspectFill
-            conversationImageView.translatesAutoresizingMaskIntoConstraints = false
-            conversationImageView.layer.cornerRadius = 20
-            conversationImageView.clipsToBounds = true
-            
-            titleLabel.text = conversation.name
-            
-            containerView.addSubview(titleLabel)
-            containerView.addSubview(conversationImageView)
-            let constraints = [
-                containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor),
-                containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor),
-                conversationImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
-                conversationImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
-                conversationImageView.widthAnchor.constraint(equalToConstant: 40),
-                conversationImageView.heightAnchor.constraint(equalToConstant: 40),
-                titleLabel.leftAnchor.constraint(equalTo: conversationImageView.rightAnchor, constant: 8),
-                titleLabel.centerYAnchor.constraint(equalTo: conversationImageView.centerYAnchor),
-                titleLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor)
-            ]
-            
-            NSLayoutConstraint.activate(constraints)
-            navigationItem.titleView = titleView
-        }
+//        if let conversation = conversation {
+//            let titleView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
+//            
+//            let containerView = UIView()
+//            containerView.translatesAutoresizingMaskIntoConstraints = false
+//            
+//            titleView.addSubview(containerView)
+//            
+//            let conversationImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+//            conversationImageView.image = conversation.avatar
+//            conversationImageView.contentMode = .scaleAspectFill
+//            conversationImageView.translatesAutoresizingMaskIntoConstraints = false
+//            conversationImageView.layer.cornerRadius = 20
+//            conversationImageView.clipsToBounds = true
+//            
+//            titleLabel.text = conversation.name
+//            
+//            containerView.addSubview(titleLabel)
+//            containerView.addSubview(conversationImageView)
+//            let constraints = [
+//                containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor),
+//                containerView.centerXAnchor.constraint(equalTo: titleView.centerXAnchor),
+//                conversationImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+//                conversationImageView.leftAnchor.constraint(equalTo: containerView.leftAnchor),
+//                conversationImageView.widthAnchor.constraint(equalToConstant: 40),
+//                conversationImageView.heightAnchor.constraint(equalToConstant: 40),
+//                titleLabel.leftAnchor.constraint(equalTo: conversationImageView.rightAnchor, constant: 8),
+//                titleLabel.centerYAnchor.constraint(equalTo: conversationImageView.centerYAnchor),
+//                titleLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor)
+//            ]
+//            
+//            NSLayoutConstraint.activate(constraints)
+//            navigationItem.titleView = titleView
+//        }
         
         navigationItem.largeTitleDisplayMode = .never
     }

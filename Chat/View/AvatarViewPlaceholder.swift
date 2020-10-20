@@ -50,10 +50,18 @@ class AvataViewPlaceholder: UIView {
     }
     
     private func setupView() {
-        backgroundColor = UIColor(red: 0.894, green: 0.908, blue: 0.17, alpha: 1)
+        setDefaultBackground()
         layer.cornerRadius = bounds.width / 2
         isUserInteractionEnabled = true
         
         addSubview(placeholderNameLabel)
+    }
+    
+    func clearBackground() {
+        backgroundColor = .clear
+    }
+    
+    func setDefaultBackground() {
+        backgroundColor = UIColor(red: 0.894, green: 0.908, blue: 0.17, alpha: 1)
     }
 }

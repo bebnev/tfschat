@@ -23,4 +23,5 @@ protocol ThemeProtocol {
     var searchBarBackgroundColor: UIColor { get }
     var tableViewSectionBackgroundColor: UIColor { get }
     var outgoingMessagesTextColor: UIColor { get }
+    var navigationTintColor: UIColor { get }
 }

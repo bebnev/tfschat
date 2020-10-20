@@ -23,4 +23,5 @@ struct DayTheme: ThemeProtocol {
     var searchBarBackgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.05)
     var tableViewSectionBackgroundColor = UIColor(red: 0.968, green: 0.968, blue: 0.968, alpha: 1)
     var outgoingMessagesTextColor: UIColor = UIColor.white
+    var navigationTintColor = UIColor(red: 0.329, green: 0.329, blue: 0.345, alpha: 0.65)
 }

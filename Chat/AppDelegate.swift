@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,18 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Log.debug("Application is almost ready to run")
-        
-//        window = UIWindow()
-//        
-//        window?.makeKeyAndVisible()
-//        
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//
-//        let initialViewController = storyboard.instantiateViewController(withIdentifier: "NewProfileViewController")
-//
-//        
-//        window?.rootViewController = UINavigationController(rootViewController: initialViewController)
+
         ThemeManager.shared.loadTheme()
+        FirebaseApp.configure()
         return true
     }
     
