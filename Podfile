@@ -7,5 +7,6 @@ target 'Chat' do
 
   pod 'Firebase/Analytics'
   pod 'Firebase/Firestore'
+  pod 'SwiftLint'
 
 end

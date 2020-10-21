@@ -56,7 +56,6 @@ class SaveProfileOperation: AsyncOperation {
             operations.append(saveAvatarOperation)
         }
         
-        
         queue.addOperations(operations, waitUntilFinished: false)
     }
     

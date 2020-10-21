@@ -71,7 +71,6 @@ class ThemesViewController: BaseViewController {
         return view
     }()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,7 +93,7 @@ class ThemesViewController: BaseViewController {
             contentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             contentView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 38),
-            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38),
+            contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -38)
 
         ]
         NSLayoutConstraint.activate(constraints)
@@ -131,4 +130,3 @@ class ThemesViewController: BaseViewController {
         return .lightContent
     }
 }
-

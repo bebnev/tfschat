@@ -23,7 +23,7 @@ extension UILabel {
             attributedString = NSMutableAttributedString(string: labelText)
         }
         
-        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
         
         self.attributedText = attributedString
     }
@@ -38,6 +38,6 @@ extension UILabel {
             attributedString = NSMutableAttributedString(string: labelText)
         }
         
-        attributedString.addAttribute(.kern, value: value, range: NSMakeRange(0, attributedString.length))
+        attributedString.addAttribute(.kern, value: value, range: NSRange(location: 0, length: attributedString.length))
     }
 }

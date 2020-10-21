@@ -10,12 +10,12 @@ import UIKit
 
 class ConversationsListViewController: BaseViewController {
     
-    // MARK:- Outlets
+    // MARK: - Outlets
     @IBOutlet weak var chatsTableView: UITableView!
     
     var channels = [Channel]()
     
-    // MARK:- UI vars
+    // MARK: - UI vars
     
     let reuseIdentificator = String(describing: ConversationTableViewCell.self)
     
@@ -188,11 +188,11 @@ class ConversationsListViewController: BaseViewController {
     func addChannel() {
         let alertController = UIAlertController(title: "Добавить канал", message: "", preferredStyle: .alert)
 
-        alertController.addTextField { (textField : UITextField!) -> Void in
+        alertController.addTextField { (textField: UITextField!) -> Void in
             textField.placeholder = "Имя канала"
         }
 
-        let saveAction = UIAlertAction(title: "Создать", style: .default, handler: { [weak self] alert in
+        let saveAction = UIAlertAction(title: "Создать", style: .default, handler: { [weak self] (_) in
             guard let channelTextField = alertController.textFields?[0], let newChannelName = channelTextField.text else {
                 return
             }
@@ -234,21 +234,25 @@ class ConversationsListViewController: BaseViewController {
     }
 }
 
-// MARK:- Navigation
+// MARK: - Navigation
 
 extension ConversationsListViewController {
     private func setupNavigation() {
-       title = "Channels"
-       navigationController?.navigationBar.prefersLargeTitles = true
-       navigationItem.searchController = searchController
-       navigationItem.hidesSearchBarWhenScrolling = true
-       navigationItem.leftBarButtonItem = settingsButtonItem
-       navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: avatarView), UIBarButtonItem(image: UIImage(named: "new-channel"), style: .plain, target: self, action: #selector(addChannel))]
+        title = "Channels"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.leftBarButtonItem = settingsButtonItem
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(customView: avatarView),
+            UIBarButtonItem(image: UIImage(named: "new-channel"), style: .plain, target: self, action: #selector(addChannel))
+        ]
    }
     
     func navigateToProfileView() {
-        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "NewProfileViewController") as? ProfileViewController else { return } // TODO: change name to profile view controller
+        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "NewProfileViewController") as? ProfileViewController
+            else { return }
         myVC.profileDelegate = self
         
         let navController = UINavigationController(rootViewController: myVC)
@@ -265,7 +269,7 @@ extension ConversationsListViewController {
     }
 }
 
-// MARK:- UISearchResultsUpdating
+// MARK: - UISearchResultsUpdating
 
 extension ConversationsListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -274,7 +278,7 @@ extension ConversationsListViewController: UISearchResultsUpdating {
     }
 }
 
-// MARK:- UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension ConversationsListViewController: UITableViewDelegate {
     
@@ -290,7 +294,7 @@ extension ConversationsListViewController: UITableViewDelegate {
     }
 }
 
-// MARK:- UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ConversationsListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -319,6 +323,7 @@ extension ConversationsListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - ThemesPickerDelegate
 
 extension ConversationsListViewController: ThemesPickerDelegate {
     func selectTheme(theme: ThemeProtocol) {
@@ -327,6 +332,8 @@ extension ConversationsListViewController: ThemesPickerDelegate {
         chatsTableView.reloadData()
     }
 }
+
+// MARK: - ProfileProviderDelegate
 
 extension ConversationsListViewController: ProfileProviderDelegate {
     func setNewProfile(user: User) {

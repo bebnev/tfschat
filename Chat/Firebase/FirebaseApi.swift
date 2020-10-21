@@ -15,7 +15,7 @@ class FireBaseApi {
     lazy var db = Firestore.firestore()
     lazy var channelsReference = db.collection("channels")
     
-    func loadChannels(completion: @escaping ([Channel]?,_ error: String?) -> Void) {
+    func loadChannels(completion: @escaping (_ channels: [Channel]?, _ error: String?) -> Void) {
         channelsReference.getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else {
                 completion(nil, "Can not read snapshot")
@@ -46,7 +46,7 @@ class FireBaseApi {
                     let documentData = document.data()
                     if let name = documentData["name"] as? String {
                         let lastMessage = documentData["lastMessage"] as? String ?? nil
-                        var lastActivity: Date? = nil
+                        var lastActivity: Date?
                         if let time = documentData["lastActivity"] as? Timestamp {
                             lastActivity = time.dateValue()
                         }
@@ -61,12 +61,12 @@ class FireBaseApi {
     }
     
     func addChannel(name: String, completion: @escaping (_ isOk: Bool) -> Void) {
-        channelsReference.addDocument(data: ["name": name, "lastActivity": Timestamp.init(date: Date())]) { (error) in
+        channelsReference.addDocument(data: ["name": name, "lastActivity": Timestamp(date: Date())]) { (error) in
             completion(error == nil)
         }
     }
     
-    func getMessages(id: String, completion: @escaping ([Message]?,_ error: String?) -> Void) {
+    func getMessages(id: String, completion: @escaping (_ messages: [Message]?, _ error: String?) -> Void) {
         let reference = db.collection("channels/\(id)/messages").order(by: "created")
         
         reference.getDocuments { (snapshot, error) in
@@ -104,7 +104,7 @@ class FireBaseApi {
         }
     }
     
-    func subscribeToMessages(id: String, completion: @escaping ([Message]?,_ error: String?) -> Void) -> ListenerRegistration {
+    func subscribeToMessages(id: String, completion: @escaping (_ messages: [Message]?, _ error: String?) -> Void) -> ListenerRegistration {
         let reference = db.collection("channels/\(id)/messages").order(by: "created")
         
         let listener = reference.addSnapshotListener { (snapshot, error) in
@@ -139,8 +139,6 @@ class FireBaseApi {
                         messages.append(message)
                     }
                 }
-                
-                print(messages)
 
                 completion(messages, nil)
             }

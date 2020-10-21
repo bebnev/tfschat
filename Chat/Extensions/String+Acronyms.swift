@@ -15,7 +15,7 @@ extension String {
         
         for word in wordsArray {
             if let char = word.first {
-                acronyms = acronyms + String(char)
+                acronyms += String(char)
             }
         }
         

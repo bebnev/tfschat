@@ -18,6 +18,7 @@
 		E830050D253FB5240098A20A /* UITextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830050C253FB5240098A20A /* UITextField+Padding.swift */; };
 		E830050F253FBE750098A20A /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830050E253FBE750098A20A /* Sender.swift */; };
 		E8300511253FC0F60098A20A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8300510253FC0F60098A20A /* Message.swift */; };
+		E830051B254043AE0098A20A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = E830051A254043AE0098A20A /* .swiftlint.yml */; };
 		E84200D6252D17C200067D09 /* ThemeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84200D5252D17C200067D09 /* ThemeButtonView.swift */; };
 		E84200D8252D2E0D00067D09 /* DayTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84200D7252D2E0D00067D09 /* DayTheme.swift */; };
 		E84200DB252D2E4000067D09 /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E84200DA252D2E4000067D09 /* Themes.swift */; };
@@ -75,6 +76,7 @@
 		E830050C253FB5240098A20A /* UITextField+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Padding.swift"; sourceTree = "<group>"; };
 		E830050E253FBE750098A20A /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		E8300510253FC0F60098A20A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		E830051A254043AE0098A20A /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		E84200D5252D17C200067D09 /* ThemeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeButtonView.swift; sourceTree = "<group>"; };
 		E84200D7252D2E0D00067D09 /* DayTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTheme.swift; sourceTree = "<group>"; };
 		E84200DA252D2E4000067D09 /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 		E8A85230251017270093FB52 = {
 			isa = PBXGroup;
 			children = (
+				E830051A254043AE0098A20A /* .swiftlint.yml */,
 				E8A8523B251017270093FB52 /* Chat */,
 				E8A8523A251017270093FB52 /* Products */,
 				E8A85252251032F50093FB52 /* README.md */,
@@ -340,6 +343,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8A8524D251017270093FB52 /* Build configuration list for PBXNativeTarget "Chat" */;
 			buildPhases = (
+				E8300517254041E00098A20A /* ShellScript */,
 				0340B9F711310C53E352480A /* [CP] Check Pods Manifest.lock */,
 				E8A85235251017270093FB52 /* Sources */,
 				E8A85236251017270093FB52 /* Frameworks */,
@@ -393,6 +397,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E830051B254043AE0098A20A /* .swiftlint.yml in Resources */,
 				E8D7772325245CA80060282B /* conversations.json in Resources */,
 				E875BC922519035500ECAC5C /* Roboto-Regular.ttf in Resources */,
 				E80561F8253F596400EE5EC3 /* GoogleService-Info.plist in Resources */,
@@ -446,6 +451,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Chat/Pods-Chat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E8300517254041E00098A20A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\"\nelse\n  echo \"warning: SwiftLint not installed\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

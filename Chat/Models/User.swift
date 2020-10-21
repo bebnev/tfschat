@@ -11,7 +11,7 @@ import UIKit
 struct User {
     var name: String? = ""
     var about: String? = ""
-    var avatar: UIImage? = nil
+    var avatar: UIImage?
 }
 
 enum UserFields: String {

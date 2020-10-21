@@ -39,7 +39,7 @@ class AvataViewPlaceholder: UIView {
     }
     
     override init(frame: CGRect) {
-        super.init(frame: frame);
+        super.init(frame: frame)
         
         setupView()
     }

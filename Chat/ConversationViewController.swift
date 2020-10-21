@@ -67,7 +67,6 @@ class ConversationViewController: BaseViewController {
         }
     }
     
-//    var conversation: ConversationCellModel? = ConversationCellModel(name: "Anton Bebnev", message: "Hello man", date: Date(), isOnline: true, hasUnreadMessages: true, avatar: UIImage(named: "man_6")!)
     var channel: Channel?
     
     var fieldContainerViewBottomAnchor: NSLayoutConstraint?
@@ -108,7 +107,7 @@ class ConversationViewController: BaseViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        //NotificationCenter.default.removeObserver(self)
         messagesListener?.remove()
     }
     
@@ -250,7 +249,6 @@ class ConversationViewController: BaseViewController {
             let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let keyboardDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber else {return}
 
-        
         if notification.name == UIResponder.keyboardWillShowNotification {
             fieldContainerViewBottomAnchor?.constant = -keyboardFrame.height
             

@@ -49,7 +49,7 @@ class ThemeManager {
     }
 }
 
-// MARK:- update UIAppearance
+// MARK: - update UIAppearance
 
 extension ThemeManager {
     func updateDisplay(_ theme: ThemeProtocol) {
