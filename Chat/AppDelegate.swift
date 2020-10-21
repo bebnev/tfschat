@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Log.debug("Application is almost ready to run")
-
+        Sender.shared.loadOrCreateSender()
         ThemeManager.shared.loadTheme()
         FirebaseApp.configure()
         return true

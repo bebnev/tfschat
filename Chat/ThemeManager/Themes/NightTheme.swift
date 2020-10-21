@@ -24,4 +24,9 @@ struct NightTheme: ThemeProtocol {
     var searchBarBackgroundColor = UIColor(red: 0.961, green: 0.961, blue: 0.961, alpha: 1)
     var tableViewSectionBackgroundColor = UIColor(red: 0.18, green: 0.18, blue: 0.18, alpha: 1)
     var navigationTintColor = UIColor.white
+    var chatInputFieldBackgroundColor = UIColor.black
+    var chatFieldBackgroundColor = UIColor(red: 0.231, green: 0.231, blue: 0.231, alpha: 1)
+    var chatFieldBorderColor = UIColor(red: 0.231, green: 0.231, blue: 0.231, alpha: 1)
+    var chatInputFieldBorderColor = UIColor(red: 0.651, green: 0.651, blue: 0.667, alpha: 1)
+    var chatInputPlaceholderColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
 }

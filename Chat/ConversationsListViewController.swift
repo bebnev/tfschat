@@ -192,7 +192,7 @@ class ConversationsListViewController: BaseViewController {
             textField.placeholder = "Имя канала"
         }
 
-        let saveAction = UIAlertAction(title: "Добавить", style: .default, handler: { [weak self] alert in
+        let saveAction = UIAlertAction(title: "Создать", style: .default, handler: { [weak self] alert in
             guard let channelTextField = alertController.textFields?[0], let newChannelName = channelTextField.text else {
                 return
             }

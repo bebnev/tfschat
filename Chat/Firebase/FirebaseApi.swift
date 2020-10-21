@@ -65,4 +65,96 @@ class FireBaseApi {
             completion(error == nil)
         }
     }
+    
+    func getMessages(id: String, completion: @escaping ([Message]?,_ error: String?) -> Void) {
+        let reference = db.collection("channels/\(id)/messages").order(by: "created")
+        
+        reference.getDocuments { (snapshot, error) in
+            guard let snapshot = snapshot else {
+                completion(nil, "Can not read snapshot")
+                return
+            }
+            
+            if let error = error {
+                completion(nil, error.localizedDescription)
+            } else {
+                let documents = snapshot.documents
+                
+                if documents.isEmpty {
+                    completion([], nil)
+                    return
+                }
+                
+                var messages = [Message]()
+
+                for document in documents {
+                    let documentData = document.data()
+                    if let content = documentData["content"] as? String,
+                        let created = documentData["created"] as? Timestamp,
+                        let senderName = documentData["senderName"] as? String,
+                        let senderId = documentData["senderId"] as? String {
+                        
+                        let message = Message(content: content, created: created.dateValue(), senderId: senderId, senderName: senderName)
+                        messages.append(message)
+                    }
+                }
+
+                completion(messages, nil)
+            }
+        }
+    }
+    
+    func subscribeToMessages(id: String, completion: @escaping ([Message]?,_ error: String?) -> Void) -> ListenerRegistration {
+        let reference = db.collection("channels/\(id)/messages").order(by: "created")
+        
+        let listener = reference.addSnapshotListener { (snapshot, error) in
+            guard let snapshot = snapshot else {
+                completion(nil, "Can not read snapshot")
+                return
+            }
+            
+            print("SUBSRIPTION")
+            
+            if let error = error {
+                completion(nil, error.localizedDescription)
+            } else {
+                let documents = snapshot.documents
+                
+                if documents.isEmpty {
+                    print("EMPTY")
+                    completion([], nil)
+                    return
+                }
+                
+                var messages = [Message]()
+
+                for document in documents {
+                    let documentData = document.data()
+                    if let content = documentData["content"] as? String,
+                        let created = documentData["created"] as? Timestamp,
+                        let senderName = documentData["senderName"] as? String,
+                        let senderId = documentData["senderId"] as? String {
+                        
+                        let message = Message(content: content, created: created.dateValue(), senderId: senderId, senderName: senderName)
+                        messages.append(message)
+                    }
+                }
+                
+                print(messages)
+
+                completion(messages, nil)
+            }
+        }
+        
+        return listener
+    }
+    
+    func addMessage(channelId: String, message: Message, completion: ((_ isOk: Bool) -> Void)?) {
+        let reference = db.collection("channels/\(channelId)/messages")
+        
+        reference.addDocument(data: message.asDictionary()) { (error) in
+            completion?(error == nil)
+        }
+        
+    }
 }

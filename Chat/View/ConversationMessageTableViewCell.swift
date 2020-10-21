@@ -10,7 +10,7 @@ import UIKit
 
 class ConversationMessageTableViewCell: UITableViewCell, ConfigurableView {
     
-    typealias ConfigurationModel = MessageCellModel
+    typealias ConfigurationModel = Message
     
     lazy var messageLabel: UILabel = {
         let label = UILabel()
@@ -31,6 +31,18 @@ class ConversationMessageTableViewCell: UITableViewCell, ConfigurableView {
         return view
     }()
     
+    lazy var userNameLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.textColor = ThemeManager.shared.theme?.mainTextColor
+        return label
+    }()
+    
+    let name = UILabel()
+    let message = UITextView()
+    
     var leadingConstraint: NSLayoutConstraint!
     var trailingConstraint: NSLayoutConstraint!
 
@@ -47,9 +59,14 @@ class ConversationMessageTableViewCell: UITableViewCell, ConfigurableView {
     func setupView() {
         addSubview(chatBackgroundView)
         addSubview(messageLabel)
+        addSubview(userNameLabel)
         
         let constraints = [
-            messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            userNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            userNameLabel.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -10),
+            userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
+            userNameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: frame.width * 3 / 4),
+            messageLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor),
             messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: frame.width * 3 / 4),
             chatBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -5),
@@ -64,21 +81,23 @@ class ConversationMessageTableViewCell: UITableViewCell, ConfigurableView {
         trailingConstraint = messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -23)
     }
     
-    func configure(with model: MessageCellModel) {
-        messageLabel.text = model.text
+    func configure(with model: Message) {
+        messageLabel.text = model.content
         
-        if model.type == .incoming {
+        if model.senderId != Sender.shared.userId {
             chatBackgroundView.backgroundColor = ThemeManager.shared.theme?.incomingCellBackgroundColor
             messageLabel.textColor = ThemeManager.shared.theme?.mainTextColor
             leadingConstraint.isActive = true
             trailingConstraint.isActive = false
+            userNameLabel.text = model.senderName
         } else {
             chatBackgroundView.backgroundColor = ThemeManager.shared.theme?.outgoingCellBackgroundColor
             messageLabel.textColor = ThemeManager.shared.theme?.outgoingMessagesTextColor
             leadingConstraint.isActive = false
             trailingConstraint.isActive = true
+            userNameLabel.text = ""
         }
-        
+
         backgroundColor = ThemeManager.shared.theme?.mainBackgroundColor
     }
     
