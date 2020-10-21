@@ -343,8 +343,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8A8524D251017270093FB52 /* Build configuration list for PBXNativeTarget "Chat" */;
 			buildPhases = (
-				E8300517254041E00098A20A /* ShellScript */,
 				0340B9F711310C53E352480A /* [CP] Check Pods Manifest.lock */,
+				E8300517254041E00098A20A /* ShellScript */,
 				E8A85235251017270093FB52 /* Sources */,
 				E8A85236251017270093FB52 /* Frameworks */,
 				E8A85237251017270093FB52 /* Resources */,
