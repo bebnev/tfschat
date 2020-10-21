@@ -100,9 +100,6 @@ class ConversationsListViewController: BaseViewController {
         setupNavigation()
         setupView()
         
-        isChannelsLoading = true
-        updateData()
-        
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
@@ -121,6 +118,9 @@ class ConversationsListViewController: BaseViewController {
         }
         
         firstLoad = false
+        
+        isChannelsLoading = true
+        updateData()
     }
     
     private func setupView() {
