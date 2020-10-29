@@ -63,10 +63,10 @@ class ConversationMessageTableViewCell: UITableViewCell, ConfigurableView {
         
         let constraints = [
             userNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            userNameLabel.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -10),
+            //userNameLabel.bottomAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -10),
             userNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
             userNameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: frame.width * 3 / 4),
-            messageLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor),
+            messageLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 10),
             messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             messageLabel.widthAnchor.constraint(lessThanOrEqualToConstant: frame.width * 3 / 4),
             chatBackgroundView.topAnchor.constraint(equalTo: messageLabel.topAnchor, constant: -5),

@@ -15,12 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     var firstLaunch = true
+    
+    var coreDataStack = CoreDataStack()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         Log.debug("Application is almost ready to run")
         Sender.shared.loadOrCreateSender()
         ThemeManager.shared.loadTheme()
         FirebaseApp.configure()
+        
+        coreDataStack.enableObservers()
+        coreDataStack.handleDataUpdate = { stack in
+            stack.printDatabaseStatistics()
+        }
+        
         return true
     }
     
