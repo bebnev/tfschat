@@ -9,7 +9,37 @@
 import UIKit
 
 struct User {
-    let name: String
-    let about: String
-    var avatar: UIImage?
+    var name: String? = ""
+    var about: String? = ""
+    var avatar: UIImage? = nil
+}
+
+enum UserFields: String {
+    case name
+    case about
+    case avatar
+    
+    init?(field: String) {
+        switch field {
+        case "name":
+            self = .name
+        case "about":
+            self = .about
+        case "avatar":
+            self = .avatar
+        default:
+            return nil
+        }
+    }
+    
+    func getFieldName() -> String {
+        switch self {
+        case .name:
+            return "Имя пользователя"
+        case .about:
+            return "Информация о себе"
+        case .avatar:
+            return "Аватар"
+        }
+    }
 }

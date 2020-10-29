@@ -15,8 +15,6 @@ class ConversationsListViewController: BaseViewController {
     
     // MARK:- fake data
     
-    let user = User(name: "Marina Dudarenko", about: "UX/UI designer, web-designer Moscow, Russia", avatar: nil)
-    
     let fakeData = FakeDataLoader();
     
     // MARK:- UI vars
@@ -40,16 +38,39 @@ class ConversationsListViewController: BaseViewController {
         return settingsButton
     }()
     
-    lazy var avatarButtonItem: UIBarButtonItem = {
+    lazy var avatarView: AvataViewPlaceholder = {
         let avatarView = AvataViewPlaceholder(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        avatarView.userName = self.user.name
         let incidentTap = UITapGestureRecognizer()
         incidentTap.addTarget(self, action: #selector(self.handleAvatarButtonItemTap))
         avatarView.addGestureRecognizer(incidentTap)
         
-        let barItem = UIBarButtonItem(customView: avatarView)
-        return barItem
+        return avatarView
     }()
+    
+    lazy var profileLoadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.style = UIActivityIndicatorView.Style.gray
+        return indicator
+    }()
+    
+    private var firstLoad = true
+    private var isProfileLoading = false {
+        didSet {
+            if isProfileLoading {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(customView: profileLoadingIndicator)
+                profileLoadingIndicator.startAnimating()
+            } else {
+                profileLoadingIndicator.stopAnimating()
+                if Profile.shared.isLoaded() {
+                    avatarView.userName = Profile.shared.currentUser.name
+                    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarView)
+                } else {
+                    navigationItem.rightBarButtonItem = nil
+                }
+                
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +79,23 @@ class ConversationsListViewController: BaseViewController {
         setupNavigation()
         setupView()
         self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if firstLoad {
+            isProfileLoading = true
+            // load method works only in OperationsManager
+            let operationsProfileManager = ProfileOperationDataManager(profile: Profile.shared)
+            operationsProfileManager.load {
+                DispatchQueue.main.async {
+                    self.isProfileLoading = false
+                }
+            }
+        }
+        
+        firstLoad = false
     }
     
     private func loadFakeData() {
@@ -109,13 +147,12 @@ extension ConversationsListViewController {
        navigationItem.searchController = searchController
        navigationItem.hidesSearchBarWhenScrolling = true
        navigationItem.leftBarButtonItem = settingsButtonItem
-       navigationItem.rightBarButtonItem = avatarButtonItem
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
    }
     
     func navigateToProfileView() {
-        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
-        myVC.user = user
+        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "NewProfileViewController") as? ProfileViewController else { return } // TODO: change name to profile view controller
+        myVC.profileDelegate = self
         
         let navController = UINavigationController(rootViewController: myVC)
         navController.applyTheme()
@@ -197,5 +234,13 @@ extension ConversationsListViewController: ThemesPickerDelegate {
         navigationController?.applyTheme()
         searchController.searchBar.textField?.backgroundColor = theme.searchBarBackgroundColor
         chatsTableView.reloadData()
+    }
+}
+
+extension ConversationsListViewController: ProfileProviderDelegate {
+    func setNewProfile(user: User) {
+        if avatarView.userName != user.name {
+            avatarView.userName = user.name
+        }
     }
 }
