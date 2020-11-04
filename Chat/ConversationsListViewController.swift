@@ -194,16 +194,16 @@ class ConversationsListViewController: BaseViewController {
                     self?.isChannelsLoading = false
                     self?.errorAlert("Произошла нештатная ситуация. Повторите попытку позже")
                 }
-                
+
                 return
             }
-            
+
             if let channels = channels,
                 let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     let channelRequest = ChannelRequest(coreDataStack: appDelegate.coreDataStack)
                     channelRequest.loadChannels(channels: channels)
             }
-            
+
             DispatchQueue.main.async { [weak self] in
                 self?.isChannelsLoading = false
                 self?.fetchChannelsFromDb()
@@ -221,7 +221,7 @@ class ConversationsListViewController: BaseViewController {
         }
 
         let saveAction = UIAlertAction(title: "Создать", style: .default, handler: { [weak self] (_) in
-            guard let channelTextField = alertController.textFields?[0], let newChannelName = channelTextField.text else {
+            guard let channelTextField = alertController.textFields?[0], let newChannelName = channelTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
                 return
             }
             

@@ -25,15 +25,7 @@ class FireBaseApi {
             if let error = error {
                 completion(nil, error.localizedDescription)
             } else {
-                let documents = snapshot.documents.sorted { (firstDocument, secondDocument) -> Bool in
-                    let firstData = firstDocument.data()
-                    let secondData = secondDocument.data()
-                    
-                    let firstDate = (firstData["lastActivity"] as? Timestamp)?.seconds ?? 0
-                    let secondDate = (secondData["lastActivity"] as? Timestamp)?.seconds ?? 0
-                    
-                    return firstDate > secondDate
-                }
+                let documents = snapshot.documents
                 
                 if documents.isEmpty {
                     completion([], nil)
@@ -49,7 +41,14 @@ class FireBaseApi {
                     }
                 }
                 
-                completion(channels, nil)
+                completion(channels.sorted(by: { (channel1, channel2) -> Bool in
+                    if let date1 = channel1.lastActivity,
+                        let date2 = channel2.lastActivity {
+                        return date1 > date2
+                    }
+                    
+                    return false
+                }), nil)
             }
         }
     }
