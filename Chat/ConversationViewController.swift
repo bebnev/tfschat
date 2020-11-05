@@ -68,13 +68,42 @@ class ConversationViewController: BaseViewController {
         }
     }
     
-    var channel: Channel?
+    lazy var coreDataManager: CoreDataStack = {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            return appDelegate.coreDataStack
+        }
+        
+        return CoreDataStack()
+    }()
+    
+    private lazy var fetchController: NSFetchedResultsController<Message_db>? = {
+        guard let channel = channel, let identifier = channel.identifier else { return nil }
+        let fetchRequest: NSFetchRequest<Message_db> = Message_db.fetchRequest()
+        
+        let sortDescriptor = NSSortDescriptor(key: "created", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "channel = %@", channel)
+        fetchRequest.predicate = predicate
+        
+        let controller = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: self.coreDataManager.mainContext,
+            sectionNameKeyPath: nil,
+            cacheName: "message_for_channel_with_id_\(identifier)")
+        
+        controller.delegate = self
+        
+        return controller
+    }()
+    
+    lazy var dataManager: DataManager = {
+        return DataManager(coreDataStack: self.coreDataManager)
+    }()
+    
+    var channel: Channel_db?
     
     var fieldContainerViewBottomAnchor: NSLayoutConstraint?
-    
-    var messages = [Message]()
-    
-    var messagesListener: ListenerRegistration?
     
     var viewHasAppeared = false
 
@@ -86,8 +115,7 @@ class ConversationViewController: BaseViewController {
         setupKeyboardObservers()
         
         isMessagesLoading = true
-        setupMessagesObserver()
-        fetchMessagesFromDb()
+        loadData()
     }
 
     override func viewDidLayoutSubviews() {
@@ -102,15 +130,23 @@ class ConversationViewController: BaseViewController {
         viewHasAppeared = true
     }
     
+    private func loadData() {
+        guard let fetchController = fetchController, let channelDb = channel, let identifier = channelDb.identifier else {
+            return
+        }
+        do {
+            try fetchController.performFetch()
+        } catch {
+            Log.debug("Fetch messages request failed")
+        }
+        
+        dataManager.fetchMessages(for: identifier, completion: nil)
+    }
+    
     override func applyTheme(theme: ThemeProtocol) {
         super.applyTheme(theme: theme)
         tableView.backgroundColor = theme.mainBackgroundColor
         titleLabel.textColor = theme.mainTextColor
-    }
-    
-    deinit {
-        //NotificationCenter.default.removeObserver(self)
-        messagesListener?.remove()
     }
     
     func setupKeyboardObservers() {
@@ -204,66 +240,11 @@ class ConversationViewController: BaseViewController {
         
         NSLayoutConstraint.activate(constraints)
     }
-    
-    func fetchMessagesFromDb() {
-        guard let channel = channel, let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let fetchRequest = Channel_db.fetchRequest() as NSFetchRequest<Channel_db>
-        fetchRequest.predicate = NSPredicate(format: "identifier = %@", channel.identifier)
-        
-        do {
-            messages = []
-            let channelsDb = try appDelegate.coreDataStack.mainContext.fetch(fetchRequest)
-            if let channelDb = channelsDb.first,
-                channelDb.messagesArray.count > 0 {
-                for messageDb in channelDb.messagesArray {
-                    if let message = messageDb.makeMessage() {
-                        messages.append(message)
-                    }
-                }
-            }
-            
-            tableView.reloadData()
-            goToBottom()
-        } catch {
-            Log.debug(error.localizedDescription)
-        }
-    }
-    
-    func setupMessagesObserver() {
-        guard let channel = channel else {
-            isMessagesLoading = false
-            return
-        }
-        
-        messagesListener = FireBaseApi.shared.subscribeToMessages(id: channel.identifier) { [weak self] (messages, error) in
-            if error != nil {
-                DispatchQueue.main.async { [weak self] in
-                    self?.isMessagesLoading = false
-                    self?.errorAlert("Произошла нештатная ситуация. Повторите попытку позже")
-                }
-
-                return
-            }
-
-            if let messages = messages,
-                let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    let channelRequest = ChannelRequest(coreDataStack: appDelegate.coreDataStack)
-                channelRequest.setMessages(for: channel, messages: messages)
-            }
-
-            DispatchQueue.main.async { [weak self] in
-                self?.isMessagesLoading = false
-                self?.fetchMessagesFromDb()
-            }
-        }
-    }
 
     private func goToBottom() {
-        guard messages.count > 0 else { return }
-        let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        guard let fetchController = fetchController, let countObjects = fetchController.fetchedObjects?.count,
+            countObjects > 0 else { return }
+        let indexPath = IndexPath(row: countObjects - 1, section: 0)
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: false)
         tableView.layoutIfNeeded()
     }
@@ -300,7 +281,7 @@ class ConversationViewController: BaseViewController {
         print("handleSendTap")
         dismissKeyboard()
         
-        guard let content = inputField.text, let userId = Sender.shared.userId, let channel = channel else {
+        guard let content = inputField.text, let userId = Sender.shared.userId, let identifier = channel?.identifier else {
             return
         }
         
@@ -310,11 +291,7 @@ class ConversationViewController: BaseViewController {
         
         let message = Message(content: content, created: Date(), senderId: userId, senderName: Sender.shared.name)
         
-        FireBaseApi.shared.addMessage(channelId: channel.identifier, message: message) {[weak self] isOk in
-            if isOk {
-                self?.inputField.text = ""
-            }
-        }
+        dataManager.addMessage(for: identifier, message: message, completion: nil)
     }
     
     func errorAlert(_ message: String) {
@@ -328,18 +305,19 @@ class ConversationViewController: BaseViewController {
 
 extension ConversationViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReusableId, for: indexPath) as? ConversationMessageTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReusableId, for: indexPath) as? ConversationMessageTableViewCell,
+            let message = (fetchController?.object(at: indexPath))?.makeMessage() else {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
-        cell.configure(with: messages[indexPath.row])
+        cell.configure(with: message)
         return cell
     }
 }
 
 extension ConversationViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return fetchController?.fetchedObjects?.count ?? 0
     }
 }
 
@@ -347,5 +325,44 @@ extension ConversationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         handleSendTap()
         return true
+    }
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension ConversationViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any,
+                    at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .none)
+            }
+        case .update:
+            if let indexPath = indexPath,
+               let cell = tableView.cellForRow(at: indexPath) as? ConversationMessageTableViewCell,
+               let message = (fetchController?.object(at: indexPath))?.makeMessage() {
+                    cell.configure(with: message)
+            }
+        case .move:
+            if let indexPath = indexPath, let newIndexPath = newIndexPath {
+                tableView.moveRow(at: indexPath, to: newIndexPath)
+            }
+        case .delete:
+            print("DELETE")
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .none)
+            }
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
     }
 }

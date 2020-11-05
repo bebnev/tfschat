@@ -24,10 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ThemeManager.shared.loadTheme()
         FirebaseApp.configure()
         
-        coreDataStack.enableObservers()
-        coreDataStack.handleDataUpdate = { stack in
-            stack.printDatabaseStatistics()
-        }
+        //coreDataStack.enableObservers()
+//        coreDataStack.handleDataUpdate = { stack in
+//            stack.printDatabaseStatistics()
+//        }
         
         return true
     }

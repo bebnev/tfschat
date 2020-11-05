@@ -77,9 +77,9 @@ class CoreDataStack {
         let context = saveContext()
         context.performAndWait { [weak self] in
             block(context)
-            
             if context.hasChanges {
                 do {
+                    try context.obtainPermanentIDs(for: Array(context.insertedObjects))
                     try self?.performSaveInContext(context)
                 } catch {
                     assertionFailure(error.localizedDescription)

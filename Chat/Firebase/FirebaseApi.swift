@@ -15,15 +15,15 @@ class FireBaseApi {
     lazy var db = Firestore.firestore()
     lazy var channelsReference = db.collection("channels")
     
-    func loadChannels(completion: @escaping (_ channels: [Channel]?, _ error: String?) -> Void) {
+    func loadChannels(completion: @escaping (_ channels: [Channel], _ error: String?) -> Void) {
         channelsReference.getDocuments { [weak self] (snapshot, error) in
             guard let snapshot = snapshot else {
-                completion(nil, "Can not read snapshot")
+                completion([], "Can not read snapshot")
                 return
             }
             
             if let error = error {
-                completion(nil, error.localizedDescription)
+                completion([], error.localizedDescription)
             } else {
                 let documents = snapshot.documents
                 
@@ -40,15 +40,7 @@ class FireBaseApi {
                         channels.append(channel)
                     }
                 }
-                
-                completion(channels.sorted(by: { (channel1, channel2) -> Bool in
-                    if let date1 = channel1.lastActivity,
-                        let date2 = channel2.lastActivity {
-                        return date1 > date2
-                    }
-                    
-                    return false
-                }), nil)
+                completion(channels, nil)
             }
         }
     }
@@ -69,7 +61,7 @@ class FireBaseApi {
     
     func addChannel(name: String, completion: @escaping (_ document: Channel?) -> Void) {
         var ref: DocumentReference?
-        ref = channelsReference.addDocument(data: ["name": name, "lastActivity": Timestamp(date: Date())]) { [weak self] (error) in
+        ref = channelsReference.addDocument(data: ["name": name]) { [weak self] (error) in
             if error != nil {
                 completion(nil)
             } else {
