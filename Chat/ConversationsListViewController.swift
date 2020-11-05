@@ -362,21 +362,20 @@ extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             if let indexPath = newIndexPath {
-                chatsTableView.insertRows(at: [indexPath], with: .none)
+                chatsTableView.insertRows(at: [indexPath], with: .automatic)
             }
         case .update:
-            if let indexPath = indexPath,
-               let cell = chatsTableView.cellForRow(at: indexPath) as? ConversationTableViewCell,
-                let channel = (fetchController.object(at: indexPath)).makeChannel() {
-                cell.configure(with: channel)
+            if let indexPath = indexPath {
+                chatsTableView.reloadRows(at: [indexPath], with: .automatic)
             }
         case .move:
             if let indexPath = indexPath, let newIndexPath = newIndexPath {
-                chatsTableView.moveRow(at: indexPath, to: newIndexPath)
+                chatsTableView.deleteRows(at: [indexPath], with: .automatic)
+                chatsTableView.insertRows(at: [newIndexPath], with: .automatic)
             }
         case .delete:
             if let indexPath = indexPath {
-                chatsTableView.deleteRows(at: [indexPath], with: .none)
+                chatsTableView.deleteRows(at: [indexPath], with: .automatic)
             }
         @unknown default:
             fatalError()
