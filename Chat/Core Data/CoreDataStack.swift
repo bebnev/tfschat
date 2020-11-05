@@ -40,6 +40,7 @@ class CoreDataStack {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         
         do {
+            //let mOptions = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
             try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.storeUrl, options: nil)
         } catch {
             fatalError(error.localizedDescription)

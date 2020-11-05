@@ -36,19 +36,19 @@ class DataManager {
                 return
             }
             
-            let docIds = snapshot.documentChanges.compactMap { $0.document.documentID }
-            let matchingRequest: NSFetchRequest<NSFetchRequestResult> = Channel_db.fetchRequest()
-            matchingRequest.predicate = NSPredicate(format: "NOT (identifier in %@)", argumentArray: [docIds])
-            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: matchingRequest)
-            
-             self?.coreDataStack.performSave({ (context) in
-                do {
-                    try context.executeAndMergeChanges(using: batchDeleteRequest)
-                } catch {
-                    print(error)
-                }
-                
-             })
+//            let docIds = snapshot.documentChanges.compactMap { $0.document.documentID }
+//            let matchingRequest: NSFetchRequest<NSFetchRequestResult> = Channel_db.fetchRequest()
+//            matchingRequest.predicate = NSPredicate(format: "NOT (identifier in %@)", argumentArray: [docIds])
+//            let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: matchingRequest)
+//            
+//             self?.coreDataStack.performSave({ (context) in
+//                do {
+//                    try context.executeAndMergeChanges(using: batchDeleteRequest)
+//                } catch {
+//                    print(error)
+//                }
+//                
+//             })
             
             snapshot.documentChanges.forEach { (documentChange) in
                 let channel = documentChange.document.data()
@@ -76,7 +76,6 @@ class DataManager {
                         completion(nil)
                         return
                     }
-                    
                     if error != nil {
                         completion(error?.localizedDescription)
                     } else if snapshot.data() != nil,
@@ -118,24 +117,26 @@ class DataManager {
                 completion?(nil)
                 return
             }
+            self?.coreDataStack.performSave({ (context) in
             snapshot.documentChanges.forEach { messageChange in
-                print("FETCH5")
                 let messageData = messageChange.document.data()
                 switch messageChange.type {
                 case .added:
-                    self?.addMessageToDb(for: id, data: messageData)
+                    self?.addMessageToDb(for: id, messageId: messageChange.document.documentID, data: messageData, context: context)
                 default:
                     Log.debug("unrecognisable message firebase operation type")
                 }
             }
-            completion?(nil)
+                completion?(nil)
+            })
+            
         }
     }
     
-    func addMessage(for id: String, message: Message, completion: ((String?) -> Void)?) {
-        let messageReference = channelsReference.document(id).collection("messages")
+    func addMessage(for channelId: String, data: [String: Any], completion: ((String?) -> Void)?) {
+        let messageReference = channelsReference.document(channelId).collection("messages")
         
-        messageReference.addDocument(data: message.asDictionary()) { error in
+        messageReference.addDocument(data: data) { error in
             if let error = error {
                 Log.debug(error.localizedDescription)
                 completion?(error.localizedDescription)
@@ -218,30 +219,30 @@ extension DataManager {
 // MARK: - CoreData Messages
     
 extension DataManager {
-    private func parseMessageDataToMessage(data: [String: Any]) -> Message? {
+    private func parseMessageDataToMessage(id: String, data: [String: Any]) -> Message? {
         if let content = data["content"] as? String,
             let created = data["created"] as? Timestamp,
             let senderName = data["senderName"] as? String,
             let senderId = data["senderId"] as? String {
 
-            return Message(content: content, created: created.dateValue(), senderId: senderId, senderName: senderName)
+            return Message(identifier: id, content: content, created: created.dateValue(), senderId: senderId, senderName: senderName)
         }
 
         return nil
     }
     
-    private func addMessageToDb(for id: String, data: [String: Any]) {
-        if let message = parseMessageDataToMessage(data: data) {
-            coreDataStack.performSave({ (context) in
+    private func addMessageToDb(for channelId: String, messageId: String, data: [String: Any], context: NSManagedObjectContext) {
+        if let message = parseMessageDataToMessage(id: messageId, data: data) {
+            //coreDataStack.performSave({ (context) in
                 let fetchRequest: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "identifier = %@", id)
+                fetchRequest.predicate = NSPredicate(format: "identifier = %@", channelId)
 
                 let result = try? context.fetch(fetchRequest)
 
                 if let channel = result?.first {
                     channel.addToMessages(message.asCoreDataObject(in: context))
                 }
-            })
+           //})
         }
     }
 }

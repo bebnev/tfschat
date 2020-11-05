@@ -58,8 +58,9 @@ extension Channel_db {
 }
 
 extension Message_db {
-    convenience init(content: String, created: Date, senderId: String, senderName: String, context: NSManagedObjectContext) {
+    convenience init(identifier: String, content: String, created: Date, senderId: String, senderName: String, context: NSManagedObjectContext) {
         self.init(context: context)
+        self.identifier = identifier
         self.content = content
         self.created = created
         self.senderName = senderName
@@ -67,9 +68,9 @@ extension Message_db {
     }
     
     func makeMessage() -> Message? {
-        guard let content = self.content, let created = self.created, let senderName = senderName, let senderId = senderId else {
+        guard let identifier = identifier, let content = self.content, let created = self.created, let senderName = senderName, let senderId = senderId else {
             return nil
         }
-        return Message(content: content, created: created, senderId: senderId, senderName: senderName)
+        return Message(identifier: identifier, content: content, created: created, senderId: senderId, senderName: senderName)
     }
 }

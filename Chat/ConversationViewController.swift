@@ -80,7 +80,7 @@ class ConversationViewController: BaseViewController {
         guard let channel = channel, let identifier = channel.identifier else { return nil }
         let fetchRequest: NSFetchRequest<Message_db> = Message_db.fetchRequest()
         
-        let sortDescriptor = NSSortDescriptor(key: "created", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "created", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         let predicate = NSPredicate(format: "channel = %@", channel)
@@ -272,16 +272,14 @@ class ConversationViewController: BaseViewController {
     
     @objc
     func handleViewTap(_ sender: Any) {
-        print("handleViewTap")
         dismissKeyboard()
     }
     
     @objc
     func handleSendTap() {
-        print("handleSendTap")
         dismissKeyboard()
         
-        guard let content = inputField.text, let userId = Sender.shared.userId, let identifier = channel?.identifier else {
+        guard let content = inputField.text?.trimmingCharacters(in: .whitespacesAndNewlines), let userId = Sender.shared.userId, let identifier = channel?.identifier else {
             return
         }
         
@@ -289,9 +287,12 @@ class ConversationViewController: BaseViewController {
             return
         }
         
-        let message = Message(content: content, created: Date(), senderId: userId, senderName: Sender.shared.name)
-        
-        dataManager.addMessage(for: identifier, message: message, completion: nil)
+        let data: [String: Any] = ["content": content, "senderId": userId, "senderName": Sender.shared.name, "created": Timestamp(date: Date())]
+        dataManager.addMessage(for: identifier, data: data) {[weak self] error in
+            if error == nil {
+                self?.inputField.text = ""
+            }
+        }
     }
     
     func errorAlert(_ message: String) {
@@ -364,5 +365,6 @@ extension ConversationViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+        goToBottom()
     }
 }

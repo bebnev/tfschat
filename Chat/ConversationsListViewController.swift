@@ -205,10 +205,10 @@ class ConversationsListViewController: BaseViewController {
             }
             
             self?.isChannelsLoading = true
-            self?.dataManager.addChannel(name: newChannelName) { [weak self] (channel) in
+            self?.dataManager.addChannel(name: newChannelName) { [weak self] (error) in
                 DispatchQueue.main.async { [weak self] in
                     self?.isChannelsLoading = false
-                    if channel == nil {
+                    if error != nil {
                         self?.errorAlert("Канал \(newChannelName) не создан. Повторите попытку позже")
                     }
                     
