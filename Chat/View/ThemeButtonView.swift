@@ -123,7 +123,6 @@ class ThemeButtonView: UIView {
     
     var onHandleTouch: ((_ senderTag: Int) -> Void)?
        
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

@@ -49,7 +49,7 @@ class ThemeManager {
     }
 }
 
-// MARK:- update UIAppearance
+// MARK: - update UIAppearance
 
 extension ThemeManager {
     func updateDisplay(_ theme: ThemeProtocol) {
@@ -63,12 +63,13 @@ extension ThemeManager {
             navBarAppearance.largeTitleTextAttributes = [.foregroundColor: theme.navigationTextColor]
             navBarAppearance.titleTextAttributes = [.foregroundColor: theme.navigationTextColor]
             navBarAppearance.backgroundColor = theme.navigatioBackgroundColor
-
             
             UINavigationBar.appearance().standardAppearance = navBarAppearance
             UINavigationBar.appearance().compactAppearance = navBarAppearance
             UINavigationBar.appearance().scrollEdgeAppearance = navBarAppearance
+            //UINavigationBar.appearance().tintColor = theme.navigationTintColor
             UISearchBar.appearance().searchTextField.backgroundColor = theme.searchBarBackgroundColor
+            
         } else {
             UINavigationBar.appearance().barTintColor = theme.navigatioBackgroundColor
             UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: theme.navigationTextColor]

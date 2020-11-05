@@ -20,7 +20,7 @@ class ProfileGCDDataManger: ProfileDataManager {
         
     }
     
-    func save(data: [String : Any], completion: @escaping ([String : Bool]) -> Void) {
+    func save(data: [String: Any], completion: @escaping ([String: Bool]) -> Void) {
         let group = DispatchGroup()
         let queue = DispatchQueue(label: "com.tfs_chat>profile.load", qos: .userInitiated, attributes: .concurrent)
         

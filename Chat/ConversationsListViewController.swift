@@ -10,14 +10,12 @@ import UIKit
 
 class ConversationsListViewController: BaseViewController {
     
-    // MARK:- Outlets
+    // MARK: - Outlets
     @IBOutlet weak var chatsTableView: UITableView!
     
-    // MARK:- fake data
+    var channels = [Channel]()
     
-    let fakeData = FakeDataLoader();
-    
-    // MARK:- UI vars
+    // MARK: - UI vars
     
     let reuseIdentificator = String(describing: ConversationTableViewCell.self)
     
@@ -57,17 +55,41 @@ class ConversationsListViewController: BaseViewController {
     private var isProfileLoading = false {
         didSet {
             if isProfileLoading {
-                navigationItem.rightBarButtonItem = UIBarButtonItem(customView: profileLoadingIndicator)
+                //navigationItem.rightBarButtonItem = UIBarButtonItem(customView: profileLoadingIndicator)
+                avatarView.clearBackground()
+                profileLoadingIndicator.isHidden = false
                 profileLoadingIndicator.startAnimating()
             } else {
                 profileLoadingIndicator.stopAnimating()
                 if Profile.shared.isLoaded() {
                     avatarView.userName = Profile.shared.currentUser.name
-                    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarView)
+                    //navigationItem.rightBarButtonItem = UIBarButtonItem(customView: avatarView)
+                    avatarView.isHidden = false
+                    avatarView.setDefaultBackground()
+                    profileLoadingIndicator.isHidden = true
                 } else {
-                    navigationItem.rightBarButtonItem = nil
+                    avatarView.isHidden = true
                 }
                 
+            }
+        }
+    }
+    
+    lazy var loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.style = UIActivityIndicatorView.Style.gray
+        indicator.center = view.center
+        return indicator
+    }()
+    
+    private var isChannelsLoading = false {
+        didSet {
+            if isChannelsLoading {
+                loadingIndicator.startAnimating()
+                loadingIndicator.backgroundColor = UIColor.white
+            } else {
+                loadingIndicator.stopAnimating()
+                loadingIndicator.hidesWhenStopped = true
             }
         }
     }
@@ -75,9 +97,9 @@ class ConversationsListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadFakeData()
         setupNavigation()
         setupView()
+        
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
@@ -96,17 +118,22 @@ class ConversationsListViewController: BaseViewController {
         }
         
         firstLoad = false
-    }
-    
-    private func loadFakeData() {
-        fakeData.load()
+        
+        isChannelsLoading = true
+        updateData()
     }
     
     private func setupView() {
+        avatarView.addSubview(profileLoadingIndicator)
+        view.addSubview(loadingIndicator)
         chatsTableView.register(UINib(nibName: "ConversationTableViewCell", bundle: nil), forCellReuseIdentifier: reuseIdentificator)
         chatsTableView.delegate = self
         chatsTableView.dataSource = self
         chatsTableView.sectionIndexBackgroundColor = UIColor.white
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
+        chatsTableView.refreshControl = refreshControl
     }
     
     @objc
@@ -133,25 +160,99 @@ class ConversationsListViewController: BaseViewController {
         chatsTableView.backgroundColor = theme.mainBackgroundColor
     }
     
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
+    @objc
+    func updateData() {
+        FireBaseApi.shared.loadChannels { [weak self] (channels, error) in
+            if error != nil {
+                DispatchQueue.main.async { [weak self] in
+                    self?.isChannelsLoading = false
+                    self?.errorAlert("Произошла нештатная ситуация. Повторите попытку позже")
+                }
+                
+                return
+            }
+            
+            if let channels = channels {
+                self?.channels = channels
+            }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.isChannelsLoading = false
+                self?.chatsTableView.reloadData()
+                self?.chatsTableView.refreshControl?.endRefreshing()
+            }
+        }
+    }
+    
+    @objc
+    func addChannel() {
+        let alertController = UIAlertController(title: "Добавить канал", message: "", preferredStyle: .alert)
+
+        alertController.addTextField { (textField: UITextField!) -> Void in
+            textField.placeholder = "Имя канала"
+        }
+
+        let saveAction = UIAlertAction(title: "Создать", style: .default, handler: { [weak self] (_) in
+            guard let channelTextField = alertController.textFields?[0], let newChannelName = channelTextField.text else {
+                return
+            }
+            
+            if newChannelName.isEmpty {
+                self?.errorAlert("Для создания канала необходимо указать его имя")
+                return
+            }
+            
+            self?.isChannelsLoading = true
+            
+            FireBaseApi.shared.addChannel(name: newChannelName) { [weak self] (isOk) in
+                
+                if isOk {
+                    self?.updateData()
+                } else {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.isChannelsLoading = false
+                        self?.errorAlert("Канал \(newChannelName) не создан. Повторите попытку позже")
+                    }
+                }
+            }
+        })
+
+        let cancelAction = UIAlertAction(title: "Отмена", style: .default, handler: nil )
+        
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func errorAlert(_ message: String) {
+        let alertController = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
-// MARK:- Navigation
+// MARK: - Navigation
 
 extension ConversationsListViewController {
     private func setupNavigation() {
-       title = "Tinkoff Chat"
-       navigationController?.navigationBar.prefersLargeTitles = true
-       navigationItem.searchController = searchController
-       navigationItem.hidesSearchBarWhenScrolling = true
-       navigationItem.leftBarButtonItem = settingsButtonItem
+        title = "Channels"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.leftBarButtonItem = settingsButtonItem
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(customView: avatarView),
+            UIBarButtonItem(image: UIImage(named: "new-channel"), style: .plain, target: self, action: #selector(addChannel))
+        ]
    }
     
     func navigateToProfileView() {
-        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "NewProfileViewController") as? ProfileViewController else { return } // TODO: change name to profile view controller
+        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "NewProfileViewController") as? ProfileViewController
+            else { return }
         myVC.profileDelegate = self
         
         let navController = UINavigationController(rootViewController: myVC)
@@ -160,15 +261,15 @@ extension ConversationsListViewController {
         navigationController?.present(navController, animated: true, completion: nil)
     }
     
-    func navigateToChatDetails(_ conversation: ConversationCellModel) {
+    func navigateToChatDetails(_ channel: Channel) {
         let conversationViewController = ConversationViewController()
-        conversationViewController.conversation = conversation
+        conversationViewController.channel = channel
         
         show(conversationViewController, sender: self)
     }
 }
 
-// MARK:- UISearchResultsUpdating
+// MARK: - UISearchResultsUpdating
 
 extension ConversationsListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -177,7 +278,7 @@ extension ConversationsListViewController: UISearchResultsUpdating {
     }
 }
 
-// MARK:- UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 extension ConversationsListViewController: UITableViewDelegate {
     
@@ -193,15 +294,15 @@ extension ConversationsListViewController: UITableViewDelegate {
     }
 }
 
-// MARK:- UITableViewDataSource
+// MARK: - UITableViewDataSource
 
 extension ConversationsListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return fakeData.conversations.count
+        return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fakeData.conversations[section].conversations.count
+        return channels.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -209,25 +310,20 @@ extension ConversationsListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        let conversation = fakeData.conversations[indexPath.section].conversations[indexPath.row]
-        cell.configure(with: conversation)
+        let channel = channels[indexPath.row]
+        cell.configure(with: channel)
         cell.selectionStyle = .none
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return fakeData.conversations[section].title
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = fakeData.conversations[indexPath.section].conversations[indexPath.row]
-        if cell.isOnline {
-            navigateToChatDetails(cell)
-        }
+        let cell = channels[indexPath.row]
+        navigateToChatDetails(cell)
     }
 }
 
+// MARK: - ThemesPickerDelegate
 
 extension ConversationsListViewController: ThemesPickerDelegate {
     func selectTheme(theme: ThemeProtocol) {
@@ -236,6 +332,8 @@ extension ConversationsListViewController: ThemesPickerDelegate {
         chatsTableView.reloadData()
     }
 }
+
+// MARK: - ProfileProviderDelegate
 
 extension ConversationsListViewController: ProfileProviderDelegate {
     func setNewProfile(user: User) {

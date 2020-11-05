@@ -21,10 +21,10 @@ extension UINavigationController {
             navBarAppearance.titleTextAttributes = [.foregroundColor: theme.navigationTextColor]
             navBarAppearance.backgroundColor = theme.navigatioBackgroundColor
 
-            
             navigationBar.standardAppearance = navBarAppearance
             navigationBar.compactAppearance = navBarAppearance
             navigationBar.scrollEdgeAppearance = navBarAppearance
+            //navigationBar.tintColor = theme.navigationTintColor
         } else {
             navigationBar.barTintColor = theme.navigatioBackgroundColor
             // tint color

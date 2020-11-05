@@ -23,4 +23,10 @@ protocol ThemeProtocol {
     var searchBarBackgroundColor: UIColor { get }
     var tableViewSectionBackgroundColor: UIColor { get }
     var outgoingMessagesTextColor: UIColor { get }
+    var navigationTintColor: UIColor { get }
+    var chatInputFieldBackgroundColor: UIColor { get }
+    var chatFieldBackgroundColor: UIColor { get }
+    var chatFieldBorderColor: UIColor { get }
+    var chatInputFieldBorderColor: UIColor { get }
+    var chatInputPlaceholderColor: UIColor {get}
 }

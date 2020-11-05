@@ -14,7 +14,6 @@ enum ProfileFilesystemError: Error {
     case canNotGetCacheDirectory
 }
 
-
 class Profile {
     
     static var shared = Profile()
@@ -30,7 +29,7 @@ class Profile {
     }
 }
 
-// MARK:- Filesystem
+// MARK: - Filesystem
 
 extension Profile {
     private func getFilePath(filename: String) throws -> URL {
@@ -138,15 +137,10 @@ extension Profile {
         currentUser.about = String(data: data, encoding: .utf8)
     }
     
-    
     public func loadAvatarFromFile() {
-        guard let data = loadDataFromFile(file: avatarFile) else {
-            return
-        }
-        
+        guard let data = loadDataFromFile(file: avatarFile) else { return }
         currentUser.avatar = UIImage(data: data)
     }
-    
     
     private func loadDataFromFile(file: String) -> Data? {
         do {

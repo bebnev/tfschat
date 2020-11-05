@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class Log {
     static func debug(_ object: Any, _ file: String = #file, _ function: String = #function, _ line: Int = #line) {
         #if IS_LOGS_ENABLED

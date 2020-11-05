@@ -24,7 +24,7 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var buttonContainerView: UIStackView!
     
     @IBOutlet weak var nameTextField: UITextField!
-    // MARK:- Vars
+    // MARK: - Vars
     
     var profileDelegate: ProfileProviderDelegate?
     
@@ -90,7 +90,7 @@ class ProfileViewController: BaseViewController {
     var navigationEditCancelButton: UIBarButtonItem?
     var navigationReadyButton: UIBarButtonItem?
     
-    // MARK:- Data
+    // MARK: - Data
     
     var user = Profile.shared.currentUser
     
@@ -112,10 +112,6 @@ class ProfileViewController: BaseViewController {
         fillUserData()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     override func applyTheme(theme: ThemeProtocol) {
         super.applyTheme(theme: theme)
         
@@ -125,16 +121,14 @@ class ProfileViewController: BaseViewController {
         saveWithGCDButton.backgroundColor = theme.buttonBackgroundColor
     }
     
-    // MARK:- Inner functions
+    // MARK: - Inner functions
     
     private func setupNavigation() {
         navigationCloseButton = UIBarButtonItem(title: "Закрыть", style: .plain, target: self, action: #selector(handleNavigationCloseButtonTap))
         navigationEditButton = UIBarButtonItem(title: "Редактировать", style: .plain, target: self, action: #selector(handleNavigationEditButtonTap))
         navigationEditCancelButton = UIBarButtonItem(title: "Отмена", style: .plain, target: self, action: #selector(handleNavigationEditCancelButtonTap))
         navigationReadyButton = UIBarButtonItem(title: "Готово", style: .plain, target: self, action: #selector(handleNavigationEditCancelButtonTap))
-        
         title = "My Profile"
-        
         navigationItem.leftBarButtonItem = navigationCloseButton
         navigationItem.rightBarButtonItem = navigationEditButton
     }
@@ -150,7 +144,7 @@ class ProfileViewController: BaseViewController {
         
         let constr = [
             editAvatarButton.trailingAnchor.constraint(equalTo: avatarView.trailingAnchor, constant: 0),
-            editAvatarButton.bottomAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 0),
+            editAvatarButton.bottomAnchor.constraint(equalTo: avatarView.bottomAnchor, constant: 0)
         ]
 
         NSLayoutConstraint.activate(constr)
@@ -163,7 +157,6 @@ class ProfileViewController: BaseViewController {
     private func adjustScrollView(to height: CGFloat) {
         scrollView.contentInset.bottom += height
         scrollView.scrollIndicatorInsets.bottom += height
-//
         if height < 0 {
             scrollView.setContentOffset(CGPoint(x: 0, y: -64), animated: true)// take this constant
         }
@@ -194,9 +187,7 @@ class ProfileViewController: BaseViewController {
         }
     }
     
-    /**
-     * Установка данных пользователя
-     */
+    // Установка данных пользователя
     private func fillUserData() {
         isNameChanged = false
         isAboutChanged = false
@@ -211,28 +202,21 @@ class ProfileViewController: BaseViewController {
         }
     }
     
-    /**
-     * Отрисовка placeholder вместо аватара
-     */
+    // Отрисовка placeholder вместо аватара
     private func drawAvatarPlaceholder(for name: String) {
         let avatarPlaceholderView = AvataViewPlaceholder(frame: CGRect(x: 0, y: 0, width: avatarView.frame.width, height: avatarView.frame.height))
         avatarPlaceholderView.isUserInteractionEnabled = false
-    
         avatarPlaceholderView.userName = name
         avatarPlaceholderView.labelFontSize = 120
         avatarView.addSubview(avatarPlaceholderView)
-        
         self.avatarPlaceholderView = avatarPlaceholderView
     }
     
-    /**
-     * Отрисовка аватара пользователя
-     */
+    // Отрисовка аватара пользователя
     private func drawAvatar(with image: UIImage) {
         if let avatarPlaceholderView = self.avatarPlaceholderView {
             avatarPlaceholderView.removeFromSuperview()
         }
-        
         if let avatarImageView = avatarImageView {
             avatarImageView.image = image
         } else {
@@ -242,7 +226,6 @@ class ProfileViewController: BaseViewController {
             imageView.layer.cornerRadius = imageView.frame.width / 2
             imageView.clipsToBounds = true
             avatarView.addSubview(imageView)
-            
             avatarImageView = imageView
         }
     }
@@ -253,7 +236,6 @@ class ProfileViewController: BaseViewController {
         }
         
         let newImage = avatarImageView?.image
-        
         if newName.isEmpty {
             customError(message: "Необходимо заполнить имя пользователя")
             return
@@ -263,27 +245,16 @@ class ProfileViewController: BaseViewController {
             customError(message: "Необходимо заполнить информацию о себе")
             return
         }
-        
         isLoading = true
         
         var changedData = [String: Any]()
-        
-        if isNameChanged {
-            changedData["name"] = newName
-        }
-        
-        if isAboutChanged {
-            changedData["about"] = newAbout
-        }
-        
-        if isAvatarChanged {
-            changedData["avatar"] = newImage
-        }
+        if isNameChanged { changedData["name"] = newName }
+        if isAboutChanged { changedData["about"] = newAbout }
+        if isAvatarChanged { changedData["avatar"] = newImage}
         
         profileManager.save(data: changedData) { (results) in
             let isOk = !results.values.contains(false)
-            
-            if (isOk) {
+            if isOk {
                 DispatchQueue.main.async { [weak self] in
                     self?.isLoading = false
                     self?.successAlert()
@@ -294,13 +265,11 @@ class ProfileViewController: BaseViewController {
                 }
                 return
             }
-            
             let nothingWasSaved = !results.values.contains(true)
-            
             if nothingWasSaved {
                 DispatchQueue.main.async { [weak self] in
                     self?.isLoading = false
-                    self?.errorAlert { (alertAction) in
+                    self?.errorAlert { (_) in
                         self?.saveProfile(profileManager: profileManager)
                     }
                 }
@@ -322,7 +291,7 @@ class ProfileViewController: BaseViewController {
         }
     }
     
-    // MARK:- IBActions
+    // MARK: - IBActions
     
     @IBAction func handleTapOnView(_ sender: UITapGestureRecognizer) {
         dismissKeyboard()
@@ -337,18 +306,16 @@ class ProfileViewController: BaseViewController {
             profileManager = ProfileOperationDataManager(profile: Profile.shared)
         default:
             return
-            
         }
         saveProfile(profileManager: profileManager)
     }
     
-    // MARK:- alerts
+    // MARK: - alerts
     
     func successAlert() {
         let alertController = UIAlertController(title: "Данные сохранены", message: nil, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(alertAction)
-        
         present(alertController, animated: true, completion: nil)
     }
     
@@ -356,7 +323,6 @@ class ProfileViewController: BaseViewController {
         let alertController = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(alertAction)
-        
         present(alertController, animated: true, completion: nil)
     }
     
@@ -367,19 +333,18 @@ class ProfileViewController: BaseViewController {
         
         let tryAgainAction = UIAlertAction(title: "Повторить", style: .default, handler: repeatAction)
         alertController.addAction(tryAgainAction)
-        
         present(alertController, animated: true, completion: nil)
     }
     
     func someFieldsNotSavedAlert(fields: [String]) {
-        let alertController = UIAlertController(title: "Данные сохранены неполностью", message: "Поля, которые не удалось сохранить: \(fields.joined(separator: ", "))", preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: "Данные сохранены неполностью", message: "Поля, которые не удалось сохранить: \(fields.joined(separator: ", "))", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(alertAction)
-        
         present(alertController, animated: true, completion: nil)
     }
     
-    // MARK:- handlers
+    // MARK: - handlers
     
     @objc
     func handleNavigationEditButtonTap() {
@@ -404,7 +369,6 @@ class ProfileViewController: BaseViewController {
 
         let isShowing = notification.name == UIResponder.keyboardWillShowNotification
         
-
         if isShowing != keyboardIsActive {
             keyboardIsActive = isShowing
             let adjustmentHeight = (keyboardFrame.height + 45) * (isShowing ? 1 : -1)
@@ -414,11 +378,10 @@ class ProfileViewController: BaseViewController {
     
     @objc
     func handleEditAvatarButtonPress(_ sender: Any) {
-        // TODO: apply theme
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         if isCameraAvailable() && hasCameraPermissions {
-            let openCameraAction = UIAlertAction(title: "Камера", style: .default) { (action) in
+            let openCameraAction = UIAlertAction(title: "Камера", style: .default) { (_) in
                 let picker = UIImagePickerController()
                 picker.sourceType = .camera
                 picker.allowsEditing = true
@@ -429,7 +392,7 @@ class ProfileViewController: BaseViewController {
         }
         
         if isPhotoLibraryAvailable() {
-            let photoLibraryAction = UIAlertAction(title: "Выбрать из галереи", style: .default) { (action) in
+            let photoLibraryAction = UIAlertAction(title: "Выбрать из галереи", style: .default) { (_) in
                 let picker = UIImagePickerController()
                 picker.allowsEditing = true
                 picker.delegate = self
@@ -437,7 +400,6 @@ class ProfileViewController: BaseViewController {
             }
             alert.addAction(photoLibraryAction)
         }
-        
 
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         alert.addAction(cancelAction)
@@ -454,7 +416,6 @@ class ProfileViewController: BaseViewController {
     }
 }
 
-
 extension ProfileViewController {
     func isCameraAvailable() -> Bool {
         return UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -464,51 +425,45 @@ extension ProfileViewController {
         return UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
     }
     
-    
     func requestCameraPermissions() {
         if !isCameraAvailable() {
             return
         }
-        
-        let cameraAuthStatus =  AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        let cameraAuthStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
         
         switch cameraAuthStatus {
-            case .authorized:
-                hasCameraPermissions = true
-            case .denied, .restricted:
-                hasCameraPermissions = false
-            case .notDetermined:
-                AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler:
-                    { (authorized) in
-                        self.hasCameraPermissions = authorized
-                })
-            @unknown default:
-                hasCameraPermissions = false
+        case .authorized:
+            hasCameraPermissions = true
+        case .denied, .restricted:
+            hasCameraPermissions = false
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { (authorized) in
+                self.hasCameraPermissions = authorized
+            }
+        @unknown default:
+            hasCameraPermissions = false
         }
     }
 }
 
-// MARK:- UIImagePickerControllerDelegate
+// MARK: - UIImagePickerControllerDelegate
 
 extension ProfileViewController: UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
-        
         isAvatarChanged = image != user.avatar
-        
         DispatchQueue.main.async {
             self.drawAvatar(with: image)
         }
-        
         dismiss(animated: true)
     }
 }
 
-// MARK:- UINavigationControllerDelegate
+// MARK: - UINavigationControllerDelegate
 
 extension ProfileViewController: UINavigationControllerDelegate {}
 
-// MARK:- UITextViewDelegate
+// MARK: - UITextViewDelegate
 
 extension ProfileViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
