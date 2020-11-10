@@ -1,6 +1,7 @@
 excluded:
   - Pods
   - .git
+  - DerivedData
 
 disabled_rules:
   - trailing_whitespace
@@ -47,4 +48,3 @@ identifier_name:
 type_name:
   min_length: 3
   max_length: 65
-
