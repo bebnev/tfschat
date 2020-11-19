@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class ConversationsListViewController: BaseViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var chatsTableView: UITableView!
-    
-    var channels = [Channel]()
     
     // MARK: - UI vars
     
@@ -93,6 +92,29 @@ class ConversationsListViewController: BaseViewController {
             }
         }
     }
+    
+    lazy var coreDataManager: CoreDataStack = {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            return appDelegate.coreDataStack
+        }
+        
+        return CoreDataStack()
+    }()
+    
+    lazy var fetchController: NSFetchedResultsController<Channel_db> = {
+        let request: NSFetchRequest<Channel_db> = Channel_db.fetchRequest()
+        let sort = NSSortDescriptor(key: #keyPath(Channel_db.lastActivity), ascending: false)
+        request.sortDescriptors = [sort]
+        
+        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: coreDataManager.mainContext, sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = self
+        
+        return controller
+    }()
+    
+    lazy var dataManager: DataManager = {
+        return DataManager(coreDataStack: self.coreDataManager)
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +123,8 @@ class ConversationsListViewController: BaseViewController {
         setupView()
         
         self.setNeedsStatusBarAppearanceUpdate()
+        
+        loadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -108,7 +132,6 @@ class ConversationsListViewController: BaseViewController {
         
         if firstLoad {
             isProfileLoading = true
-            // load method works only in OperationsManager
             let operationsProfileManager = ProfileOperationDataManager(profile: Profile.shared)
             operationsProfileManager.load {
                 DispatchQueue.main.async {
@@ -118,9 +141,6 @@ class ConversationsListViewController: BaseViewController {
         }
         
         firstLoad = false
-        
-        isChannelsLoading = true
-        updateData()
     }
     
     private func setupView() {
@@ -130,10 +150,16 @@ class ConversationsListViewController: BaseViewController {
         chatsTableView.delegate = self
         chatsTableView.dataSource = self
         chatsTableView.sectionIndexBackgroundColor = UIColor.white
+    }
+    
+    private func loadData() {
+        do {
+            try fetchController.performFetch()
+        } catch {
+            Log.debug("Fetch channels request failed")
+        }
         
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
-        chatsTableView.refreshControl = refreshControl
+        dataManager.fetchChannels(completion: nil)
     }
     
     @objc
@@ -161,30 +187,6 @@ class ConversationsListViewController: BaseViewController {
     }
     
     @objc
-    func updateData() {
-        FireBaseApi.shared.loadChannels { [weak self] (channels, error) in
-            if error != nil {
-                DispatchQueue.main.async { [weak self] in
-                    self?.isChannelsLoading = false
-                    self?.errorAlert("Произошла нештатная ситуация. Повторите попытку позже")
-                }
-                
-                return
-            }
-            
-            if let channels = channels {
-                self?.channels = channels
-            }
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.isChannelsLoading = false
-                self?.chatsTableView.reloadData()
-                self?.chatsTableView.refreshControl?.endRefreshing()
-            }
-        }
-    }
-    
-    @objc
     func addChannel() {
         let alertController = UIAlertController(title: "Добавить канал", message: "", preferredStyle: .alert)
 
@@ -193,7 +195,7 @@ class ConversationsListViewController: BaseViewController {
         }
 
         let saveAction = UIAlertAction(title: "Создать", style: .default, handler: { [weak self] (_) in
-            guard let channelTextField = alertController.textFields?[0], let newChannelName = channelTextField.text else {
+            guard let channelTextField = alertController.textFields?[0], let newChannelName = channelTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
                 return
             }
             
@@ -203,16 +205,13 @@ class ConversationsListViewController: BaseViewController {
             }
             
             self?.isChannelsLoading = true
-            
-            FireBaseApi.shared.addChannel(name: newChannelName) { [weak self] (isOk) in
-                
-                if isOk {
-                    self?.updateData()
-                } else {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.isChannelsLoading = false
+            self?.dataManager.addChannel(name: newChannelName) { [weak self] (error) in
+                DispatchQueue.main.async { [weak self] in
+                    self?.isChannelsLoading = false
+                    if error != nil {
                         self?.errorAlert("Канал \(newChannelName) не создан. Повторите попытку позже")
                     }
+                    
                 }
             }
         })
@@ -261,7 +260,7 @@ extension ConversationsListViewController {
         navigationController?.present(navController, animated: true, completion: nil)
     }
     
-    func navigateToChatDetails(_ channel: Channel) {
+    func navigateToChatDetails(_ channel: Channel_db) {
         let conversationViewController = ConversationViewController()
         conversationViewController.channel = channel
         
@@ -297,20 +296,17 @@ extension ConversationsListViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 
 extension ConversationsListViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channels.count
+        return fetchController.fetchedObjects?.count ?? 0
+        //return fetchController.sections?[section].numberOfObjects ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentificator, for: indexPath) as? ConversationTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentificator, for: indexPath) as? ConversationTableViewCell,
+            let channel = (fetchController.object(at: indexPath)).makeChannel() else {
             return UITableViewCell()
         }
         
-        let channel = channels[indexPath.row]
         cell.configure(with: channel)
         cell.selectionStyle = .none
         
@@ -318,8 +314,19 @@ extension ConversationsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = channels[indexPath.row]
-        navigateToChatDetails(cell)
+        let channelDb = fetchController.object(at: indexPath)
+        
+        navigateToChatDetails(channelDb)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+            let data = fetchController.object(at: indexPath)
+            if let identifier = data.identifier {
+                dataManager.removeChannel(withIdentifier: identifier)
+            }
+        }
     }
 }
 
@@ -340,5 +347,42 @@ extension ConversationsListViewController: ProfileProviderDelegate {
         if avatarView.userName != user.name {
             avatarView.userName = user.name
         }
+    }
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+
+extension ConversationsListViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        chatsTableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any,
+                    at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let indexPath = newIndexPath {
+                chatsTableView.insertRows(at: [indexPath], with: .automatic)
+            }
+        case .update:
+            if let indexPath = indexPath {
+                chatsTableView.reloadRows(at: [indexPath], with: .automatic)
+            }
+        case .move:
+            if let indexPath = indexPath, let newIndexPath = newIndexPath {
+                chatsTableView.deleteRows(at: [indexPath], with: .automatic)
+                chatsTableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                chatsTableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        chatsTableView.endUpdates()
     }
 }
