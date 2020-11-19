@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import CoreData
 
 struct Message {
     let content: String
@@ -20,5 +21,9 @@ struct Message {
         let data: [String: Any] = ["content": content, "senderId": senderId, "senderName": senderName, "created": createdTimestamp]
         
         return data
+    }
+    
+    func asCoreDataObject(in context: NSManagedObjectContext) -> Message_db {
+        return Message_db(content: content, created: created, senderId: senderId, senderName: senderName, context: context)
     }
 }

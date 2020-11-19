@@ -53,6 +53,10 @@
 		E884E6B6252B7C42002412E2 /* ThemeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E884E6B5252B7C42002412E2 /* ThemeProtocol.swift */; };
 		E886E6B0252D592F0007AD0F /* UISearchBar+textField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886E6AF252D592F0007AD0F /* UISearchBar+textField.swift */; };
 		E886E6BF252DDC150007AD0F /* UINavigationController+applyTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E886E6BE252DDC150007AD0F /* UINavigationController+applyTheme.swift */; };
+		E887D2A5254B0F4000C75067 /* Chat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E887D2A3254B0F4000C75067 /* Chat.xcdatamodeld */; };
+		E887D2A8254B11CF00C75067 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887D2A7254B11CF00C75067 /* CoreDataStack.swift */; };
+		E887D2AA254B193F00C75067 /* ObjectExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887D2A9254B193F00C75067 /* ObjectExtensions.swift */; };
+		E887D2AC254B19EE00C75067 /* ChannelRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E887D2AB254B19EE00C75067 /* ChannelRequest.swift */; };
 		E8A8523D251017270093FB52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A8523C251017270093FB52 /* AppDelegate.swift */; };
 		E8A85241251017270093FB52 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A85240251017270093FB52 /* BaseViewController.swift */; };
 		E8A85244251017270093FB52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8A85242251017270093FB52 /* Main.storyboard */; };
@@ -111,6 +115,10 @@
 		E884E6B5252B7C42002412E2 /* ThemeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeProtocol.swift; sourceTree = "<group>"; };
 		E886E6AF252D592F0007AD0F /* UISearchBar+textField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+textField.swift"; sourceTree = "<group>"; };
 		E886E6BE252DDC150007AD0F /* UINavigationController+applyTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+applyTheme.swift"; sourceTree = "<group>"; };
+		E887D2A4254B0F4000C75067 /* Chat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chat.xcdatamodel; sourceTree = "<group>"; };
+		E887D2A7254B11CF00C75067 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		E887D2A9254B193F00C75067 /* ObjectExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectExtensions.swift; sourceTree = "<group>"; };
+		E887D2AB254B19EE00C75067 /* ChannelRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelRequest.swift; sourceTree = "<group>"; };
 		E8A85239251017270093FB52 /* TFSChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TFSChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8A8523C251017270093FB52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8A85240251017270093FB52 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +287,17 @@
 			path = ThemeManager;
 			sourceTree = "<group>";
 		};
+		E887D2A6254B119500C75067 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				E887D2A3254B0F4000C75067 /* Chat.xcdatamodeld */,
+				E887D2A7254B11CF00C75067 /* CoreDataStack.swift */,
+				E887D2A9254B193F00C75067 /* ObjectExtensions.swift */,
+				E887D2AB254B19EE00C75067 /* ChannelRequest.swift */,
+			);
+			path = "Core Data";
+			sourceTree = "<group>";
+		};
 		E8A85230251017270093FB52 = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +322,7 @@
 		E8A8523B251017270093FB52 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				E887D2A6254B119500C75067 /* Core Data */,
 				E8300507253F5BA50098A20A /* Firebase */,
 				E80561F7253F596400EE5EC3 /* GoogleService-Info.plist */,
 				E884E6B2252B7BBE002412E2 /* ThemeManager */,
@@ -476,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E887D2AA254B193F00C75067 /* ObjectExtensions.swift in Sources */,
 				E87514AE2522AF80003321B7 /* ConfigurableView.swift in Sources */,
 				E8300509253F5BB40098A20A /* FirebaseApi.swift in Sources */,
 				E8798F3D253650950095AA22 /* Profile.swift in Sources */,
@@ -499,6 +520,7 @@
 				E884E6B1252B7BB1002412E2 /* ThemeManager.swift in Sources */,
 				E816C6F1253716F700A53015 /* ProfileDataManager.swift in Sources */,
 				E87514B225234973003321B7 /* ConversationMessageTableViewCell.swift in Sources */,
+				E887D2AC254B19EE00C75067 /* ChannelRequest.swift in Sources */,
 				E82666B6251AAAB90013708D /* String+Acronyms.swift in Sources */,
 				E8798F56253686130095AA22 /* SaveNameOperation.swift in Sources */,
 				E8798F53253684850095AA22 /* SaveProfileOperation.swift in Sources */,
@@ -506,9 +528,11 @@
 				E84200D6252D17C200067D09 /* ThemeButtonView.swift in Sources */,
 				E85A10B0252C65ED0028E9C0 /* ThemesViewController.swift in Sources */,
 				E875149C25228C85003321B7 /* AvatarViewPlaceholder.swift in Sources */,
+				E887D2A8254B11CF00C75067 /* CoreDataStack.swift in Sources */,
 				E86D64D32522802200BFD07B /* ConversationsListViewController.swift in Sources */,
 				E886E6BF252DDC150007AD0F /* UINavigationController+applyTheme.swift in Sources */,
 				E884E6B6252B7C42002412E2 /* ThemeProtocol.swift in Sources */,
+				E887D2A5254B0F4000C75067 /* Chat.xcdatamodeld in Sources */,
 				E8798F5825368D410095AA22 /* SaveAboutOperation.swift in Sources */,
 				E8798F5125366DE50095AA22 /* LoadInitialDataOperation.swift in Sources */,
 				E87514AA2522AEFD003321B7 /* ConversationTableViewCell.swift in Sources */,
@@ -720,6 +744,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E887D2A3254B0F4000C75067 /* Chat.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E887D2A4254B0F4000C75067 /* Chat.xcdatamodel */,
+			);
+			currentVersion = E887D2A4254B0F4000C75067 /* Chat.xcdatamodel */;
+			path = Chat.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E8A85231251017270093FB52 /* Project object */;
 }

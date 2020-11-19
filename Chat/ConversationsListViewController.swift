@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ConversationsListViewController: BaseViewController {
     
@@ -115,12 +116,12 @@ class ConversationsListViewController: BaseViewController {
                     self.isProfileLoading = false
                 }
             }
+            
+            isChannelsLoading = true
+            updateData()
         }
         
         firstLoad = false
-        
-        isChannelsLoading = true
-        updateData()
     }
     
     private func setupView() {
@@ -134,6 +135,30 @@ class ConversationsListViewController: BaseViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
         chatsTableView.refreshControl = refreshControl
+    }
+    
+    func fetchChannelsFromDb() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let fetchRequest = Channel_db.fetchRequest() as NSFetchRequest<Channel_db>
+        let sort = NSSortDescriptor(key: #keyPath(Channel_db.lastActivity), ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        
+        do {
+            channels = []
+            let channelsDb = try appDelegate.coreDataStack.mainContext.fetch(fetchRequest)
+            for channelDb in channelsDb {
+                if let channel = channelDb.makeChannel() {
+                    channels.append(channel)
+                }
+            }
+            
+            chatsTableView.reloadData()
+        } catch {
+            Log.debug(error.localizedDescription)
+        }
     }
     
     @objc
@@ -162,6 +187,7 @@ class ConversationsListViewController: BaseViewController {
     
     @objc
     func updateData() {
+        fetchChannelsFromDb()
         FireBaseApi.shared.loadChannels { [weak self] (channels, error) in
             if error != nil {
                 DispatchQueue.main.async { [weak self] in
@@ -172,13 +198,15 @@ class ConversationsListViewController: BaseViewController {
                 return
             }
             
-            if let channels = channels {
-                self?.channels = channels
+            if let channels = channels,
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    let channelRequest = ChannelRequest(coreDataStack: appDelegate.coreDataStack)
+                    channelRequest.loadChannels(channels: channels)
             }
             
             DispatchQueue.main.async { [weak self] in
                 self?.isChannelsLoading = false
-                self?.chatsTableView.reloadData()
+                self?.fetchChannelsFromDb()
                 self?.chatsTableView.refreshControl?.endRefreshing()
             }
         }
@@ -203,11 +231,16 @@ class ConversationsListViewController: BaseViewController {
             }
             
             self?.isChannelsLoading = true
-            
-            FireBaseApi.shared.addChannel(name: newChannelName) { [weak self] (isOk) in
+            FireBaseApi.shared.addChannel(name: newChannelName) { [weak self] (channel) in
                 
-                if isOk {
-                    self?.updateData()
+                if let channel = channel,
+                    let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                        let channelRequest = ChannelRequest(coreDataStack: appDelegate.coreDataStack)
+                        channelRequest.addChannel(channel: channel)
+                        DispatchQueue.main.async { [weak self] in
+                            self?.isChannelsLoading = false
+                            self?.fetchChannelsFromDb()
+                        }
                 } else {
                     DispatchQueue.main.async { [weak self] in
                         self?.isChannelsLoading = false
@@ -232,6 +265,8 @@ class ConversationsListViewController: BaseViewController {
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    var x = 1
 }
 
 // MARK: - Navigation
@@ -309,7 +344,6 @@ extension ConversationsListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentificator, for: indexPath) as? ConversationTableViewCell else {
             return UITableViewCell()
         }
-        
         let channel = channels[indexPath.row]
         cell.configure(with: channel)
         cell.selectionStyle = .none

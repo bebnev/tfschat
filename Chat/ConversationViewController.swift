@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class ConversationViewController: BaseViewController {
     
@@ -86,6 +87,7 @@ class ConversationViewController: BaseViewController {
         
         isMessagesLoading = true
         setupMessagesObserver()
+        fetchMessagesFromDb()
     }
 
     override func viewDidLayoutSubviews() {
@@ -203,6 +205,33 @@ class ConversationViewController: BaseViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
+    func fetchMessagesFromDb() {
+        guard let channel = channel, let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let fetchRequest = Channel_db.fetchRequest() as NSFetchRequest<Channel_db>
+        fetchRequest.predicate = NSPredicate(format: "identifier = %@", channel.identifier)
+        
+        do {
+            messages = []
+            let channelsDb = try appDelegate.coreDataStack.mainContext.fetch(fetchRequest)
+            if let channelDb = channelsDb.first,
+                channelDb.messagesArray.count > 0 {
+                for messageDb in channelDb.messagesArray {
+                    if let message = messageDb.makeMessage() {
+                        messages.append(message)
+                    }
+                }
+            }
+            
+            tableView.reloadData()
+            goToBottom()
+        } catch {
+            Log.debug(error.localizedDescription)
+        }
+    }
+    
     func setupMessagesObserver() {
         guard let channel = channel else {
             isMessagesLoading = false
@@ -219,15 +248,15 @@ class ConversationViewController: BaseViewController {
                 return
             }
 
-            if let messages = messages {
-                self?.messages = messages
+            if let messages = messages,
+                let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    let channelRequest = ChannelRequest(coreDataStack: appDelegate.coreDataStack)
+                channelRequest.setMessages(for: channel, messages: messages)
             }
 
             DispatchQueue.main.async { [weak self] in
                 self?.isMessagesLoading = false
-                self?.tableView.reloadData()
-                self?.goToBottom()
-                //self?.tableView.refreshControl?.endRefreshing()
+                self?.fetchMessagesFromDb()
             }
         }
     }
