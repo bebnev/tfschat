@@ -13,4 +13,5 @@ protocol IViewControllerFactory {
     func makeThemeListViewController() -> ThemeListViewController
     func makeProfileViewController() -> ProfileViewController
     func makeConversationViewController() -> ConversationViewController
+    func makeChoosePhotoViewController() -> PhotoViewController
 }

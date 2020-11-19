@@ -16,6 +16,7 @@ protocol ICoreAssembly {
     var coreDataStack: ICoreDataStack { get }
     var profileIdStorage: ICacheStorage { get }
     var api: IApi { get }
+    var requestSender: IRequestSender { get }
 }
 
 class CoreAssembly: ICoreAssembly {
@@ -26,4 +27,5 @@ class CoreAssembly: ICoreAssembly {
     lazy var profileStorage: IProfileStorage = ProfileStorage(cacheStorage: self.fileCacheStorage)
     lazy var coreDataStack: ICoreDataStack = CoreDataStack()
     lazy var api: IApi = FirebaseApi()
+    lazy var requestSender: IRequestSender = RequestSender(session: URLSession.shared)
 }

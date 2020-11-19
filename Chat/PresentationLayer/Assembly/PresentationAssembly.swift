@@ -26,7 +26,7 @@ class PresentationAssembly: IPresentationAssembly {
     
     lazy var router: IRouter = Router(rootController: self.viewControllerFactory.makeChannelListViewController())
     lazy var themeManager: IThemeManager = ThemeManagerNew(themeService: self.serviceAssembly.themeService)
-    lazy var viewControllerFactory: IViewControllerFactory = ViewControllerFactory(presentationAssembly: self)
+    lazy var viewControllerFactory: IViewControllerFactory = ViewControllerFactory(presentationAssembly: self, servicesAssembly: self.serviceAssembly)
     lazy var profileManager: IProfileManager = ProfileManager(
         profileServiceOperation: self.serviceAssembly.profileServiceFactory.makeOperationService(),
         profileServiceGCD: self.serviceAssembly.profileServiceFactory.makeGCDService(),

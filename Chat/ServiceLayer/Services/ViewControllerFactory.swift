@@ -10,9 +10,11 @@ import UIKit
 
 class ViewControllerFactory: IViewControllerFactory {
     let presentationAssembly: IPresentationAssembly
+    let servicesAssembly: IServicesAssembly
     
-    init(presentationAssembly: IPresentationAssembly) {
+    init(presentationAssembly: IPresentationAssembly, servicesAssembly: IServicesAssembly) {
         self.presentationAssembly = presentationAssembly
+        self.servicesAssembly = servicesAssembly
     }
     
     func makeChannelListViewController() -> ChannelListViewController {
@@ -42,6 +44,16 @@ class ViewControllerFactory: IViewControllerFactory {
         let controller = ConversationViewController(presentationAssembly: presentationAssembly)
         
         controller.dataService = presentationAssembly.dataService
+        
+        return controller
+    }
+    
+    func makeChoosePhotoViewController() -> PhotoViewController {
+        let controller = PhotoViewController.controllerFromStoryboard(.main, identifier: "PhotoViewController")
+        let model = PhotosModel(photosService: servicesAssembly.photosService)
+        model.delegate = controller
+        controller.model = model
+        controller.presentationAssembly = presentationAssembly
         
         return controller
     }

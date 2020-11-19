@@ -327,6 +327,14 @@ class ProfileViewController: AbstractViewController {
         }
     }
     
+    func navigateToPhotosView() {
+        guard let photoVC = presentationAssembly?.viewControllerFactory.makeChoosePhotoViewController() else { return }
+        photoVC.photoPickerDelegate = self
+        let navController = UINavigationController(rootViewController: photoVC)
+        navController.applyTheme(theme: presentationAssembly?.themeManager.theme)
+        present(navController, animated: true)
+    }
+    
     // MARK: - handlers
     
     @objc
@@ -362,27 +370,34 @@ class ProfileViewController: AbstractViewController {
     @objc
     func handleEditAvatarButtonPress(_ sender: Any) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-
-        if isCameraAvailable() && hasCameraPermissions {
-            let openCameraAction = UIAlertAction(title: "Камера", style: .default) { (_) in
+        
+        let openCameraAction = UIAlertAction(title: "Камера", style: .default) { [weak self] (_) in
+            guard let self = self else {return}
+            if self.isCameraAvailable() && self.hasCameraPermissions {
                 let picker = UIImagePickerController()
                 picker.sourceType = .camera
                 picker.allowsEditing = true
                 picker.delegate = self
                 self.present(picker, animated: true)
             }
-            alert.addAction(openCameraAction)
         }
+        alert.addAction(openCameraAction)
         
-        if isPhotoLibraryAvailable() {
-            let photoLibraryAction = UIAlertAction(title: "Выбрать из галереи", style: .default) { (_) in
+        let photoLibraryAction = UIAlertAction(title: "Выбрать из галереи", style: .default) { [weak self] (_) in
+            guard let self = self else {return}
+            if self.isPhotoLibraryAvailable() {
                 let picker = UIImagePickerController()
                 picker.allowsEditing = true
                 picker.delegate = self
                 self.present(picker, animated: true)
             }
-            alert.addAction(photoLibraryAction)
         }
+        alert.addAction(photoLibraryAction)
+        
+        let loadAction = UIAlertAction(title: "Загрузить", style: .default) { [weak self] (_) in
+            self?.navigateToPhotosView()
+        }
+        alert.addAction(loadAction)
 
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         alert.addAction(cancelAction)

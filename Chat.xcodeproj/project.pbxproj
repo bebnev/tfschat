@@ -38,6 +38,13 @@
 		E85AFC67255CB07A00614785 /* ProfileViewController+UITextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85AFC66255CB07A00614785 /* ProfileViewController+UITextViewDelegate.swift */; };
 		E85AFC69255CB0DC00614785 /* ProfileViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85AFC68255CB0DC00614785 /* ProfileViewController+UITextFieldDelegate.swift */; };
 		E85AFC6B255CB3C000614785 /* ChannelListViewController+ProfileViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85AFC6A255CB3C000614785 /* ChannelListViewController+ProfileViewControllerDelegate.swift */; };
+		E864A0522565D11C008EA7A1 /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E864A0512565D11C008EA7A1 /* ImageRequest.swift */; };
+		E864A0542565D3EC008EA7A1 /* ImageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E864A0532565D3EC008EA7A1 /* ImageParser.swift */; };
+		E864A05B2565D935008EA7A1 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E864A0592565D935008EA7A1 /* PhotoCollectionViewCell.swift */; };
+		E864A05C2565D935008EA7A1 /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E864A05A2565D935008EA7A1 /* PhotoCollectionViewCell.xib */; };
+		E864A05E2565DB8A008EA7A1 /* PhotoViewController+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E864A05D2565DB8A008EA7A1 /* PhotoViewController+CollectionView.swift */; };
+		E864A0602565DC16008EA7A1 /* IPhotoViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E864A05F2565DC16008EA7A1 /* IPhotoViewControllerDelegate.swift */; };
+		E864A0622565E17D008EA7A1 /* ProfileViewController+IPhotoViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E864A0612565E17D008EA7A1 /* ProfileViewController+IPhotoViewControllerDelegate.swift */; };
 		E86D64D32522802200BFD07B /* ChannelListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D64D22522802200BFD07B /* ChannelListViewController.swift */; };
 		E86D64D52522809000BFD07B /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86D64D42522809000BFD07B /* ConversationViewController.swift */; };
 		E875149925228BB9003321B7 /* ProfileFieldsEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E875149825228BB9003321B7 /* ProfileFieldsEnum.swift */; };
@@ -86,6 +93,18 @@
 		E8BF0171255DF309009D0433 /* ConversationViewController+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BF0170255DF309009D0433 /* ConversationViewController+Table.swift */; };
 		E8BF0173255DF35E009D0433 /* ConversationViewController+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BF0172255DF35E009D0433 /* ConversationViewController+NSFetchedResultsControllerDelegate.swift */; };
 		E8BF0175255DF399009D0433 /* ConversationVoewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BF0174255DF399009D0433 /* ConversationVoewController+UITextFieldDelegate.swift */; };
+		E8D9FD432564BAE1003522FE /* IRequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD422564BAE1003522FE /* IRequestSender.swift */; };
+		E8D9FD462564BB43003522FE /* IParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD452564BB43003522FE /* IParser.swift */; };
+		E8D9FD492564BB6E003522FE /* IRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD482564BB6E003522FE /* IRequest.swift */; };
+		E8D9FD4B2564BB90003522FE /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD4A2564BB90003522FE /* RequestSender.swift */; };
+		E8D9FD4D2564BC44003522FE /* RequestSenderErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD4C2564BC44003522FE /* RequestSenderErrorEnum.swift */; };
+		E8D9FD4F2564BD36003522FE /* PhotosRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD4E2564BD36003522FE /* PhotosRequest.swift */; };
+		E8D9FD512564BEF6003522FE /* PhotosParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD502564BEF6003522FE /* PhotosParser.swift */; };
+		E8D9FD532564C06D003522FE /* RequestsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD522564C06D003522FE /* RequestsFactory.swift */; };
+		E8D9FD552564C125003522FE /* PhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD542564C125003522FE /* PhotosService.swift */; };
+		E8D9FD582564C298003522FE /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD572564C298003522FE /* PhotoViewController.swift */; };
+		E8D9FD5A2564C397003522FE /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD592564C397003522FE /* PhotosModel.swift */; };
+		E8D9FD5C2564C4B4003522FE /* PhotoViewController+PhotosModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD5B2564C4B4003522FE /* PhotoViewController+PhotosModelDelegate.swift */; };
 		E8EADA8F255B56E400E8EFE3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EADA8E255B56E400E8EFE3 /* Router.swift */; };
 		E8EADA92255B578100E8EFE3 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EADA91255B578100E8EFE3 /* Presentable.swift */; };
 		E8EADA94255B579E00E8EFE3 /* UIViewController+Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EADA93255B579E00E8EFE3 /* UIViewController+Presentable.swift */; };
@@ -142,6 +161,13 @@
 		E85AFC66255CB07A00614785 /* ProfileViewController+UITextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+UITextViewDelegate.swift"; sourceTree = "<group>"; };
 		E85AFC68255CB0DC00614785 /* ProfileViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		E85AFC6A255CB3C000614785 /* ChannelListViewController+ProfileViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelListViewController+ProfileViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		E864A0512565D11C008EA7A1 /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
+		E864A0532565D3EC008EA7A1 /* ImageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageParser.swift; sourceTree = "<group>"; };
+		E864A0592565D935008EA7A1 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		E864A05A2565D935008EA7A1 /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
+		E864A05D2565DB8A008EA7A1 /* PhotoViewController+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoViewController+CollectionView.swift"; sourceTree = "<group>"; };
+		E864A05F2565DC16008EA7A1 /* IPhotoViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhotoViewControllerDelegate.swift; sourceTree = "<group>"; };
+		E864A0612565E17D008EA7A1 /* ProfileViewController+IPhotoViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+IPhotoViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		E86D64D22522802200BFD07B /* ChannelListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListViewController.swift; sourceTree = "<group>"; };
 		E86D64D42522809000BFD07B /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		E875149825228BB9003321B7 /* ProfileFieldsEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFieldsEnum.swift; sourceTree = "<group>"; };
@@ -192,6 +218,18 @@
 		E8BF0170255DF309009D0433 /* ConversationViewController+Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationViewController+Table.swift"; sourceTree = "<group>"; };
 		E8BF0172255DF35E009D0433 /* ConversationViewController+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationViewController+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		E8BF0174255DF399009D0433 /* ConversationVoewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationVoewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		E8D9FD422564BAE1003522FE /* IRequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequestSender.swift; sourceTree = "<group>"; };
+		E8D9FD452564BB43003522FE /* IParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IParser.swift; sourceTree = "<group>"; };
+		E8D9FD482564BB6E003522FE /* IRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequest.swift; sourceTree = "<group>"; };
+		E8D9FD4A2564BB90003522FE /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
+		E8D9FD4C2564BC44003522FE /* RequestSenderErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSenderErrorEnum.swift; sourceTree = "<group>"; };
+		E8D9FD4E2564BD36003522FE /* PhotosRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosRequest.swift; sourceTree = "<group>"; };
+		E8D9FD502564BEF6003522FE /* PhotosParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosParser.swift; sourceTree = "<group>"; };
+		E8D9FD522564C06D003522FE /* RequestsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsFactory.swift; sourceTree = "<group>"; };
+		E8D9FD542564C125003522FE /* PhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosService.swift; sourceTree = "<group>"; };
+		E8D9FD572564C298003522FE /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		E8D9FD592564C397003522FE /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
+		E8D9FD5B2564C4B4003522FE /* PhotoViewController+PhotosModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoViewController+PhotosModelDelegate.swift"; sourceTree = "<group>"; };
 		E8EADA8E255B56E400E8EFE3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E8EADA91255B578100E8EFE3 /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		E8EADA93255B579E00E8EFE3 /* UIViewController+Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Presentable.swift"; sourceTree = "<group>"; };
@@ -306,6 +344,23 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		E864A0552565D8F6008EA7A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E864A0562565D8FE008EA7A1 /* Cell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E864A0562565D8FE008EA7A1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E864A0592565D935008EA7A1 /* PhotoCollectionViewCell.swift */,
+				E864A05A2565D935008EA7A1 /* PhotoCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		E87514A72522ADCD003321B7 /* ConversationCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +446,7 @@
 		E8A6ECE3255B448900869336 /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
+				E8D9FD412564BACD003522FE /* Network */,
 				E8194283255DE0850076CB8C /* Api */,
 				E887D2A6254B119500C75067 /* Core Data */,
 				E8EADAC4255B8C5300E8EFE3 /* CacheStorage */,
@@ -483,6 +539,7 @@
 		E8A6ECFD255B532D00869336 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E8D9FD562564C26A003522FE /* PhotoViewController */,
 				E819428E255DF0250076CB8C /* ConversationViewController */,
 				E8EADAB9255B7FF300E8EFE3 /* ProfileViewController */,
 				E8EADAAB255B6FE600E8EFE3 /* ChannelListViewController */,
@@ -534,6 +591,7 @@
 				E8BE9B46255C8D250093364A /* Managers */,
 				E8EADABE255B88BB00E8EFE3 /* ProfileServiceFactory.swift */,
 				E840E4C82564A28100609FCB /* ProfileService.swift */,
+				E8D9FD542564C125003522FE /* PhotosService.swift */,
 			);
 			path = ProfileService;
 			sourceTree = "<group>";
@@ -547,6 +605,60 @@
 				E8BE9B47255C8D470093364A /* IProfileServiceManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		E8D9FD402564BABD003522FE /* RequestManager */ = {
+			isa = PBXGroup;
+			children = (
+				E8D9FD422564BAE1003522FE /* IRequestSender.swift */,
+				E8D9FD4A2564BB90003522FE /* RequestSender.swift */,
+				E8D9FD4C2564BC44003522FE /* RequestSenderErrorEnum.swift */,
+			);
+			path = RequestManager;
+			sourceTree = "<group>";
+		};
+		E8D9FD412564BACD003522FE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E8D9FD472564BB5B003522FE /* Requests */,
+				E8D9FD442564BB31003522FE /* Parsers */,
+				E8D9FD402564BABD003522FE /* RequestManager */,
+				E8D9FD522564C06D003522FE /* RequestsFactory.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E8D9FD442564BB31003522FE /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				E8D9FD452564BB43003522FE /* IParser.swift */,
+				E8D9FD502564BEF6003522FE /* PhotosParser.swift */,
+				E864A0532565D3EC008EA7A1 /* ImageParser.swift */,
+			);
+			path = Parsers;
+			sourceTree = "<group>";
+		};
+		E8D9FD472564BB5B003522FE /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				E8D9FD482564BB6E003522FE /* IRequest.swift */,
+				E8D9FD4E2564BD36003522FE /* PhotosRequest.swift */,
+				E864A0512565D11C008EA7A1 /* ImageRequest.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		E8D9FD562564C26A003522FE /* PhotoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E864A0552565D8F6008EA7A1 /* Views */,
+				E8D9FD572564C298003522FE /* PhotoViewController.swift */,
+				E8D9FD592564C397003522FE /* PhotosModel.swift */,
+				E8D9FD5B2564C4B4003522FE /* PhotoViewController+PhotosModelDelegate.swift */,
+				E864A05D2565DB8A008EA7A1 /* PhotoViewController+CollectionView.swift */,
+				E864A05F2565DC16008EA7A1 /* IPhotoViewControllerDelegate.swift */,
+			);
+			path = PhotoViewController;
 			sourceTree = "<group>";
 		};
 		E8EADA8D255B56D400E8EFE3 /* Router */ = {
@@ -663,6 +775,7 @@
 				E85AFC64255CB04E00614785 /* ProfileViewController+UIImagePickerControllerDelegate.swift */,
 				E85AFC66255CB07A00614785 /* ProfileViewController+UITextViewDelegate.swift */,
 				E85AFC68255CB0DC00614785 /* ProfileViewController+UITextFieldDelegate.swift */,
+				E864A0612565E17D008EA7A1 /* ProfileViewController+IPhotoViewControllerDelegate.swift */,
 			);
 			path = ProfileViewController;
 			sourceTree = "<group>";
@@ -760,6 +873,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E830051B254043AE0098A20A /* .swiftlint.yml in Resources */,
+				E864A05C2565D935008EA7A1 /* PhotoCollectionViewCell.xib in Resources */,
 				E875BC922519035500ECAC5C /* Roboto-Regular.ttf in Resources */,
 				E80561F8253F596400EE5EC3 /* GoogleService-Info.plist in Resources */,
 				E8A85255251034970093FB52 /* .gitignore in Resources */,
@@ -848,21 +962,31 @@
 				E875BC8F2518F27200ECAC5C /* UILabel+Typography.swift in Sources */,
 				E8194289255DE35D0076CB8C /* DataService.swift in Sources */,
 				E840E4C92564A28100609FCB /* ProfileService.swift in Sources */,
+				E864A05B2565D935008EA7A1 /* PhotoCollectionViewCell.swift in Sources */,
 				E8798F4925365FD70095AA22 /* BaseProfileOperation.swift in Sources */,
+				E864A0542565D3EC008EA7A1 /* ImageParser.swift in Sources */,
+				E8D9FD4B2564BB90003522FE /* RequestSender.swift in Sources */,
 				E8EADACA255B8D3A00E8EFE3 /* FileCacheStorage.swift in Sources */,
+				E864A05E2565DB8A008EA7A1 /* PhotoViewController+CollectionView.swift in Sources */,
 				E8798F4F253664F50095AA22 /* ProfileServiceOperationManager.swift in Sources */,
 				E8EADAC3255B8B4900E8EFE3 /* IProfileStorage.swift in Sources */,
 				E8A6ECF2255B4DAA00869336 /* ServicesAssembly.swift in Sources */,
 				E86D64D52522809000BFD07B /* ConversationViewController.swift in Sources */,
 				E8EADA94255B579E00E8EFE3 /* UIViewController+Presentable.swift in Sources */,
 				E8798F4225365E0F0095AA22 /* LoadProfileOperation.swift in Sources */,
+				E8D9FD4F2564BD36003522FE /* PhotosRequest.swift in Sources */,
+				E8D9FD512564BEF6003522FE /* PhotosParser.swift in Sources */,
 				E8798F4B253661EC0095AA22 /* LoadAboutOperation.swift in Sources */,
 				E8A8523D251017270093FB52 /* AppDelegate.swift in Sources */,
+				E8D9FD4D2564BC44003522FE /* RequestSenderErrorEnum.swift in Sources */,
+				E8D9FD492564BB6E003522FE /* IRequest.swift in Sources */,
 				E840E4CD2564A30B00609FCB /* UserDefaultsProfileUserIdStorage.swift in Sources */,
 				E8EADA8F255B56E400E8EFE3 /* Router.swift in Sources */,
+				E8D9FD552564C125003522FE /* PhotosService.swift in Sources */,
 				E830050B253F5E050098A20A /* Channel.swift in Sources */,
 				E886E6B0252D592F0007AD0F /* UISearchBar+textField.swift in Sources */,
 				E8BE9B44255C89690093364A /* ProfileStorage.swift in Sources */,
+				E8D9FD432564BAE1003522FE /* IRequestSender.swift in Sources */,
 				E8798F4D253662160095AA22 /* LoadAvatarOperation.swift in Sources */,
 				E84200DB252D2E4000067D09 /* ThemesEnum.swift in Sources */,
 				E8EADAAE255B72A900E8EFE3 /* IViewControllerFactory.swift in Sources */,
@@ -870,15 +994,19 @@
 				E8300511253FC0F60098A20A /* Message.swift in Sources */,
 				E8EADA98255B594E00E8EFE3 /* PresentationAssembly.swift in Sources */,
 				E875149925228BB9003321B7 /* ProfileFieldsEnum.swift in Sources */,
+				E864A0622565E17D008EA7A1 /* ProfileViewController+IPhotoViewControllerDelegate.swift in Sources */,
 				E85168432553633100C5EC16 /* NSManagedObjectContext+deleteAndMerge.swift in Sources */,
 				E84200D8252D2E0D00067D09 /* DayTheme.swift in Sources */,
 				E8A6ECEF255B4BA200869336 /* LogService.swift in Sources */,
+				E8D9FD5C2564C4B4003522FE /* PhotoViewController+PhotosModelDelegate.swift in Sources */,
 				E85AFC61255CA22800614785 /* AlertManager.swift in Sources */,
 				E8EADAB4255B79BE00E8EFE3 /* SearchController.swift in Sources */,
 				E819428B255DE8540076CB8C /* ChannelsListViewController+NSFetchedResultsControllerDelegate.swift in Sources */,
 				E8A6ECE9255B4A7F00869336 /* ILogProvider.swift in Sources */,
 				E8EADAA4255B698C00E8EFE3 /* ThemeManagerNew.swift in Sources */,
 				E8A6ECEC255B4B3600869336 /* ConsoleLogProvider.swift in Sources */,
+				E8D9FD582564C298003522FE /* PhotoViewController.swift in Sources */,
+				E8D9FD532564C06D003522FE /* RequestsFactory.swift in Sources */,
 				E8EADABB255B827100E8EFE3 /* LoadingIndicator.swift in Sources */,
 				E8EADAC8255B8CD300E8EFE3 /* CacheStorageErrorEnum.swift in Sources */,
 				E85AFC69255CB0DC00614785 /* ProfileViewController+UITextFieldDelegate.swift in Sources */,
@@ -888,6 +1016,7 @@
 				E85AFC5E255C99D200614785 /* ProfileManager.swift in Sources */,
 				E87514B225234973003321B7 /* ConversationMessageTableViewCell.swift in Sources */,
 				E8BF0171255DF309009D0433 /* ConversationViewController+Table.swift in Sources */,
+				E864A0522565D11C008EA7A1 /* ImageRequest.swift in Sources */,
 				E8EADA96255B57D300E8EFE3 /* IRouter.swift in Sources */,
 				E8BE9B48255C8D470093364A /* IProfileServiceManager.swift in Sources */,
 				E82666B6251AAAB90013708D /* String+Acronyms.swift in Sources */,
@@ -898,6 +1027,8 @@
 				E84200D6252D17C200067D09 /* ThemeButtonView.swift in Sources */,
 				E8194285255DE0A60076CB8C /* IApi.swift in Sources */,
 				E85A10B0252C65ED0028E9C0 /* ThemeListViewController.swift in Sources */,
+				E8D9FD462564BB43003522FE /* IParser.swift in Sources */,
+				E864A0602565DC16008EA7A1 /* IPhotoViewControllerDelegate.swift in Sources */,
 				E840E4CF2564A3A200609FCB /* UserDefaultsStorage.swift in Sources */,
 				E8BF0175255DF399009D0433 /* ConversationVoewController+UITextFieldDelegate.swift in Sources */,
 				E875149C25228C85003321B7 /* AvatarViewPlaceholder.swift in Sources */,
@@ -919,6 +1050,7 @@
 				E8EADA92255B578100E8EFE3 /* Presentable.swift in Sources */,
 				E8EADAC1255B8A9E00E8EFE3 /* ProfileModel.swift in Sources */,
 				E8798F5A253694DA0095AA22 /* SaveAvatarOperation.swift in Sources */,
+				E8D9FD5A2564C397003522FE /* PhotosModel.swift in Sources */,
 				E8EADAB0255B730100E8EFE3 /* ViewControllerFactory.swift in Sources */,
 				E8EADAB8255B7EC000E8EFE3 /* ChannelListViewController+ IThemeManagerDelegate.swift in Sources */,
 				E8EADABF255B88BB00E8EFE3 /* ProfileServiceFactory.swift in Sources */,

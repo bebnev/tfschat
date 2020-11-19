@@ -14,6 +14,7 @@ protocol IServicesAssembly {
     var profileServiceFactory: IProfileServiceFactory { get }
     var profileSerive: IProfileService {get}
     var dataService: IDataService {get}
+    var photosService: IPhotosService { get }
 }
 
 class ServicesAssembly: IServicesAssembly {
@@ -28,4 +29,5 @@ class ServicesAssembly: IServicesAssembly {
     lazy var profileServiceFactory: IProfileServiceFactory = ProfileServiceFactory(profileStorage: self.coreAssembly.profileStorage)
     lazy var dataService: IDataService = DataService(coreData: self.coreAssembly.coreDataStack, api: self.coreAssembly.api)
     lazy var profileSerive: IProfileService = ProfileService(profileIdStorage: self.coreAssembly.profileIdStorage)
+    lazy var photosService: IPhotosService = PhotosService(requestSender: self.coreAssembly.requestSender)
 }
