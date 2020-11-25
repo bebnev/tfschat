@@ -16,6 +16,7 @@
 		E819428B255DE8540076CB8C /* ChannelsListViewController+NSFetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819428A255DE8540076CB8C /* ChannelsListViewController+NSFetchedResultsControllerDelegate.swift */; };
 		E819428D255DE8A20076CB8C /* ChannelsListViewController+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819428C255DE8A20076CB8C /* ChannelsListViewController+Table.swift */; };
 		E82666B6251AAAB90013708D /* String+Acronyms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82666B5251AAAB90013708D /* String+Acronyms.swift */; };
+		E82C065E256F0079002A1141 /* EmitterLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C065D256F0079002A1141 /* EmitterLayer.swift */; };
 		E830050B253F5E050098A20A /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830050A253F5E050098A20A /* Channel.swift */; };
 		E830050D253FB5240098A20A /* UITextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830050C253FB5240098A20A /* UITextField+Padding.swift */; };
 		E8300511253FC0F60098A20A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8300510253FC0F60098A20A /* Message.swift */; };
@@ -139,6 +140,7 @@
 		E819428A255DE8540076CB8C /* ChannelsListViewController+NSFetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsListViewController+NSFetchedResultsControllerDelegate.swift"; sourceTree = "<group>"; };
 		E819428C255DE8A20076CB8C /* ChannelsListViewController+Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsListViewController+Table.swift"; sourceTree = "<group>"; };
 		E82666B5251AAAB90013708D /* String+Acronyms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Acronyms.swift"; sourceTree = "<group>"; };
+		E82C065D256F0079002A1141 /* EmitterLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterLayer.swift; sourceTree = "<group>"; };
 		E830050A253F5E050098A20A /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		E830050C253FB5240098A20A /* UITextField+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Padding.swift"; sourceTree = "<group>"; };
 		E8300510253FC0F60098A20A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -328,6 +330,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E82C065C256F005F002A1141 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				E82C065D256F0079002A1141 /* EmitterLayer.swift */,
+			);
+			path = Animations;
+			sourceTree = "<group>";
+		};
 		E85AFC5C255C99C000614785 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +435,7 @@
 		E8A6ECE1255B446B00869336 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				E82C065C256F005F002A1141 /* Animations */,
 				E8EADAB1255B799C00E8EFE3 /* View */,
 				E8EADA99255B61E800E8EFE3 /* Modules */,
 				E8A6ECFD255B532D00869336 /* ViewControllers */,
@@ -841,7 +852,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Anton Bebnev";
 				TargetAttributes = {
 					E8A85238251017270093FB52 = {
@@ -995,6 +1006,7 @@
 				E8EADA98255B594E00E8EFE3 /* PresentationAssembly.swift in Sources */,
 				E875149925228BB9003321B7 /* ProfileFieldsEnum.swift in Sources */,
 				E864A0622565E17D008EA7A1 /* ProfileViewController+IPhotoViewControllerDelegate.swift in Sources */,
+				E82C065E256F0079002A1141 /* EmitterLayer.swift in Sources */,
 				E85168432553633100C5EC16 /* NSManagedObjectContext+deleteAndMerge.swift in Sources */,
 				E84200D8252D2E0D00067D09 /* DayTheme.swift in Sources */,
 				E8A6ECEF255B4BA200869336 /* LogService.swift in Sources */,
@@ -1110,6 +1122,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1170,6 +1183,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

@@ -10,6 +10,7 @@ import UIKit
 
 class AbstractViewController: UIViewController {
     
+    var layer: EmitterLayer?
     var presentationAssembly: IPresentationAssembly?
     var dataService: IDataService?
     
@@ -24,14 +25,20 @@ class AbstractViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        layer = EmitterLayer(view: view)
         
         if let theme = presentationAssembly?.themeManager.theme {
             applyTheme(theme: theme)
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        layer = nil
+    }
+    
     func applyTheme(theme: ITheme) {
         view.backgroundColor = theme.mainBackgroundColor
     }
-    
 }
