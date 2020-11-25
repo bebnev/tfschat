@@ -17,6 +17,7 @@
 		E819428D255DE8A20076CB8C /* ChannelsListViewController+Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = E819428C255DE8A20076CB8C /* ChannelsListViewController+Table.swift */; };
 		E82666B6251AAAB90013708D /* String+Acronyms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82666B5251AAAB90013708D /* String+Acronyms.swift */; };
 		E82C065E256F0079002A1141 /* EmitterLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C065D256F0079002A1141 /* EmitterLayer.swift */; };
+		E82C0697256F1F51002A1141 /* UIButton+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C0696256F1F51002A1141 /* UIButton+Animation.swift */; };
 		E830050B253F5E050098A20A /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830050A253F5E050098A20A /* Channel.swift */; };
 		E830050D253FB5240098A20A /* UITextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830050C253FB5240098A20A /* UITextField+Padding.swift */; };
 		E8300511253FC0F60098A20A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8300510253FC0F60098A20A /* Message.swift */; };
@@ -141,6 +142,7 @@
 		E819428C255DE8A20076CB8C /* ChannelsListViewController+Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelsListViewController+Table.swift"; sourceTree = "<group>"; };
 		E82666B5251AAAB90013708D /* String+Acronyms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Acronyms.swift"; sourceTree = "<group>"; };
 		E82C065D256F0079002A1141 /* EmitterLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterLayer.swift; sourceTree = "<group>"; };
+		E82C0696256F1F51002A1141 /* UIButton+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Animation.swift"; sourceTree = "<group>"; };
 		E830050A253F5E050098A20A /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		E830050C253FB5240098A20A /* UITextField+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Padding.swift"; sourceTree = "<group>"; };
 		E8300510253FC0F60098A20A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 				E8EADA93255B579E00E8EFE3 /* UIViewController+Presentable.swift */,
 				E886E6AF252D592F0007AD0F /* UISearchBar+textField.swift */,
 				E830050C253FB5240098A20A /* UITextField+Padding.swift */,
+				E82C0696256F1F51002A1141 /* UIButton+Animation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -968,6 +971,7 @@
 				E87514AE2522AF80003321B7 /* ConfigurableView.swift in Sources */,
 				E8EADAA7255B6DDB00E8EFE3 /* IThemeManager.swift in Sources */,
 				E8A6ECF5255B4DED00869336 /* CoreAssembly.swift in Sources */,
+				E82C0697256F1F51002A1141 /* UIButton+Animation.swift in Sources */,
 				E884E6B4252B7C11002412E2 /* ClassicTheme.swift in Sources */,
 				E8A85241251017270093FB52 /* AbstractViewController.swift in Sources */,
 				E875BC8F2518F27200ECAC5C /* UILabel+Typography.swift in Sources */,
