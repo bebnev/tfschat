@@ -59,6 +59,12 @@
         <!--Profile View Controller-->
         <scene sceneID="df1-hI-2Zf">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ooh-ns-rys" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="IHB-x5-iaM">
+                    <connections>
+                        <action selector="handleTapOnView:" destination="mnc-Mc-qpu" id="Plf-gY-msp"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <viewController restorationIdentifier="ProfileViewController" storyboardIdentifier="ProfileViewController" id="mnc-Mc-qpu" customClass="ProfileViewController" customModule="TFSChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MA0-MX-chh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -74,11 +80,11 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="267"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T85-1h-Jnf">
-                                                        <rect key="frame" x="68" y="14" width="239" height="239"/>
+                                                        <rect key="frame" x="87.5" y="14" width="200" height="200"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="239" id="7kJ-lC-rcU"/>
-                                                            <constraint firstAttribute="height" constant="239" id="x3H-6n-xNE"/>
+                                                            <constraint firstAttribute="width" constant="200" id="7kJ-lC-rcU"/>
+                                                            <constraint firstAttribute="height" constant="200" id="x3H-6n-xNE"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
@@ -195,6 +201,7 @@ Moscow, Russia</string>
                             <outletCollection property="gestureRecognizers" destination="IHB-x5-iaM" appends="YES" id="W3L-7y-qgR"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="CJu-df-z2A"/>
                     <connections>
                         <outlet property="aboutTextView" destination="Yf8-vp-e4W" id="b3K-xz-NKR"/>
                         <outlet property="avatarView" destination="T85-1h-Jnf" id="2iC-xu-ddm"/>
@@ -207,14 +214,8 @@ Moscow, Russia</string>
                         <outlet property="scrollView" destination="TiY-O7-pn2" id="16q-yf-3ym"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ooh-ns-rys" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="IHB-x5-iaM">
-                    <connections>
-                        <action selector="handleTapOnView:" destination="mnc-Mc-qpu" id="Plf-gY-msp"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="612" y="115.59220389805098"/>
+            <point key="canvasLocation" x="393" y="116"/>
         </scene>
         <!--Photo View Controller-->
         <scene sceneID="ekk-ce-2w1">
@@ -251,7 +252,7 @@ Moscow, Russia</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lE9-6r-PpL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1547" y="119"/>
+            <point key="canvasLocation" x="1345" y="116"/>
         </scene>
     </scenes>
     <resources>

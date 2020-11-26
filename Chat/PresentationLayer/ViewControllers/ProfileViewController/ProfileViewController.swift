@@ -125,6 +125,7 @@ class ProfileViewController: AbstractViewController {
         title = "My Profile"
         navigationItem.leftBarButtonItem = navigationCloseButton
         navigationItem.rightBarButtonItem = navigationEditButton
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     private func configureView() {

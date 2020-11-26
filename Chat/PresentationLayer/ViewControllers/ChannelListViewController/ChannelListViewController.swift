@@ -155,11 +155,16 @@ class ChannelListViewController: AbstractViewController {
     private func handleAvatarButtonItemTap() {
         guard let profileVC = presentationAssembly?.viewControllerFactory.makeProfileViewController() else { return }
         profileVC.delegate = self
-
         let navController = UINavigationController(rootViewController: profileVC)
         navController.applyTheme(theme: presentationAssembly?.themeManager.theme)
         
-        presentationAssembly?.router.present(navController)
+        let segue = BottomCardSegue(identifier: nil, source: self, destination: navController)
+        prepare(for: segue, sender: nil)
+        segue.perform()
+    }
+    
+    @objc private func hide() {
+        dismiss(animated: true, completion: nil)
     }
     
     @objc func addChannel() {

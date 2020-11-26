@@ -18,6 +18,7 @@
 		E82666B6251AAAB90013708D /* String+Acronyms.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82666B5251AAAB90013708D /* String+Acronyms.swift */; };
 		E82C065E256F0079002A1141 /* EmitterLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C065D256F0079002A1141 /* EmitterLayer.swift */; };
 		E82C0697256F1F51002A1141 /* UIButton+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C0696256F1F51002A1141 /* UIButton+Animation.swift */; };
+		E82C069E256F3E49002A1141 /* BottomCardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82C069D256F3E49002A1141 /* BottomCardSegue.swift */; };
 		E830050B253F5E050098A20A /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830050A253F5E050098A20A /* Channel.swift */; };
 		E830050D253FB5240098A20A /* UITextField+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = E830050C253FB5240098A20A /* UITextField+Padding.swift */; };
 		E8300511253FC0F60098A20A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8300510253FC0F60098A20A /* Message.swift */; };
@@ -143,6 +144,7 @@
 		E82666B5251AAAB90013708D /* String+Acronyms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Acronyms.swift"; sourceTree = "<group>"; };
 		E82C065D256F0079002A1141 /* EmitterLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmitterLayer.swift; sourceTree = "<group>"; };
 		E82C0696256F1F51002A1141 /* UIButton+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Animation.swift"; sourceTree = "<group>"; };
+		E82C069D256F3E49002A1141 /* BottomCardSegue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCardSegue.swift; sourceTree = "<group>"; };
 		E830050A253F5E050098A20A /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		E830050C253FB5240098A20A /* UITextField+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Padding.swift"; sourceTree = "<group>"; };
 		E8300510253FC0F60098A20A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				E82C065D256F0079002A1141 /* EmitterLayer.swift */,
+				E82C069D256F3E49002A1141 /* BottomCardSegue.swift */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -1052,6 +1055,7 @@
 				E8A6ECFC255B521D00869336 /* UIViewControllerExtension+createFromStoryboard.swift in Sources */,
 				E85AFC6B255CB3C000614785 /* ChannelListViewController+ProfileViewControllerDelegate.swift in Sources */,
 				E887D2A8254B11CF00C75067 /* CoreDataStack.swift in Sources */,
+				E82C069E256F3E49002A1141 /* BottomCardSegue.swift in Sources */,
 				E86D64D32522802200BFD07B /* ChannelListViewController.swift in Sources */,
 				E886E6BF252DDC150007AD0F /* UINavigationController+applyTheme.swift in Sources */,
 				E8EADAB6255B7B5600E8EFE3 /* ChannelListViewController+UISearchResultsUpdating.swift in Sources */,
