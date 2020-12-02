@@ -10,6 +10,7 @@
 		458B5D5092B76E00D6320D45 /* Pods_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A65AA267AEE4159172302DEC /* Pods_Chat.framework */; };
 		E80561F8253F596400EE5EC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E80561F7253F596400EE5EC3 /* GoogleService-Info.plist */; };
 		E816C6EF253716D600A53015 /* ProfileServiceGCDManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816C6EE253716D600A53015 /* ProfileServiceGCDManger.swift */; };
+		E817F2D325784BB600D63CC7 /* TFSChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E817F2D225784BB600D63CC7 /* TFSChatUITests.swift */; };
 		E8194285255DE0A60076CB8C /* IApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8194284255DE0A60076CB8C /* IApi.swift */; };
 		E8194287255DE0BE0076CB8C /* FirebaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8194286255DE0BE0076CB8C /* FirebaseApi.swift */; };
 		E8194289255DE35D0076CB8C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8194288255DE35D0076CB8C /* DataService.swift */; };
@@ -131,11 +132,24 @@
 		E8EADACA255B8D3A00E8EFE3 /* FileCacheStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EADAC9255B8D3A00E8EFE3 /* FileCacheStorage.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E817F2D525784BB600D63CC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A85231251017270093FB52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8A85238251017270093FB52;
+			remoteInfo = Chat;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		79F8FCAAEAC4551E82C85A6D /* Pods-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat.debug.xcconfig"; path = "Target Support Files/Pods-Chat/Pods-Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		A65AA267AEE4159172302DEC /* Pods_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80561F7253F596400EE5EC3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E816C6EE253716D600A53015 /* ProfileServiceGCDManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServiceGCDManger.swift; sourceTree = "<group>"; };
+		E817F2D025784BB600D63CC7 /* TFSChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFSChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E817F2D225784BB600D63CC7 /* TFSChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFSChatUITests.swift; sourceTree = "<group>"; };
+		E817F2D425784BB600D63CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8194284255DE0A60076CB8C /* IApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IApi.swift; sourceTree = "<group>"; };
 		E8194286255DE0BE0076CB8C /* FirebaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseApi.swift; sourceTree = "<group>"; };
 		E8194288255DE35D0076CB8C /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -261,6 +275,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E817F2CD25784BB600D63CC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8A85236251017270093FB52 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,6 +299,15 @@
 				A65AA267AEE4159172302DEC /* Pods_Chat.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E817F2D125784BB600D63CC7 /* TFSChatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E817F2D225784BB600D63CC7 /* TFSChatUITests.swift */,
+				E817F2D425784BB600D63CC7 /* Info.plist */,
+			);
+			path = TFSChatUITests;
 			sourceTree = "<group>";
 		};
 		E8194283255DE0850076CB8C /* Api */ = {
@@ -570,6 +600,7 @@
 			isa = PBXGroup;
 			children = (
 				E8A8523B251017270093FB52 /* Chat */,
+				E817F2D125784BB600D63CC7 /* TFSChatUITests */,
 				E8A8523A251017270093FB52 /* Products */,
 				F2E738F7F4AFB22B83C46859 /* Pods */,
 				1CED55A3576F10732E0F33DA /* Frameworks */,
@@ -583,6 +614,7 @@
 			isa = PBXGroup;
 			children = (
 				E8A85239251017270093FB52 /* TFSChat.app */,
+				E817F2D025784BB600D63CC7 /* TFSChatUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -831,6 +863,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E817F2CF25784BB600D63CC7 /* TFSChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E817F2D925784BB600D63CC7 /* Build configuration list for PBXNativeTarget "TFSChatUITests" */;
+			buildPhases = (
+				E817F2CC25784BB600D63CC7 /* Sources */,
+				E817F2CD25784BB600D63CC7 /* Frameworks */,
+				E817F2CE25784BB600D63CC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E817F2D625784BB600D63CC7 /* PBXTargetDependency */,
+			);
+			name = TFSChatUITests;
+			productName = TFSChatUITests;
+			productReference = E817F2D025784BB600D63CC7 /* TFSChatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E8A85238251017270093FB52 /* Chat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8A8524D251017270093FB52 /* Build configuration list for PBXNativeTarget "Chat" */;
@@ -857,10 +907,14 @@
 		E8A85231251017270093FB52 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1160;
+				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = "Anton Bebnev";
 				TargetAttributes = {
+					E817F2CF25784BB600D63CC7 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = E8A85238251017270093FB52;
+					};
 					E8A85238251017270093FB52 = {
 						CreatedOnToolsVersion = 11.6;
 					};
@@ -880,11 +934,19 @@
 			projectRoot = "";
 			targets = (
 				E8A85238251017270093FB52 /* Chat */,
+				E817F2CF25784BB600D63CC7 /* TFSChatUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E817F2CE25784BB600D63CC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8A85237251017270093FB52 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -964,6 +1026,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E817F2CC25784BB600D63CC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E817F2D325784BB600D63CC7 /* TFSChatUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8A85235251017270093FB52 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1084,6 +1154,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E817F2D625784BB600D63CC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8A85238251017270093FB52 /* Chat */;
+			targetProxy = E817F2D525784BB600D63CC7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		E8A85242251017270093FB52 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -1104,6 +1182,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		E817F2D725784BB600D63CC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F3WQ5L3TC6;
+				INFOPLIST_FILE = TFSChatUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.bebnevanton.tfs.TFSChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Chat;
+			};
+			name = Debug;
+		};
+		E817F2D825784BB600D63CC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F3WQ5L3TC6;
+				INFOPLIST_FILE = TFSChatUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.bebnevanton.tfs.TFSChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Chat;
+			};
+			name = Release;
+		};
 		E8A8524B251017270093FB52 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1263,6 +1381,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E817F2D925784BB600D63CC7 /* Build configuration list for PBXNativeTarget "TFSChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E817F2D725784BB600D63CC7 /* Debug */,
+				E817F2D825784BB600D63CC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E8A85234251017270093FB52 /* Build configuration list for PBXProject "Chat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

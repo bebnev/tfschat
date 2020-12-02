@@ -143,6 +143,13 @@ class ProfileViewController: AbstractViewController {
         ]
 
         NSLayoutConstraint.activate(constr)
+        
+        nameTextField.isAccessibilityElement = true
+        nameTextField.accessibilityIdentifier = "ProfileNameTextField"
+        
+        
+        aboutTextView.isAccessibilityElement = true
+        aboutTextView.accessibilityIdentifier = "ProfileAboutTextView"
     }
     
     internal func dismissKeyboard() {

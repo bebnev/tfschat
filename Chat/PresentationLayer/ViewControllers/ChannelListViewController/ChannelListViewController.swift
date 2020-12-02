@@ -21,6 +21,8 @@ class ChannelListViewController: AbstractViewController {
     
     lazy var avatarView: AvataViewPlaceholder = {
         let avatarView = AvataViewPlaceholder(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        avatarView.isAccessibilityElement = true
+        avatarView.accessibilityIdentifier = "ChannelListAvatarView"
         let incidentTap = UITapGestureRecognizer()
         incidentTap.addTarget(self, action: #selector(self.handleAvatarButtonItemTap))
         avatarView.addGestureRecognizer(incidentTap)
