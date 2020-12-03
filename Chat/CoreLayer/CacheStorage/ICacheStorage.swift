@@ -11,5 +11,4 @@ import Foundation
 protocol ICacheStorage {
     @discardableResult func save(key: String, data: Any) -> Bool
     @discardableResult func fetch(by key: String) -> Any?
-    func canSave(by key: String) throws
 }

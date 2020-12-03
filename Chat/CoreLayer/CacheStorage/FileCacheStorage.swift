@@ -61,7 +61,7 @@ class FileCacheStorage: ICacheStorage {
         return nil
     }
     
-    func canSave(by key: String) throws {
+    private func canSave(by key: String) throws {
         if !FileManager.default.isWritableFile(atPath: key) {
             throw CacheStorageErrorEnum.isNotWritable
         }

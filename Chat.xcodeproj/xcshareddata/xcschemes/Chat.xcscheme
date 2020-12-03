@@ -38,6 +38,16 @@
                ReferencedContainer = "container:Chat.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E817F2E22578562A00D63CC7"
+               BuildableName = "TFSChatTests.xctest"
+               BlueprintName = "TFSChatTests"
+               ReferencedContainer = "container:Chat.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

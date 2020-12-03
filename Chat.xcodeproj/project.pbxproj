@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CB2E1C1EB979809DBC6E747 /* libPods-TFSChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3096CC269B2B0042CDD60A8 /* libPods-TFSChatTests.a */; };
 		458B5D5092B76E00D6320D45 /* Pods_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A65AA267AEE4159172302DEC /* Pods_Chat.framework */; };
 		E80561F8253F596400EE5EC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E80561F7253F596400EE5EC3 /* GoogleService-Info.plist */; };
 		E816C6EF253716D600A53015 /* ProfileServiceGCDManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816C6EE253716D600A53015 /* ProfileServiceGCDManger.swift */; };
 		E817F2D325784BB600D63CC7 /* TFSChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E817F2D225784BB600D63CC7 /* TFSChatUITests.swift */; };
+		E817F2F325785A9300D63CC7 /* LogServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E817F2F225785A9300D63CC7 /* LogServiceTests.swift */; };
+		E817F2FB25785AB700D63CC7 /* LogProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E817F2FA25785AB700D63CC7 /* LogProviderMock.swift */; };
+		E817F32C257862F600D63CC7 /* CacheStorageMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E817F32B257862F600D63CC7 /* CacheStorageMock.swift */; };
+		E817F3342578651700D63CC7 /* ThemeServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E817F3332578651600D63CC7 /* ThemeServiceTests.swift */; };
 		E8194285255DE0A60076CB8C /* IApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8194284255DE0A60076CB8C /* IApi.swift */; };
 		E8194287255DE0BE0076CB8C /* FirebaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8194286255DE0BE0076CB8C /* FirebaseApi.swift */; };
 		E8194289255DE35D0076CB8C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8194288255DE35D0076CB8C /* DataService.swift */; };
@@ -109,6 +114,7 @@
 		E8D9FD582564C298003522FE /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD572564C298003522FE /* PhotoViewController.swift */; };
 		E8D9FD5A2564C397003522FE /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD592564C397003522FE /* PhotosModel.swift */; };
 		E8D9FD5C2564C4B4003522FE /* PhotoViewController+PhotosModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D9FD5B2564C4B4003522FE /* PhotoViewController+PhotosModelDelegate.swift */; };
+		E8E71D4225786CB80060AB47 /* UnknownThemeMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E71D4125786CB80060AB47 /* UnknownThemeMock.swift */; };
 		E8EADA8F255B56E400E8EFE3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EADA8E255B56E400E8EFE3 /* Router.swift */; };
 		E8EADA92255B578100E8EFE3 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EADA91255B578100E8EFE3 /* Presentable.swift */; };
 		E8EADA94255B579E00E8EFE3 /* UIViewController+Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EADA93255B579E00E8EFE3 /* UIViewController+Presentable.swift */; };
@@ -140,16 +146,32 @@
 			remoteGlobalIDString = E8A85238251017270093FB52;
 			remoteInfo = Chat;
 		};
+		E817F2E82578562A00D63CC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8A85231251017270093FB52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8A85238251017270093FB52;
+			remoteInfo = Chat;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15DCC2378F45FC0F124EFBB4 /* Pods-TFSChatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TFSChatTests.release.xcconfig"; path = "Target Support Files/Pods-TFSChatTests/Pods-TFSChatTests.release.xcconfig"; sourceTree = "<group>"; };
+		7552AB52EE03BE7A37C0885E /* Pods-TFSChatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TFSChatTests.debug.xcconfig"; path = "Target Support Files/Pods-TFSChatTests/Pods-TFSChatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		79F8FCAAEAC4551E82C85A6D /* Pods-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat.debug.xcconfig"; path = "Target Support Files/Pods-Chat/Pods-Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		A65AA267AEE4159172302DEC /* Pods_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3096CC269B2B0042CDD60A8 /* libPods-TFSChatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TFSChatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80561F7253F596400EE5EC3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E816C6EE253716D600A53015 /* ProfileServiceGCDManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServiceGCDManger.swift; sourceTree = "<group>"; };
 		E817F2D025784BB600D63CC7 /* TFSChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFSChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E817F2D225784BB600D63CC7 /* TFSChatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFSChatUITests.swift; sourceTree = "<group>"; };
 		E817F2D425784BB600D63CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E817F2E32578562A00D63CC7 /* TFSChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFSChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E817F2E72578562A00D63CC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E817F2F225785A9300D63CC7 /* LogServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogServiceTests.swift; sourceTree = "<group>"; };
+		E817F2FA25785AB700D63CC7 /* LogProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogProviderMock.swift; sourceTree = "<group>"; };
+		E817F32B257862F600D63CC7 /* CacheStorageMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheStorageMock.swift; sourceTree = "<group>"; };
+		E817F3332578651600D63CC7 /* ThemeServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeServiceTests.swift; sourceTree = "<group>"; };
 		E8194284255DE0A60076CB8C /* IApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IApi.swift; sourceTree = "<group>"; };
 		E8194286255DE0BE0076CB8C /* FirebaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseApi.swift; sourceTree = "<group>"; };
 		E8194288255DE35D0076CB8C /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -250,6 +272,7 @@
 		E8D9FD572564C298003522FE /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		E8D9FD592564C397003522FE /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
 		E8D9FD5B2564C4B4003522FE /* PhotoViewController+PhotosModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoViewController+PhotosModelDelegate.swift"; sourceTree = "<group>"; };
+		E8E71D4125786CB80060AB47 /* UnknownThemeMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownThemeMock.swift; sourceTree = "<group>"; };
 		E8EADA8E255B56E400E8EFE3 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E8EADA91255B578100E8EFE3 /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		E8EADA93255B579E00E8EFE3 /* UIViewController+Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Presentable.swift"; sourceTree = "<group>"; };
@@ -282,6 +305,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E817F2E02578562A00D63CC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CB2E1C1EB979809DBC6E747 /* libPods-TFSChatTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E8A85236251017270093FB52 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -297,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				A65AA267AEE4159172302DEC /* Pods_Chat.framework */,
+				C3096CC269B2B0042CDD60A8 /* libPods-TFSChatTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -308,6 +340,27 @@
 				E817F2D425784BB600D63CC7 /* Info.plist */,
 			);
 			path = TFSChatUITests;
+			sourceTree = "<group>";
+		};
+		E817F2E42578562A00D63CC7 /* TFSChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				E817F2F225785A9300D63CC7 /* LogServiceTests.swift */,
+				E817F32725785CD200D63CC7 /* Mock */,
+				E817F2E72578562A00D63CC7 /* Info.plist */,
+				E817F3332578651600D63CC7 /* ThemeServiceTests.swift */,
+			);
+			path = TFSChatTests;
+			sourceTree = "<group>";
+		};
+		E817F32725785CD200D63CC7 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				E817F2FA25785AB700D63CC7 /* LogProviderMock.swift */,
+				E817F32B257862F600D63CC7 /* CacheStorageMock.swift */,
+				E8E71D4125786CB80060AB47 /* UnknownThemeMock.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		E8194283255DE0850076CB8C /* Api */ = {
@@ -601,6 +654,7 @@
 			children = (
 				E8A8523B251017270093FB52 /* Chat */,
 				E817F2D125784BB600D63CC7 /* TFSChatUITests */,
+				E817F2E42578562A00D63CC7 /* TFSChatTests */,
 				E8A8523A251017270093FB52 /* Products */,
 				F2E738F7F4AFB22B83C46859 /* Pods */,
 				1CED55A3576F10732E0F33DA /* Frameworks */,
@@ -615,6 +669,7 @@
 			children = (
 				E8A85239251017270093FB52 /* TFSChat.app */,
 				E817F2D025784BB600D63CC7 /* TFSChatUITests.xctest */,
+				E817F2E32578562A00D63CC7 /* TFSChatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -856,6 +911,8 @@
 			children = (
 				79F8FCAAEAC4551E82C85A6D /* Pods-Chat.debug.xcconfig */,
 				EFD1BACA9DC169BF97ED3B8F /* Pods-Chat.release.xcconfig */,
+				7552AB52EE03BE7A37C0885E /* Pods-TFSChatTests.debug.xcconfig */,
+				15DCC2378F45FC0F124EFBB4 /* Pods-TFSChatTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -880,6 +937,26 @@
 			productName = TFSChatUITests;
 			productReference = E817F2D025784BB600D63CC7 /* TFSChatUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		E817F2E22578562A00D63CC7 /* TFSChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E817F2EA2578562A00D63CC7 /* Build configuration list for PBXNativeTarget "TFSChatTests" */;
+			buildPhases = (
+				A035F590549F95E0C9A971D9 /* [CP] Check Pods Manifest.lock */,
+				E817F2DF2578562A00D63CC7 /* Sources */,
+				E817F2E02578562A00D63CC7 /* Frameworks */,
+				E817F2E12578562A00D63CC7 /* Resources */,
+				94F7AC2F3A7B91DB7EC44CFD /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E817F2E92578562A00D63CC7 /* PBXTargetDependency */,
+			);
+			name = TFSChatTests;
+			productName = TFSChatTests;
+			productReference = E817F2E32578562A00D63CC7 /* TFSChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		E8A85238251017270093FB52 /* Chat */ = {
 			isa = PBXNativeTarget;
@@ -915,6 +992,10 @@
 						CreatedOnToolsVersion = 12.2;
 						TestTargetID = E8A85238251017270093FB52;
 					};
+					E817F2E22578562A00D63CC7 = {
+						CreatedOnToolsVersion = 12.2;
+						TestTargetID = E8A85238251017270093FB52;
+					};
 					E8A85238251017270093FB52 = {
 						CreatedOnToolsVersion = 11.6;
 					};
@@ -935,12 +1016,20 @@
 			targets = (
 				E8A85238251017270093FB52 /* Chat */,
 				E817F2CF25784BB600D63CC7 /* TFSChatUITests */,
+				E817F2E22578562A00D63CC7 /* TFSChatTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E817F2CE25784BB600D63CC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E817F2E12578562A00D63CC7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1006,6 +1095,45 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Chat/Pods-Chat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		94F7AC2F3A7B91DB7EC44CFD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TFSChatTests/Pods-TFSChatTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TFSChatTests/Pods-TFSChatTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TFSChatTests/Pods-TFSChatTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A035F590549F95E0C9A971D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TFSChatTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E8300517254041E00098A20A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1031,6 +1159,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				E817F2D325784BB600D63CC7 /* TFSChatUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E817F2DF2578562A00D63CC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E817F32C257862F600D63CC7 /* CacheStorageMock.swift in Sources */,
+				E817F2F325785A9300D63CC7 /* LogServiceTests.swift in Sources */,
+				E817F3342578651700D63CC7 /* ThemeServiceTests.swift in Sources */,
+				E817F2FB25785AB700D63CC7 /* LogProviderMock.swift in Sources */,
+				E8E71D4225786CB80060AB47 /* UnknownThemeMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1160,6 +1300,11 @@
 			target = E8A85238251017270093FB52 /* Chat */;
 			targetProxy = E817F2D525784BB600D63CC7 /* PBXContainerItemProxy */;
 		};
+		E817F2E92578562A00D63CC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8A85238251017270093FB52 /* Chat */;
+			targetProxy = E817F2E82578562A00D63CC7 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1219,6 +1364,50 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Chat;
+			};
+			name = Release;
+		};
+		E817F2EB2578562A00D63CC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7552AB52EE03BE7A37C0885E /* Pods-TFSChatTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F3WQ5L3TC6;
+				INFOPLIST_FILE = TFSChatTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.bebnevanton.tfs.TFSChatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TFSChat.app/TFSChat";
+			};
+			name = Debug;
+		};
+		E817F2EC2578562A00D63CC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15DCC2378F45FC0F124EFBB4 /* Pods-TFSChatTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F3WQ5L3TC6;
+				INFOPLIST_FILE = TFSChatTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.bebnevanton.tfs.TFSChatTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TFSChat.app/TFSChat";
 			};
 			name = Release;
 		};
@@ -1386,6 +1575,15 @@
 			buildConfigurations = (
 				E817F2D725784BB600D63CC7 /* Debug */,
 				E817F2D825784BB600D63CC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E817F2EA2578562A00D63CC7 /* Build configuration list for PBXNativeTarget "TFSChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E817F2EB2578562A00D63CC7 /* Debug */,
+				E817F2EC2578562A00D63CC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

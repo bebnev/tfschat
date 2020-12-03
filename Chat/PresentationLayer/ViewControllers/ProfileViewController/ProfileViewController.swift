@@ -147,7 +147,6 @@ class ProfileViewController: AbstractViewController {
         nameTextField.isAccessibilityElement = true
         nameTextField.accessibilityIdentifier = "ProfileNameTextField"
         
-        
         aboutTextView.isAccessibilityElement = true
         aboutTextView.accessibilityIdentifier = "ProfileAboutTextView"
     }
