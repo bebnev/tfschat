@@ -9,8 +9,8 @@
 import UIKit
 
 extension UINavigationController {
-    func applyTheme() {
-        guard let theme = ThemeManager.shared.theme else {
+    func applyTheme(theme: ITheme?) {
+        guard let theme = theme else {
             return
         }
         
