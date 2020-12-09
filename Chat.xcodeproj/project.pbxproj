@@ -165,6 +165,7 @@
 		C3096CC269B2B0042CDD60A8 /* libPods-TFSChatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TFSChatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E803DC5D25814097001314B0 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
 		E803DC8725814182001314B0 /* MockDispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDispatchQueue.swift; sourceTree = "<group>"; };
+		E803DCDF258179AD001314B0 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E80561F7253F596400EE5EC3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E816C6EE253716D600A53015 /* ProfileServiceGCDManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServiceGCDManger.swift; sourceTree = "<group>"; };
 		E817F2D025784BB600D63CC7 /* TFSChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFSChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -658,6 +659,7 @@
 		E8A85230251017270093FB52 = {
 			isa = PBXGroup;
 			children = (
+				E803DCDF258179AD001314B0 /* Config.xcconfig */,
 				E8A8523B251017270093FB52 /* Chat */,
 				E817F2D125784BB600D63CC7 /* TFSChatUITests */,
 				E817F2E42578562A00D63CC7 /* TFSChatTests */,
@@ -1537,7 +1539,7 @@
 		};
 		E8A8524E251017270093FB52 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79F8FCAAEAC4551E82C85A6D /* Pods-Chat.debug.xcconfig */;
+			baseConfigurationReference = E803DCDF258179AD001314B0 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -1557,7 +1559,7 @@
 		};
 		E8A8524F251017270093FB52 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EFD1BACA9DC169BF97ED3B8F /* Pods-Chat.release.xcconfig */;
+			baseConfigurationReference = E803DCDF258179AD001314B0 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

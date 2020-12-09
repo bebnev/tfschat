@@ -10,7 +10,11 @@ import Foundation
 
 struct RequestsFactory {
     static func photosConfig() -> RequestConfig<PhotosParser> {
-        let request = PhotosRequest(apiKey: "19158889-ff105cd65a08e15343a0c411c")
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "PIXABAY_API_TOKEN") as? String, apiKey != "" else {
+            fatalError("Can not get pixabay api token")
+        }
+        
+        let request = PhotosRequest(apiKey: apiKey)
         return RequestConfig<PhotosParser>(request: request, parser: PhotosParser())
     }
     
