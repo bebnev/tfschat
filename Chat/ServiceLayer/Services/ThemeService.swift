@@ -15,10 +15,12 @@ protocol IThemeService {
 
 class ThemeService: IThemeService {
     let themeStorage: ICacheStorage
+    let dispatchQueue: IDispatchQueue
     let key = "user_theme_key"
     
-    init(themeStorage: ICacheStorage) {
+    init(themeStorage: ICacheStorage, dispatchQueue: IDispatchQueue = DispatchQueue.global()) {
         self.themeStorage = themeStorage
+        self.dispatchQueue = dispatchQueue
     }
     
     func save(_ theme: ITheme, completion: (() -> Void)?) {
@@ -26,7 +28,7 @@ class ThemeService: IThemeService {
             return
         }
         
-        DispatchQueue.global().async {[weak self] in
+        dispatchQueue.async {[weak self] in
             if let key = self?.key {
                 self?.themeStorage.save(key: key, data: themeId.rawValue)
             }
