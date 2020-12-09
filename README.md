@@ -1,5 +1,7 @@
 # TFS Homeworks
 
+[![Build Status](https://travis-ci.org/bebnev/tfschat.svg?branch=homework-13-ci)](https://travis-ci.org/bebnev/tfschat)
+
 ## Intro
 
 - [x] - создать проект
