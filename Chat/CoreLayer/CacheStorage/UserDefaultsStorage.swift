@@ -25,6 +25,4 @@ class UserDefaultsStorage: ICacheStorage {
         
         return data
     }
-    
-    func canSave(by key: String) throws {}
 }
