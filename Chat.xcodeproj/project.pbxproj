@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1CB2E1C1EB979809DBC6E747 /* libPods-TFSChatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3096CC269B2B0042CDD60A8 /* libPods-TFSChatTests.a */; };
 		458B5D5092B76E00D6320D45 /* Pods_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A65AA267AEE4159172302DEC /* Pods_Chat.framework */; };
+		E803DC5E25814097001314B0 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E803DC5D25814097001314B0 /* DispatchQueue.swift */; };
+		E803DC8825814182001314B0 /* MockDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E803DC8725814182001314B0 /* MockDispatchQueue.swift */; };
 		E80561F8253F596400EE5EC3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E80561F7253F596400EE5EC3 /* GoogleService-Info.plist */; };
 		E816C6EF253716D600A53015 /* ProfileServiceGCDManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = E816C6EE253716D600A53015 /* ProfileServiceGCDManger.swift */; };
 		E817F2D325784BB600D63CC7 /* TFSChatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E817F2D225784BB600D63CC7 /* TFSChatUITests.swift */; };
@@ -161,6 +163,8 @@
 		79F8FCAAEAC4551E82C85A6D /* Pods-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chat.debug.xcconfig"; path = "Target Support Files/Pods-Chat/Pods-Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		A65AA267AEE4159172302DEC /* Pods_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3096CC269B2B0042CDD60A8 /* libPods-TFSChatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TFSChatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E803DC5D25814097001314B0 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
+		E803DC8725814182001314B0 /* MockDispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDispatchQueue.swift; sourceTree = "<group>"; };
 		E80561F7253F596400EE5EC3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E816C6EE253716D600A53015 /* ProfileServiceGCDManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServiceGCDManger.swift; sourceTree = "<group>"; };
 		E817F2D025784BB600D63CC7 /* TFSChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TFSChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -359,6 +363,7 @@
 				E817F2FA25785AB700D63CC7 /* LogProviderMock.swift */,
 				E817F32B257862F600D63CC7 /* CacheStorageMock.swift */,
 				E8E71D4125786CB80060AB47 /* UnknownThemeMock.swift */,
+				E803DC8725814182001314B0 /* MockDispatchQueue.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -632,6 +637,7 @@
 				E886E6AF252D592F0007AD0F /* UISearchBar+textField.swift */,
 				E830050C253FB5240098A20A /* UITextField+Padding.swift */,
 				E82C0696256F1F51002A1141 /* UIButton+Animation.swift */,
+				E803DC5D25814097001314B0 /* DispatchQueue.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1171,6 +1177,7 @@
 				E817F3342578651700D63CC7 /* ThemeServiceTests.swift in Sources */,
 				E817F2FB25785AB700D63CC7 /* LogProviderMock.swift in Sources */,
 				E8E71D4225786CB80060AB47 /* UnknownThemeMock.swift in Sources */,
+				E803DC8825814182001314B0 /* MockDispatchQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1197,6 +1204,7 @@
 				E8EADACA255B8D3A00E8EFE3 /* FileCacheStorage.swift in Sources */,
 				E864A05E2565DB8A008EA7A1 /* PhotoViewController+CollectionView.swift in Sources */,
 				E8798F4F253664F50095AA22 /* ProfileServiceOperationManager.swift in Sources */,
+				E803DC5E25814097001314B0 /* DispatchQueue.swift in Sources */,
 				E8EADAC3255B8B4900E8EFE3 /* IProfileStorage.swift in Sources */,
 				E8A6ECF2255B4DAA00869336 /* ServicesAssembly.swift in Sources */,
 				E86D64D52522809000BFD07B /* ConversationViewController.swift in Sources */,
@@ -1333,7 +1341,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F3WQ5L3TC6;
 				INFOPLIST_FILE = TFSChatUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1353,7 +1361,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F3WQ5L3TC6;
 				INFOPLIST_FILE = TFSChatUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1375,7 +1383,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F3WQ5L3TC6;
 				INFOPLIST_FILE = TFSChatTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1397,7 +1405,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F3WQ5L3TC6;
 				INFOPLIST_FILE = TFSChatTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
