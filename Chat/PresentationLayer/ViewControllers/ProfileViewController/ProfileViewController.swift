@@ -22,6 +22,7 @@ class ProfileViewController: AbstractViewController {
     @IBOutlet weak var saveWithOperationButton: UIButton!
     @IBOutlet weak var saveWithGCDButton: UIButton!
     @IBOutlet weak var buttonContainerView: UIStackView!
+    @IBOutlet weak var editButton: UIButton!
     
     @IBOutlet weak var nameTextField: UITextField!
     
@@ -124,6 +125,7 @@ class ProfileViewController: AbstractViewController {
         title = "My Profile"
         navigationItem.leftBarButtonItem = navigationCloseButton
         navigationItem.rightBarButtonItem = navigationEditButton
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     private func configureView() {
@@ -174,6 +176,7 @@ class ProfileViewController: AbstractViewController {
             saveWithOperationButton.isEnabled = false
             saveWithGCDButton.isEnabled = false
             buttonContainerView.isHidden = false
+            editButton.addShakeAnimation()
         } else {
             nameTextField.isUserInteractionEnabled = false
             nameTextField.borderStyle = .none
@@ -183,6 +186,7 @@ class ProfileViewController: AbstractViewController {
             navigationItem.rightBarButtonItem = navigationEditButton
             editAvatarButton.alpha = 0
             buttonContainerView.isHidden = true
+            editButton.removeShakeAnimation()
         }
     }
     
@@ -231,6 +235,9 @@ class ProfileViewController: AbstractViewController {
     }
     
     // MARK: - IBActions
+    @IBAction func handleEditButtonTap(_ sender: UIButton) {
+        isEditMode = !isEditMode
+    }
     
     @IBAction func handleTapOnView(_ sender: UITapGestureRecognizer) {
         dismissKeyboard()
